@@ -5,9 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#260b12">
   <title>Shravan & Nikki | Wedding Invitation</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Great+Vibes&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -17,16 +18,7 @@
       --cream: #fff2d9;
       --ink: #593b35;
     }
-.wedding-logo {
-    display: block;
-    width: clamp(95px, 25vw, 135px);
-    height: auto;
-    max-height: 110px;
-    object-fit: contain;
-    object-position: center;
-    margin: 0 auto 1.2%;
-    flex-shrink: 0;
-}
+
     * { box-sizing: border-box; }
 
     html, body {
@@ -68,7 +60,6 @@
       object-position: center;
     }
 
-    /* OPENING SCREEN */
     .opening {
       z-index: 3;
       opacity: 1;
@@ -81,23 +72,25 @@
     }
 
     .open-hotspot {
+      transition: opacity .8s ease;
+    }
+
+    .opening.dismissed .open-hotspot {
+      opacity: 0;
+    }
+
+    .open-hotspot {
       position: absolute;
-      left: calc(50% - 1px);
-      top: (55.5;
+      left: 50%;
+      top: 55.5%;
       transform: translate(-50%, -50%);
-      width: min(50%, 230px);
+      width: min(78%, 420px);
       aspect-ratio: 1 / 1;
       padding: 0;
       border: 0;
       background: transparent;
       cursor: pointer;
       -webkit-tap-highlight-color: transparent;
-      transition: opacity .8s ease;
-    }
-
-    .opening.dismissed .open-hotspot {
-      opacity: 0;
-      pointer-events: none;
     }
 
     .open-hotspot img {
@@ -115,18 +108,20 @@
       outline-offset: 4px;
     }
 
-    /* VIDEO */
     .video-layer {
       z-index: 2;
       display: block;
       background: #18090d;
     }
 
+    .video-layer.active {
+      display: block;
+    }
+
     .video-layer video {
       object-fit: fill;
     }
 
-    /* INVITATION TEXT */
     .invitation {
       position: absolute;
       z-index: 4;
@@ -201,19 +196,23 @@
       margin: .45% 0;
     }
 
+    /* Slightly bolder family text */
     .family-line {
       font-weight: 800;
     }
 
+    /* Slightly smaller invitation sentence */
     .invite-line {
+      font-size: clamp(10px, 2.4vw, 13px);
       line-height: 1.45;
       margin-top: .7%;
       margin-bottom: .7%;
     }
 
+    /* Smaller, elegant italic heading */
     .headline {
       color: var(--burgundy);
-      font: 600 clamp(40px, 9.6vw, 55px)/.95 "Great Vibes", "Allura", cursive;
+      font: italic 600 clamp(36px, 8.6vw, 50px)/.95 "Cormorant Garamond", serif;
       margin: 1.4% 0 1%;
     }
 
@@ -231,10 +230,11 @@
       margin: .9% 0 .15%;
     }
 
+    /* Bride and groom names reduced by approximately 15% */
     .person-name {
       color: var(--burgundy);
       font-family: "Great Vibes", "Allura", cursive;
-      font-size: clamp(43px, 10.2vw, 59px);
+      font-size: clamp(37px, 8.7vw, 50px);
       font-weight: 600;
       line-height: 1.08;
       white-space: nowrap;
@@ -261,6 +261,7 @@
       margin: 2.2% 0 1.8%;
     }
 
+    /* SAVE THE DATE box: width reduced horizontally by 5% */
     .save-date {
       border: 1.5px solid rgba(183,135,63,.9);
       border-radius: 5px;
@@ -275,7 +276,7 @@
       align-items: center;
       justify-content: center;
       gap: clamp(8px, 2vw, 14px);
-      width: 88%;
+      width: 83.6%;
       flex: 0 0 auto;
     }
 
@@ -322,6 +323,42 @@
       transform: translateY(1px);
     }
 
+    .date-note {
+      position: absolute;
+      z-index: 5;
+      left: 50%;
+      bottom: 4%;
+      transform: translate(-50%, 8px);
+      opacity: 0;
+      visibility: hidden;
+      padding: 7px 13px;
+      border: 1px solid rgba(174,128,62,.65);
+      border-radius: 999px;
+      background: rgba(255,247,230,.96);
+      color: var(--burgundy);
+      font: 600 12px "Cormorant Garamond", serif;
+      white-space: nowrap;
+      transition: opacity .3s ease, transform .3s ease, visibility .3s;
+    }
+
+    .date-note.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(-50%,0);
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      border: 0;
+    }
+
     @media (max-height: 740px) {
       .invitation {
         top: 21%;
@@ -335,11 +372,11 @@
       }
 
       .headline {
-        font-size: clamp(34px, 8vw, 46px);
+        font-size: clamp(31px, 7.2vw, 41px);
       }
 
       .person-name {
-        font-size: clamp(40px, 9.2vw, 53px);
+        font-size: clamp(34px, 7.8vw, 45px);
       }
 
       .intro {
@@ -363,35 +400,32 @@
 <body>
   <main class="card" aria-label="Shravan and Nikki wedding invitation">
 
-    <!-- The video itself supplies the first and final frames -->
-    <div class="visual video-layer" id="videoLayer">
+    <div class="visual video-layer active" id="videoLayer">
       <video
         id="openingVideo"
         playsinline
         webkit-playsinline
         preload="auto"
-        controlslist="nodownload noplaybackrate">
+        autoplay="false"
+        loop="false"
+        controlslist="nodownload noplaybackrate"
+      >
         <source src="assets/opening-animation.mp4" type="video/mp4">
         Your browser does not support HTML video.
       </video>
     </div>
 
-    <!-- Separate OPEN PNG button -->
     <div class="visual opening" id="openingScreen">
-      <button class="open-hotspot" id="openButton" type="button" aria-label="Open wedding invitation">
+      <button class="open-hotspot" id="openButton" aria-label="Open wedding invitation">
         <img src="assets/open-button.png" alt="Open">
       </button>
     </div>
 
-    <!-- Invitation -->
     <section class="invitation" id="invitation" aria-live="polite">
 
-     <img
-  src="assets/wedding-logo.png"
-  alt="Shravan and Nikki Logo"
-  class="wedding-logo reveal"
-  style="--delay:.15s"
->
+      <div class="monogram reveal" style="--delay:.15s">
+        S <span>♥</span> N
+      </div>
 
       <p class="eyebrow family-line reveal" style="--delay:.45s">
         Together with our families
@@ -409,7 +443,9 @@
         With the blessings of our elders, we invite you to be part of our beautiful beginning.
       </p>
 
-      <p class="section-label reveal" style="--delay:1.65s">THE GROOM</p>
+      <p class="section-label reveal" style="--delay:1.65s">
+        THE GROOM
+      </p>
 
       <h2 class="person-name reveal" style="--delay:1.9s">
         Shravan Yadav
@@ -419,9 +455,13 @@
         Son of Smt. Savitri Yadav &amp; Shri Suresh Yadav
       </p>
 
-      <p class="weds reveal" style="--delay:2.55s">weds</p>
+      <p class="weds reveal" style="--delay:2.55s">
+        weds
+      </p>
 
-      <p class="section-label reveal" style="--delay:2.85s">THE BRIDE</p>
+      <p class="section-label reveal" style="--delay:2.85s">
+        THE BRIDE
+      </p>
 
       <h2 class="person-name reveal" style="--delay:3.1s">
         Nikki Yadav
@@ -453,13 +493,13 @@
   <script>
     const openingScreen = document.getElementById("openingScreen");
     const openButton = document.getElementById("openButton");
+    const videoLayer = document.getElementById("videoLayer");
     const video = document.getElementById("openingVideo");
     const invitation = document.getElementById("invitation");
 
     let started = false;
     let invitationTimer = null;
 
-    // Keep the video paused on its own first frame.
     video.pause();
 
     async function startWeddingVideo() {
@@ -467,23 +507,19 @@
 
       started = true;
       openButton.disabled = true;
-
-      // Fade out the OPEN button/screen over 0.8 seconds.
       openingScreen.classList.add("dismissed");
-
-      // Start the same video from its beginning.
       video.currentTime = 0;
 
       try {
         await video.play();
 
-        // Show invitation text 3.5 seconds after video playback starts.
+        // Invitation begins appearing 3.5 seconds after video playback starts.
         invitationTimer = window.setTimeout(() => {
           invitation.classList.add("visible");
         }, 3500);
 
       } catch (error) {
-        // Restore the OPEN button if video playback fails.
+        // Restore opening screen if video playback fails.
         started = false;
         openingScreen.classList.remove("dismissed");
         openButton.disabled = false;
@@ -491,18 +527,18 @@
     }
 
     function finishWeddingVideo() {
-      // Keep the actual final video frame frozen.
+      // Keep the video paused on its actual final frame.
       video.pause();
 
       if (invitationTimer !== null) {
         window.clearTimeout(invitationTimer);
       }
 
-      // Ensure invitation is visible if the video ends before 3.5 seconds.
       invitation.classList.add("visible");
     }
 
-    // Wait until the video's first frame is available.
+    // Display the video's own first frame before the OPEN button is tapped.
+    // No separate opening or ending photo is used.
     video.addEventListener("loadeddata", () => {
       if (!started) {
         video.pause();
@@ -510,13 +546,14 @@
       }
     }, { once: true });
 
-    // When the video ends, retain its actual last frame.
+    video.addEventListener("ended", () => {
+      video.pause();
+    });
+
+    openButton.addEventListener("click", startWeddingVideo);
     video.addEventListener("ended", finishWeddingVideo);
 
-    // Start only when the customer taps the OPEN PNG.
-    openButton.addEventListener("click", startWeddingVideo);
-
-    // View Invitation button.
+    // View Invitation button
     document.getElementById("viewInvitation").addEventListener("click", () => {
       invitation.scrollIntoView({
         behavior: "smooth",
@@ -524,7 +561,7 @@
       });
     });
 
-    // Reveal the Date button is reserved for a later step.
+    // Reveal the Date button remains a visual placeholder for a later step.
   </script>
 </body>
 </html>
