@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#260b12">
+  <title>Shravan & Nikki | Wedding Invitation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --burgundy: #721b2c;
+      --deep-burgundy: #581321;
+      --gold: #bd914b;
+      --cream: #fff2d9;
+      --ink: #593b35;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; min-height: 100%; background: #17080c; }
+    body {
+      min-height: 100svh;
+      display: flex;
+      justify-content: center;
+      color: var(--ink);
+      font-family: "Cormorant Garamond", Georgia, serif;
+      overflow-x: hidden;
+    }
+    .card {
+      position: relative;
+      width: min(100vw, 540px);
+      height: 100svh;
+      min-height: 680px;
+      max-height: 1100px;
+      overflow: hidden;
+      background: #f8e9cf;
+      isolation: isolate;
+    }
+    .visual, .visual img, .visual video {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+    }
+    .visual img, .visual video {
+      display: block; object-fit: cover; object-position: center;
+    }
+    .opening { z-index: 3; }
+    .opening img { user-select: none; -webkit-user-drag: none; }
+    .open-hotspot {
+      position: absolute;
+      left: 50%; top: 55.5%;
+      transform: translate(-50%, -50%);
+      width: 34%; height: 13%;
+      border: 0; border-radius: 50%;
+      background: transparent;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .open-hotspot:focus-visible {
+      outline: 2px solid rgba(255,255,255,.9);
+      outline-offset: 4px;
+    }
+    .video-layer { z-index: 2; display: none; background: #18090d; }
+    .video-layer.active { display: block; }
+    .video-layer video { object-fit: fill; }
+    .final-background { z-index: 1; opacity: 0; transition: opacity 1.1s ease; }
+    .final-background.visible { opacity: 1; }
+    .invitation {
+      position: absolute;
+      z-index: 4;
+      left: 12%;
+      right: 12%;
+      top: 12.2%;
+      bottom: 10.5%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      text-align: center;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      padding: 0;
+      transition: opacity .7s ease;
+    }
+    .invitation.visible { visibility: visible; opacity: 1; pointer-events: auto; }
+    .reveal {
+      opacity: 0;
+      transform: translateY(13px);
+      filter: blur(2px);
+    }
+    .invitation.visible .reveal {
+      animation: fadeUp .95s cubic-bezier(.2,.7,.2,1) forwards;
+      animation-delay: var(--delay, 0s);
+    }
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); filter: blur(0); }
+    }
+    .monogram {
+      width: clamp(42px, 10vw, 58px);
+      height: clamp(42px, 10vw, 58px);
+      border: 1px solid rgba(173,126,57,.7);
+      border-radius: 50%;
+      display: grid; place-items: center;
+      color: var(--burgundy);
+      font-family: "Great Vibes", cursive;
+      font-size: clamp(22px, 5.5vw, 31px);
+      line-height: 1;
+      margin-bottom: 1.1%;
+      background: rgba(255,248,232,.45);
+    }
+    .eyebrow {
+      color: #876538;
+      font: 600 clamp(8px, 2vw, 10px)/1.25 "Cormorant Garamond", serif;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      margin: .45% 0;
+    }
+    .headline {
+      color: var(--burgundy);
+      font: 500 clamp(25px, 6.2vw, 35px)/.98 "Cormorant Garamond", serif;
+      margin: 2.2% 0 1.2%;
+    }
+    .intro {
+      max-width: 98%;
+      color: #765d53;
+      font: 500 clamp(10px, 2.45vw, 13px)/1.25 "Cormorant Garamond", serif;
+      margin: 0 0 3.1%;
+    }
+    .section-label {
+      color: #8c6b3d;
+      font: 700 clamp(8px, 1.95vw, 10px)/1.1 "Cormorant Garamond", serif;
+      letter-spacing: .25em;
+      margin: 1.6% 0 .2%;
+    }
+    .person-name {
+      color: var(--burgundy);
+      font-family: "Great Vibes", "Allura", cursive;
+      font-size: clamp(31px, 8vw, 45px);
+      font-weight: 400;
+      line-height: 1.05;
+      white-space: nowrap;
+      margin: 0;
+      text-shadow: 0 .5px 0 rgba(255,255,255,.45);
+    }
+    .parent-line {
+      color: #6c514b;
+      font: 500 clamp(10px, 2.45vw, 13px)/1.15 "Cormorant Garamond", serif;
+      margin: .3% 0 1.4%;
+    }
+    .weds {
+      color: #a77b3b;
+      font: italic 500 clamp(17px, 4vw, 22px)/1.1 "Great Vibes", cursive;
+      margin: 1% 0 1.4%;
+    }
+    .ornament {
+      width: 42%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(176,131,66,.8), transparent);
+      margin: 2.2% 0 1.8%;
+    }
+    .save-date {
+      border: 1px solid rgba(183,135,63,.8);
+      border-radius: 3px;
+      padding: 1.5% 8%;
+      color: var(--burgundy);
+      font: 700 clamp(10px, 2.5vw, 13px)/1.1 "Cormorant Garamond", serif;
+      letter-spacing: .2em;
+      margin-top: .5%;
+      background: rgba(255,248,232,.45);
+    }
+    .actions {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      gap: 8px;
+      margin-top: auto;
+      padding-top: 3%;
+      pointer-events: auto;
+    }
+    .action-btn {
+      min-width: 0;
+      flex: 1;
+      border: 1px solid var(--burgundy);
+      border-radius: 999px;
+      padding: 10px 8px;
+      color: #fff8ed;
+      background: linear-gradient(135deg, #8b263b, #5c1427);
+      font: 600 clamp(10px, 2.5vw, 13px)/1.1 "Cormorant Garamond", serif;
+      box-shadow: 0 3px 9px rgba(91,34,31,.16);
+      cursor: pointer;
+    }
+    .action-btn.secondary {
+      color: var(--burgundy);
+      background: rgba(255,248,235,.9);
+    }
+    .action-btn:active { transform: translateY(1px); }
+    .date-note {
+      position: absolute;
+      z-index: 5;
+      left: 50%; bottom: 4%;
+      transform: translate(-50%, 8px);
+      opacity: 0;
+      visibility: hidden;
+      padding: 7px 13px;
+      border: 1px solid rgba(174,128,62,.65);
+      border-radius: 999px;
+      background: rgba(255,247,230,.96);
+      color: var(--burgundy);
+      font: 600 12px "Cormorant Garamond", serif;
+      white-space: nowrap;
+      transition: opacity .3s ease, transform .3s ease, visibility .3s;
+    }
+    .date-note.show { opacity: 1; visibility: visible; transform: translate(-50%,0); }
+    .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+    @media (max-height: 740px) {
+      .invitation { top: 10.5%; bottom: 8.5%; }
+      .monogram { width: 38px; height: 38px; font-size: 21px; }
+      .headline { font-size: clamp(23px, 5.6vw, 31px); }
+      .person-name { font-size: clamp(28px, 7.1vw, 39px); }
+      .intro { margin-bottom: 2%; }
+      .parent-line { margin-bottom: .8%; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <main class="card" aria-label="Shravan and Nikki wedding invitation">
+    <div class="visual final-background" id="finalBackground">
+      <img src="assets/final-curtain.jpg" alt="Royal wedding curtains fully open">
+    </div>
+
+    <div class="visual video-layer" id="videoLayer">
+      <video id="openingVideo" playsinline webkit-playsinline preload="auto">
+        <source src="assets/opening-animation.mp4" type="video/mp4">
+        Your browser does not support HTML video.
+      </video>
+    </div>
+
+    <div class="visual opening" id="openingScreen">
+      <img src="assets/opening-door.jpg" alt="Closed royal wedding doors with Open emblem">
+      <button class="open-hotspot" id="openButton" aria-label="Open wedding invitation">
+        <span class="sr-only">Open</span>
+      </button>
+    </div>
+
+    <section class="invitation" id="invitation" aria-live="polite">
+      <div class="monogram reveal" style="--delay:.15s">S <span>♥</span> N</div>
+      <p class="eyebrow reveal" style="--delay:.45s">Together with our families</p>
+      <p class="eyebrow reveal" style="--delay:.7s">Joyfully invite you to celebrate</p>
+      <h1 class="headline reveal" style="--delay:1s">The Wedding<br>Celebration</h1>
+      <p class="intro reveal" style="--delay:1.3s">With the blessings of our elders, we invite you to be part of our beautiful beginning.</p>
+
+      <p class="section-label reveal" style="--delay:1.65s">THE GROOM</p>
+      <h2 class="person-name reveal" style="--delay:1.9s">Shravan Yadav</h2>
+      <p class="parent-line reveal" style="--delay:2.2s">Son of Smt. Savitri Yadav &amp; Shri Suresh Yadav</p>
+
+      <p class="weds reveal" style="--delay:2.55s">weds</p>
+
+      <p class="section-label reveal" style="--delay:2.85s">THE BRIDE</p>
+      <h2 class="person-name reveal" style="--delay:3.1s">Nikki Yadav</h2>
+      <p class="parent-line reveal" style="--delay:3.4s">Daughter of Smt. Radha Devi &amp; Shri Jitendra Yadav</p>
+
+      <div class="ornament reveal" style="--delay:3.7s"></div>
+      <div class="save-date reveal" style="--delay:3.95s">SAVE THE DATE</div>
+
+      <div class="actions reveal" style="--delay:4.25s">
+        <button class="action-btn" id="viewInvitation" type="button">View Invitation</button>
+        <button class="action-btn secondary" id="revealDate" type="button">Reveal the Date ♥</button>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    const openingScreen = document.getElementById("openingScreen");
+    const openButton = document.getElementById("openButton");
+    const videoLayer = document.getElementById("videoLayer");
+    const video = document.getElementById("openingVideo");
+    const finalBackground = document.getElementById("finalBackground");
+    const invitation = document.getElementById("invitation");
+    let started = false;
+
+    async function startWeddingVideo() {
+      if (started) return;
+      started = true;
+      openButton.disabled = true;
+      openingScreen.style.display = "none";
+      videoLayer.classList.add("active");
+      video.currentTime = 0;
+      try {
+        await video.play();
+      } catch (error) {
+        // If playback is blocked, restore the opening screen so the visitor can tap again.
+        started = false;
+        videoLayer.classList.remove("active");
+        openingScreen.style.display = "block";
+        openButton.disabled = false;
+      }
+    }
+
+    function finishWeddingVideo() {
+      video.pause();
+      videoLayer.classList.remove("active");
+      finalBackground.classList.add("visible");
+      invitation.classList.add("visible");
+    }
+
+    openButton.addEventListener("click", startWeddingVideo);
+    video.addEventListener("ended", finishWeddingVideo);
+
+    // Keep the two requested bottom buttons present without inventing event details.
+    document.getElementById("viewInvitation").addEventListener("click", () => {
+      invitation.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+    // The Reveal the Date button is kept as a visual placeholder for a later page/step.
+  </script>
+</body>
+</html>
