@@ -47,9 +47,9 @@
     .opening img { user-select: none; -webkit-user-drag: none; }
     .open-hotspot {
       position: absolute;
-      left: calc(50% - 1px); top: 55.5%;
+      left: 50%; top: 55.5%;
       transform: translate(-50%, -50%);
-      width: min(55%, 260px);
+      width: min(78%, 420px);
       aspect-ratio: 1 / 1;
       padding: 0;
       border: 0;
@@ -70,7 +70,7 @@
       outline: 2px solid rgba(255,255,255,.9);
       outline-offset: 4px;
     }
-    .video-layer { z-index: 2; display: none; background: #18090d; }
+    .video-layer { z-index: 2; display: block; background: #18090d; }
     .video-layer.active { display: block; }
     .video-layer video { object-fit: fill; }
     .invitation {
@@ -265,7 +265,7 @@
 </head>
 <body>
   <main class="card" aria-label="Shravan and Nikki wedding invitation">
-    <div class="visual video-layer" id="videoLayer">
+    <div class="visual video-layer active" id="videoLayer">
       <video id="openingVideo" playsinline webkit-playsinline preload="auto">
         <source src="assets/opening-animation.mp4" type="video/mp4">
         Your browser does not support HTML video.
@@ -273,7 +273,6 @@
     </div>
 
     <div class="visual opening" id="openingScreen">
-      <img src="assets/opening-door.jpg" alt="Closed royal wedding doors with Open emblem">
       <button class="open-hotspot" id="openButton" aria-label="Open wedding invitation">
         <img src="assets/open-button.png" alt="Open">
       </button>
@@ -319,16 +318,14 @@
       if (started) return;
       started = true;
       openButton.disabled = true;
-      openingScreen.style.display = "none";
-      videoLayer.classList.add("active");
+      openingScreen.style.pointerEvents = "none";
       video.currentTime = 0;
       try {
         await video.play();
       } catch (error) {
         // If playback is blocked, restore the opening screen so the visitor can tap again.
         started = false;
-        videoLayer.classList.remove("active");
-        openingScreen.style.display = "block";
+        openingScreen.style.pointerEvents = "auto";
         openButton.disabled = false;
       }
     }
@@ -340,6 +337,10 @@
       invitation.classList.add("visible");
     }
 
+    video.addEventListener("loadeddata", () => {
+      video.pause();
+      video.currentTime = 0;
+    }, { once: true });
     openButton.addEventListener("click", startWeddingVideo);
     video.addEventListener("ended", finishWeddingVideo);
 
