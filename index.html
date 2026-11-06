@@ -69,8 +69,8 @@
       z-index: 4;
       left: 12%;
       right: 12%;
-      top: 18.5%;
-      bottom: 8.5%;
+      top: 24%;
+      bottom: 5.5%;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -79,9 +79,12 @@
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
-      padding: 0;
+      padding: 0 0 2%;
+      overflow-y: auto;
+      scrollbar-width: none;
       transition: opacity .7s ease;
     }
+    .invitation::-webkit-scrollbar { display: none; }
     .invitation.visible { visibility: visible; opacity: 1; pointer-events: auto; }
     .reveal {
       opacity: 0;
@@ -96,60 +99,69 @@
       to { opacity: 1; transform: translateY(0); filter: blur(0); }
     }
     .monogram {
-      width: clamp(50px, 12vw, 66px);
-      height: clamp(50px, 12vw, 66px);
+      width: clamp(150px, 36vw, 198px);
+      height: clamp(150px, 36vw, 198px);
       border: 1px solid rgba(173,126,57,.7);
       border-radius: 50%;
       display: grid; place-items: center;
       color: var(--burgundy);
       font-family: "Great Vibes", cursive;
-      font-size: clamp(22px, 5.5vw, 31px);
+      font-size: clamp(66px, 16.5vw, 93px);
       line-height: 1;
-      margin-bottom: .7%;
+      margin-bottom: 1.2%;
+      flex: 0 0 auto;
       background: rgba(255,248,232,.45);
     }
     .eyebrow {
       color: #876538;
-      font: 600 clamp(8px, 2vw, 10px)/1.25 "Cormorant Garamond", serif;
+      font: 700 clamp(11px, 2.6vw, 14px)/1.3 "Cormorant Garamond", serif;
       letter-spacing: .22em;
       text-transform: uppercase;
       margin: .45% 0;
     }
+    .family-line {
+      font-weight: 800;
+    }
+    .invite-line {
+      line-height: 1.45;
+      margin-top: .7%;
+      margin-bottom: .7%;
+    }
     .headline {
       color: var(--burgundy);
-      font: 400 clamp(38px, 9.2vw, 52px)/.9 "Great Vibes", "Allura", cursive;
+      font: 600 clamp(40px, 9.6vw, 55px)/.95 "Great Vibes", "Allura", cursive;
       margin: 1.4% 0 1%;
     }
     .intro {
       max-width: 98%;
       color: #765d53;
-      font: 500 clamp(12px, 2.8vw, 15px)/1.3 "Cormorant Garamond", serif;
+      font: 700 clamp(13px, 3.1vw, 16px)/1.3 "Cormorant Garamond", serif;
       margin: 0 0 2%;
     }
     .section-label {
       color: #8c6b3d;
-      font: 700 clamp(8px, 1.95vw, 10px)/1.1 "Cormorant Garamond", serif;
+      font: 700 clamp(10px, 2.4vw, 13px)/1.15 "Cormorant Garamond", serif;
       letter-spacing: .25em;
       margin: .9% 0 .15%;
     }
     .person-name {
       color: var(--burgundy);
       font-family: "Great Vibes", "Allura", cursive;
-      font-size: clamp(39px, 9.5vw, 55px);
-      font-weight: 400;
-      line-height: 1.05;
+      font-size: clamp(43px, 10.2vw, 59px);
+      font-weight: 600;
+      line-height: 1.08;
       white-space: nowrap;
       margin: 0;
       text-shadow: 0 .5px 0 rgba(255,255,255,.45);
     }
     .parent-line {
       color: #6c514b;
-      font: 500 clamp(12px, 2.9vw, 15px)/1.2 "Cormorant Garamond", serif;
+      font: 700 clamp(13px, 3vw, 16px)/1.25 "Cormorant Garamond", serif;
       margin: .3% 0 1.4%;
     }
     .weds {
       color: #a77b3b;
-      font: italic 500 clamp(17px, 4vw, 22px)/1.1 "Great Vibes", cursive;
+      font: italic 600 clamp(20px, 4.5vw, 25px)/1.1 "Great Vibes", cursive;
       margin: .5% 0 .7%;
     }
     .ornament {
@@ -159,14 +171,31 @@
       margin: 2.2% 0 1.8%;
     }
     .save-date {
-      border: 1px solid rgba(183,135,63,.8);
-      border-radius: 4px;
-      padding: 1.5% 8%;
+      border: 1.5px solid rgba(183,135,63,.9);
+      border-radius: 5px;
+      padding: 1.8% 7%;
       color: var(--burgundy);
-      font: 700 clamp(10px, 2.5vw, 13px)/1.1 "Cormorant Garamond", serif;
+      font: 700 clamp(12px, 2.9vw, 15px)/1.15 "Cormorant Garamond", serif;
       letter-spacing: .2em;
-      margin-top: .5%;
-      background: rgba(255,248,232,.45);
+      margin-top: .8%;
+      background: linear-gradient(180deg, rgba(255,250,237,.92), rgba(245,224,184,.72));
+      box-shadow: 0 2px 7px rgba(145,95,35,.16), inset 0 0 0 2px rgba(183,135,63,.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(8px, 2vw, 14px);
+      width: 88%;
+      flex: 0 0 auto;
+    }
+    .save-date::before,
+    .save-date::after {
+      content: "❧";
+      color: #b8873f;
+      font-family: Georgia, serif;
+      font-size: clamp(22px, 5.5vw, 31px);
+      line-height: .8;
+      letter-spacing: 0;
+      text-shadow: 0 1px 0 rgba(255,255,255,.65);
     }
     .actions {
       display: flex;
@@ -213,10 +242,10 @@
     .date-note.show { opacity: 1; visibility: visible; transform: translate(-50%,0); }
     .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
     @media (max-height: 740px) {
-      .invitation { top: 17%; bottom: 7.5%; }
-      .monogram { width: 44px; height: 44px; font-size: 23px; }
+      .invitation { top: 21%; bottom: 5%; }
+      .monogram { width: clamp(132px, 32vw, 165px); height: clamp(132px, 32vw, 165px); font-size: clamp(58px, 14vw, 78px); }
       .headline { font-size: clamp(34px, 8vw, 46px); }
-      .person-name { font-size: clamp(36px, 8.8vw, 50px); }
+      .person-name { font-size: clamp(40px, 9.2vw, 53px); }
       .intro { margin-bottom: 2%; }
       .parent-line { margin-bottom: .8%; }
     }
@@ -247,8 +276,8 @@
 
     <section class="invitation" id="invitation" aria-live="polite">
       <div class="monogram reveal" style="--delay:.15s">S <span>♥</span> N</div>
-      <p class="eyebrow reveal" style="--delay:.45s">Together with our families</p>
-      <p class="eyebrow reveal" style="--delay:.7s">Joyfully invite you to celebrate</p>
+      <p class="eyebrow family-line reveal" style="--delay:.45s">Together with our families</p>
+      <p class="eyebrow invite-line reveal" style="--delay:.7s">Joyfully invite you to<br>celebrate</p>
       <h1 class="headline reveal" style="--delay:1s">The Wedding<br>Celebration</h1>
       <p class="intro reveal" style="--delay:1.3s">With the blessings of our elders, we invite you to be part of our beautiful beginning.</p>
 
