@@ -18,7 +18,17 @@
       --cream: #fff2d9;
       --ink: #593b35;
     }
-
+/* Wedding Logo */
+.wedding-logo {
+    display: block;
+    width: clamp(95px, 25vw, 135px);
+    height: auto;
+    max-height: 110px;
+    object-fit: contain;
+    object-position: center;
+    margin: 0 auto 1.2%;
+    flex-shrink: 0;
+}
     * { box-sizing: border-box; }
 
     html, body {
@@ -423,9 +433,12 @@
 
     <section class="invitation" id="invitation" aria-live="polite">
 
-      <div class="monogram reveal" style="--delay:.15s">
-        S <span>♥</span> N
-      </div>
+      <img
+  src="assets/wedding-logo.png"
+  alt="Shravan and Nikki Wedding Logo"
+  class="wedding-logo reveal"
+  style="--delay:.15s"
+>
 
       <p class="eyebrow family-line reveal" style="--delay:.45s">
         Together with our families
