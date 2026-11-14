@@ -32,7 +32,7 @@
       border: 0;
       background: transparent;
       cursor: pointer;
-      transition: opacity 0.5s ease;
+      transition: opacity 0.5s ease;   /* ← 0.5s fade */
     }
     .open-hotspot.fading {
       opacity: 0;
@@ -41,25 +41,14 @@
     .open-hotspot img{width:100%;height:100%;object-fit:contain}
 
     .video-layer{z-index:2;background:#18090d}
-
-    .invitation{
-      position:absolute;z-index:4;left:10%;right:10%;top:22%;bottom:4%;
-      display:flex;flex-direction:column;align-items:center;text-align:center;
-      opacity:0;visibility:hidden;pointer-events:none;
-      overflow-y:auto;scrollbar-width:none;transition:opacity .7s ease;
-      padding-bottom:0;
-    }
+    .invitation{position:absolute;z-index:4;left:12%;right:12%;top:24%;bottom:5.5%;display:flex;flex-direction:column;align-items:center;text-align:center;opacity:0;visibility:hidden;pointer-events:none;overflow-y:auto;scrollbar-width:none;transition:opacity .7s ease;padding-bottom:2%}
     .invitation.visible{visibility:visible;opacity:1;pointer-events:auto}
     .invitation::-webkit-scrollbar{display:none}
     .reveal{opacity:0;transform:translateY(13px);filter:blur(2px)}
     .invitation.visible .reveal{animation:fadeUp .95s cubic-bezier(.2,.7,.2,1) forwards;animation-delay:var(--delay,0s)}
     @keyframes fadeUp{to{opacity:1;transform:translateY(0);filter:blur(0)}}
     .wedding-logo{width:clamp(130px,34vw,175px);max-height:150px;object-fit:contain;margin:0 auto 1.2%}
-    .text-content{
-      display:flex;flex-direction:column;align-items:center;width:100%;
-      padding-top:clamp(6px,1.2vh,14px);
-      flex:1 1 auto;
-    }
+    .text-content{display:flex;flex-direction:column;align-items:center;width:100%;padding-top:clamp(8px,1.5vh,16px)}
     .family-line{font-size:clamp(9px,2.1vw,11.5px);font-weight:700;letter-spacing:.2em;margin:.45% 0 .25%;color:#876538;text-transform:uppercase}
     .family-ornament{width:63%;height:2px;background:linear-gradient(90deg,transparent,rgba(189,145,75,.65),transparent);margin:1.1% 0}
     .invite-line{color:#876538;font:700 clamp(10px,2.35vw,12.5px)/1.35 "Cormorant Garamond",serif;letter-spacing:.17em;text-transform:uppercase;margin:.3% 0 .7%}
@@ -70,36 +59,33 @@
     .parent-line{color:#6c514b;font:600 clamp(13.5px,3vw,16px)/1.18 "Cormorant Garamond",serif;margin:.35% 0 1.1%}
     .weds{color:#a77b3b;font:italic 600 clamp(18px,4.2vw,23px)/1.1 "Great Vibes",cursive;margin:.35% 0 .5%}
 
-    /* Buttons: side-by-side, smaller, pinned inside the frame */
+    /* BEAUTIFUL MEDIUM BOXES */
     .actions{
       display:flex;
-      flex-direction:row;
-      justify-content:center;
+      flex-direction:column;
       align-items:center;
       width:100%;
-      gap:10px;
-      margin-top:10px;
-      padding-top:8px;
-      flex:0 0 auto;
+      gap:12px;
+      margin-top:auto;
+      padding-top:18px;
     }
     .action-btn{
       position:relative;
-      flex:1 1 0;
-      max-width: 140px;
+      width: min(72%, 260px);
       border: 1.5px solid #c9a86a;
-      border-radius: 10px;
-      padding: 9px 16px;
+      border-radius: 12px;
+      padding: 12px 34px;
       color: #fff8e6;
       background: linear-gradient(180deg, #8d2a40 0%, #6a1a2e 50%, #581321 100%);
       font-family: "Cormorant Garamond", serif;
       font-weight: 700;
-      font-size: clamp(11px, 2.9vw, 13px);
-      letter-spacing: .09em;
+      font-size: clamp(14px, 3.6vw, 16px);
+      letter-spacing: .12em;
       text-transform: uppercase;
       text-align: center;
       cursor: pointer;
-      box-shadow:
-        0 3px 10px rgba(88,19,33,.25),
+      box-shadow: 
+        0 4px 12px rgba(88,19,33,.25),
         inset 0 1px 0 rgba(255,255,255,.25),
         inset 0 -1px 0 rgba(0,0,0,.2);
       transition: all .25s ease;
@@ -109,26 +95,26 @@
       position:absolute;
       inset:2px;
       border:1px solid rgba(255,242,217,.35);
-      border-radius:8px;
+      border-radius:10px;
       pointer-events:none;
     }
     .action-btn::after{
       content:"✦";
       position:absolute;
-      left:7px;
+      left:12px;
       top:50%;
       transform:translateY(-50%);
-      font-size:8px;
+      font-size:10px;
       color:#f3d89b;
       opacity:.9;
     }
     .action-btn span.after-star::after{
       content:"✦";
       position:absolute;
-      right:7px;
+      right:12px;
       top:50%;
       transform:translateY(-50%);
-      font-size:8px;
+      font-size:10px;
       color:#f3d89b;
     }
     .action-btn:hover{
@@ -177,7 +163,7 @@
 
       <div class="actions reveal" style="--delay:3.8s">
         <button class="action-btn" id="viewInvitation" type="button"><span class="after-star">View Invitation</span></button>
-        <button class="action-btn secondary" id="revealDate" type="button"><span class="after-star">Reveal Date ♥</span></button>
+        <button class="action-btn secondary" id="revealDate" type="button"><span class="after-star">Reveal the Date ♥</span></button>
       </div>
     </section>
   </main>
@@ -185,7 +171,7 @@
     <div class="modal-card">
       <h3 id="modalTitle" style="color:var(--burgundy);font-family:Allura;font-size:42px;margin:0 0 8px">Save the Date</h3>
       <p style="letter-spacing:.22em;font-weight:800;font-size:20px;color:var(--burgundy)">12TH DEC 2025</p>
-      <button class="action-btn" id="closeModal" style="width:100%;margin-top:14px;max-width:none"><span class="after-star">Close</span></button>
+      <button class="action-btn" id="closeModal" style="width:100%;margin-top:14px"><span class="after-star">Close</span></button>
     </div>
   </div>
   <script>
