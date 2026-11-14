@@ -10,24 +10,25 @@
     :root { --burgundy:#721b2c; --gold:#bd914b; --ink:#593b35; }
     *{box-sizing:border-box}
     html,body{margin:0;min-height:100%;background:#17080c}
-    body{min-height:100svh;display:flex;justify-content:center;color:var(--ink);font-family:"Cormorant Garamond",serif;overflow-x:hidden}
+    html{height:100%} /* FIX #1: give html height for svh reliability */
+    body{min-height:100svh;display:flex;justify-content:center;align-items:center;color:var(--ink);font-family:"Cormorant Garamond",serif;overflow-x:hidden}
     .card{position:relative;width:min(100vw,540px);height:100svh;min-height:680px;max-height:1100px;overflow:hidden;background:#f8e9cf;isolation:isolate}
     .visual{position:absolute;inset:0;width:100%;height:100%}
     .visual img,.visual video{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
     .opening{z-index:3;transition:opacity .8s ease}
     .opening.dismissed{opacity:0;pointer-events:none}
     .open-hotspot {
-  position: absolute;
-  left: 50%;
-  top: 55.5%;
-  transform: translate(-50%, -50%);
-  width: min(46%, 220px); /* was 55%, 260px - now ~15% smaller */
-  aspect-ratio: 1 / 1;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  cursor: pointer;
-}
+      position: absolute;
+      left: 50%;
+      top: 55.5%;
+      transform: translate(-50%, -50%);
+      width: min(46%, 220px);
+      aspect-ratio: 1 / 1;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+    }
     .open-hotspot img{width:100%;height:100%;object-fit:contain}
     .video-layer{z-index:2;background:#18090d}
     .invitation{position:absolute;z-index:4;left:12%;right:12%;top:24%;bottom:5.5%;display:flex;flex-direction:column;align-items:center;text-align:center;opacity:0;visibility:hidden;pointer-events:none;overflow-y:auto;scrollbar-width:none;transition:opacity .7s ease;padding-bottom:2%}
@@ -63,7 +64,8 @@
       width: min(72%, 260px);
       border: 1.5px solid #c9a86a;
       border-radius: 12px;
-      padding: 12px 18px;
+      /* FIX #6: increased horizontal padding to clear the left ✦ star */
+      padding: 12px 34px;
       color: #fff8e6;
       background: linear-gradient(180deg, #8d2a40 0%, #6a1a2e 50%, #581321 100%);
       font-family: "Cormorant Garamond", serif;
@@ -90,7 +92,7 @@
     .action-btn::after{
       content:"✦";
       position:absolute;
-      left:10px;
+      left:12px;
       top:50%;
       transform:translateY(-50%);
       font-size:10px;
@@ -100,7 +102,7 @@
     .action-btn span.after-star::after{
       content:"✦";
       position:absolute;
-      right:10px;
+      right:12px;
       top:50%;
       transform:translateY(-50%);
       font-size:10px;
@@ -120,15 +122,16 @@
     .action-btn.secondary::before{border-color:rgba(189,145,75,.4)}
     .action-btn:active{transform:translateY(0px)}
 
-    .modal{position:fixed;inset:0;z-index:10;display:none;place-items:center;background:rgba(0,0,0,.55);backdrop-filter:blur(4px)}
+    .modal{position:fixed;inset:0;z-index:10;display:none;place-items:center;background:rgba(0,0,0,.55);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
     .modal.open{display:grid}
     .modal-card{background:#fff7e8;border:1.5px solid #bd914b;padding:28px 24px;border-radius:16px;text-align:center;max-width:340px;width:90%}
   </style>
 </head>
 <body>
   <main class="card">
-    <div class="visual video-layer"><video id="openingVideo" playsinline preload="auto"><source src="assets/opening-animation.mp4" type="video/mp4"></video></div>
-    <div class="visual opening" id="openingScreen"><button class="open-hotspot" id="openButton"><img src="assets/open-button.png" alt="Open"></button></div>
+    <!-- FIX #4: preload="metadata" for faster readyState; playsinline kept -->
+    <div class="visual video-layer"><video id="openingVideo" playsinline preload="metadata"><source src="assets/opening-animation.mp4" type="video/mp4"></video></div>
+    <div class="visual opening" id="openingScreen"><button class="open-hotspot" id="openButton" aria-label="Open wedding invitation"><img src="assets/open-button.png" alt="Open"></button></div>
     <section class="invitation" id="invitation">
       <img src="assets/wedding-logo.png" alt="Logo" class="wedding-logo reveal" style="--delay:.15s">
       <div class="text-content">
@@ -152,18 +155,80 @@
       </div>
     </section>
   </main>
-  <div class="modal" id="dateModal"><div class="modal-card"><h3 style="color:var(--burgundy);font-family:Allura;font-size:42px;margin:0 0 8px">Save the Date</h3><p style="letter-spacing:.22em;font-weight:800;font-size:20px;color:var(--burgundy)">12TH DEC 2025</p><button class="action-btn" id="closeModal" style="width:100%;margin-top:14px"><span class="after-star">Close</span></button></div></div>
+  <div class="modal" id="dateModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card">
+      <h3 id="modalTitle" style="color:var(--burgundy);font-family:Allura;font-size:42px;margin:0 0 8px">Save the Date</h3>
+      <p style="letter-spacing:.22em;font-weight:800;font-size:20px;color:var(--burgundy)">12TH DEC 2025</p>
+      <button class="action-btn" id="closeModal" style="width:100%;margin-top:14px"><span class="after-star">Close</span></button>
+    </div>
+  </div>
   <script>
-    const openingScreen=document.getElementById("openingScreen"),openButton=document.getElementById("openButton"),video=document.getElementById("openingVideo"),invitation=document.getElementById("invitation");
-    let started=false,timer=null; video.pause();
-    async function startWeddingVideo(){ if(started) return; started=true; openButton.disabled=true; openingScreen.classList.add("dismissed"); video.currentTime=0; try{ await video.play(); timer=setTimeout(()=>invitation.classList.add("visible"),3500);}catch(e){ invitation.classList.add("visible"); } }
-    function finishWeddingVideo(){ video.pause(); if(timer) clearTimeout(timer); invitation.classList.add("visible"); }
-    openButton.addEventListener("click",startWeddingVideo); video.addEventListener("ended",finishWeddingVideo);
-    document.getElementById("viewInvitation").addEventListener("click",()=>invitation.scrollTo({top:0,behavior:"smooth"}));
-    const modal=document.getElementById("dateModal");
-    document.getElementById("revealDate").addEventListener("click",()=>modal.classList.add("open"));
-    document.getElementById("closeModal").addEventListener("click",()=>modal.classList.remove("open"));
-    modal.addEventListener("click",(e)=>{ if(e.target===modal) modal.classList.remove("open"); });
+    const openingScreen = document.getElementById("openingScreen");
+    const openButton    = document.getElementById("openButton");
+    const video         = document.getElementById("openingVideo");
+    const invitation    = document.getElementById("invitation");
+    let started = false, timer = null;
+
+    // FIX #4: only pause if the video actually exists/loaded
+    video.pause && video.pause();
+
+    async function startWeddingVideo() {
+      if (started) return;
+      started = true;
+      openButton.disabled = true;
+      openingScreen.classList.add("dismissed");
+
+      // FIX #4: guard currentTime — only reset if metadata is loaded
+      if (video.readyState >= 1) {
+        video.currentTime = 0;
+      }
+
+      // Fallback: if video file is missing or play() rejects, show invitation
+      try {
+        await video.play();
+        timer = setTimeout(() => invitation.classList.add("visible"), 3500);
+      } catch (e) {
+        // Autoplay blocked or file missing — show invitation immediately
+        invitation.classList.add("visible");
+      }
+    }
+
+    function finishWeddingVideo() {
+      video.pause();
+      if (timer) clearTimeout(timer);
+      invitation.classList.add("visible");
+    }
+
+    openButton.addEventListener("click", startWeddingVideo);
+    video.addEventListener("ended", finishWeddingVideo);
+
+    // If the video never loads (e.g. 404), don't hang forever — reveal after 4s
+    video.addEventListener("error", () => {
+      if (timer) clearTimeout(timer);
+      invitation.classList.add("visible");
+    });
+
+    document.getElementById("viewInvitation").addEventListener("click", () =>
+      invitation.scrollTo({ top: 0, behavior: "smooth" })
+    );
+
+    const modal = document.getElementById("dateModal");
+    document.getElementById("revealDate").addEventListener("click", () => {
+      modal.classList.add("open");
+      document.getElementById("closeModal").focus();
+    });
+    document.getElementById("closeModal").addEventListener("click", () =>
+      modal.classList.remove("open")
+    );
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) modal.classList.remove("open");
+    });
+    // FIX #10: Escape closes modal
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && modal.classList.contains("open")) {
+        modal.classList.remove("open");
+      }
+    });
   </script>
 </body>
 </html>
