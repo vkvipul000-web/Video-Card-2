@@ -11,8 +11,11 @@
     *{box-sizing:border-box}
     html,body{margin:0;min-height:100%;background:#17080c}
     html{height:100%}
-    body{min-height:100svh;display:flex;justify-content:center;align-items:center;color:var(--ink);font-family:"Cormorant Garamond",serif;overflow-x:hidden}
-    .card{position:relative;width:min(100vw,540px);height:100svh;min-height:680px;max-height:1100px;overflow:hidden;background:#f8e9cf;isolation:isolate}
+    
+    /* Flex-start allows us to scroll down to the gallery */
+    body{min-height:100svh;display:flex;flex-direction:column;align-items:center;color:var(--ink);font-family:"Cormorant Garamond",serif;overflow-x:hidden}
+    
+    .card{position:relative;width:min(100vw,540px);height:100svh;min-height:680px;max-height:1100px;overflow:hidden;background:#f8e9cf;isolation:isolate;flex-shrink:0}
     .visual{position:absolute;inset:0;width:100%;height:100%}
     .visual img,.visual video{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
 
@@ -30,7 +33,7 @@
       border: 0;
       background: transparent;
       cursor: pointer;
-      transition: opacity 2.0s ease;
+      transition: opacity 0.88s ease;
     }
     .open-hotspot.fading {
       opacity: 0;
@@ -85,10 +88,7 @@
       text-transform: uppercase;
       text-align: center;
       cursor: pointer;
-      box-shadow:
-        0 3px 10px rgba(88,19,33,.25),
-        inset 0 1px 0 rgba(255,255,255,.25),
-        inset 0 -1px 0 rgba(0,0,0,.2);
+      box-shadow: 0 3px 10px rgba(88,19,33,.25), inset 0 1px 0 rgba(255,255,255,.25), inset 0 -1px 0 rgba(0,0,0,.2);
       transition: all .25s ease;
     }
     .action-btn::before{
@@ -135,6 +135,52 @@
     .modal{position:fixed;inset:0;z-index:10;display:none;place-items:center;background:rgba(0,0,0,.55);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
     .modal.open{display:grid}
     .modal-card{background:#fff7e8;border:1.5px solid #bd914b;padding:28px 24px;border-radius:16px;text-align:center;max-width:340px;width:90%}
+
+    /* --- SCROLLABLE GALLERY STYLES --- */
+    .gallery {
+      width: min(100vw, 540px);
+      display: flex;
+      flex-direction: column;
+      background: #17080c;
+      /* Prevents the background from bouncing on iOS */
+      overscroll-behavior-y: none; 
+    }
+    .gallery-page {
+      width: 100%;
+      height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      
+      /* This places your PNG perfectly on every page */
+      background-image: url('assets/border-bg.png');
+      background-size: 100% 100%; /* Fits perfectly edge-to-edge without cropping */
+      background-position: center;
+      background-repeat: no-repeat;
+      
+      /* Padding ensures text stays away from the golden wavy borders */
+      padding: 15% 12%; 
+      text-align: center;
+      position: relative;
+    }
+    
+    /* Styles for the text inside the gallery pages */
+    .gallery-page h2 {
+      font-family: "Great Vibes", cursive;
+      color: var(--burgundy);
+      font-size: clamp(32px, 8vw, 42px);
+      margin-bottom: 10px;
+      font-weight: 400;
+    }
+    .gallery-page p {
+      font-family: "Cormorant Garamond", serif;
+      color: var(--ink);
+      font-size: clamp(16px, 4vw, 20px);
+      line-height: 1.5;
+      font-weight: 600;
+      margin: 0;
+    }
   </style>
 </head>
 <body>
@@ -168,6 +214,46 @@
       </div>
     </section>
   </main>
+
+  <!-- SCROLLABLE GALLERY PAGES -->
+  <section class="gallery" id="gallery">
+    <!-- Page 1 -->
+    <div class="gallery-page">
+      <h2>Our Story</h2>
+      <p>Place your text here.<br>How you met, or a sweet quote.</p>
+    </div>
+    
+    <!-- Page 2 -->
+    <div class="gallery-page">
+      <h2>The Proposal</h2>
+      <p>Add another sweet message here.<br>You can also put an image inside this text block later.</p>
+    </div>
+    
+    <!-- Page 3 -->
+    <div class="gallery-page">
+      <h2>The Venue</h2>
+      <p>Place your venue details here.<br>Date & Time.</p>
+    </div>
+    
+    <!-- Page 4 -->
+    <div class="gallery-page">
+      <h2>Our Families</h2>
+      <p>Add a message about your families<br>joining together.</p>
+    </div>
+    
+    <!-- Page 5 -->
+    <div class="gallery-page">
+      <h2>Save the Date</h2>
+      <p>12th December 2025<br>We can't wait to see you!</p>
+    </div>
+    
+    <!-- Page 6 -->
+    <div class="gallery-page">
+      <h2>RSVP</h2>
+      <p>Please let us know if you can make it.<br>Contact details here.</p>
+    </div>
+  </section>
+
   <div class="modal" id="dateModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal-card">
       <h3 id="modalTitle" style="color:var(--burgundy);font-family:Allura;font-size:42px;margin:0 0 8px;font-weight:400">Save the Date</h3>
@@ -205,7 +291,7 @@
     }
 
     function finishWeddingVideo() {
-      video.pause();
+      video.pause(); // This is what makes the video freeze on the last frame
       if (timer) clearTimeout(timer);
       invitation.classList.add("visible");
     }
