@@ -142,7 +142,6 @@
       display: flex;
       flex-direction: column;
       background: #17080c;
-      /* Prevents the background from bouncing on iOS */
       overscroll-behavior-y: none; 
     }
     .gallery-page {
@@ -152,20 +151,15 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      
-      /* This places your PNG perfectly on every page */
       background-image: url('assets/border-bg.png');
-      background-size: 100% 100%; /* Fits perfectly edge-to-edge without cropping */
+      background-size: 100% 100%;
       background-position: center;
       background-repeat: no-repeat;
-      
-      /* Padding ensures text stays away from the golden wavy borders */
       padding: 15% 12%; 
       text-align: center;
       position: relative;
     }
     
-    /* Styles for the text inside the gallery pages */
     .gallery-page h2 {
       font-family: "Great Vibes", cursive;
       color: var(--burgundy);
@@ -180,6 +174,18 @@
       line-height: 1.5;
       font-weight: 600;
       margin: 0;
+    }
+
+    /* --- NEW: TRANSITION FLOWER STYLES --- */
+    .transition-flower {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translate(-50%, 50%); /* Centers it and pulls it halfway down over the seam */
+      width: 90%; /* Adjust this percentage to make the flower bigger or smaller */
+      max-width: 450px;
+      z-index: 15; /* Keeps it on top of both the frozen video and the border */
+      pointer-events: none; /* Ensures it doesn't block clicking/scrolling */
     }
   </style>
 </head>
@@ -213,6 +219,10 @@
         <button class="action-btn secondary" id="revealDate" type="button"><span class="after-star">Reveal Date ♥</span></button>
       </div>
     </section>
+
+    <!-- THE TRANSITION FLOWER -->
+    <img src="assets/flower.png" alt="Floral Divider" class="transition-flower">
+
   </main>
 
   <!-- SCROLLABLE GALLERY PAGES -->
@@ -291,7 +301,7 @@
     }
 
     function finishWeddingVideo() {
-      video.pause(); // This is what makes the video freeze on the last frame
+      video.pause(); // This makes the video freeze on the last frame
       if (timer) clearTimeout(timer);
       invitation.classList.add("visible");
     }
