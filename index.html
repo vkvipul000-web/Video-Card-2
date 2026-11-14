@@ -16,11 +16,9 @@
     .visual{position:absolute;inset:0;width:100%;height:100%}
     .visual img,.visual video{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
 
-    /* Opening layer: no fade on the parent — the button fades itself */
     .opening{z-index:3}
     .opening.dismissed{pointer-events:none}
 
-    /* Open button: fades out over 0.5s when .fading is added */
     .open-hotspot {
       position: absolute;
       left: 50%;
@@ -32,7 +30,7 @@
       border: 0;
       background: transparent;
       cursor: pointer;
-      transition: opacity 0.5s ease;   /* ← 0.5s fade */
+      transition: opacity 0.88s ease;
     }
     .open-hotspot.fading {
       opacity: 0;
@@ -41,6 +39,7 @@
     .open-hotspot img{width:100%;height:100%;object-fit:contain}
 
     .video-layer{z-index:2;background:#18090d}
+
     .invitation{position:absolute;z-index:4;left:12%;right:12%;top:24%;bottom:5.5%;display:flex;flex-direction:column;align-items:center;text-align:center;opacity:0;visibility:hidden;pointer-events:none;overflow-y:auto;scrollbar-width:none;transition:opacity .7s ease;padding-bottom:2%}
     .invitation.visible{visibility:visible;opacity:1;pointer-events:auto}
     .invitation::-webkit-scrollbar{display:none}
@@ -55,37 +54,39 @@
     .headline{color:var(--burgundy);font:italic 600 clamp(31px,7.2vw,41px)/.98 "Cormorant Garamond",serif;margin:1.1% 0 1%}
     .blessing-line{color:#876538;font:italic 600 clamp(13px,3vw,16px)/1.2 "Cormorant Garamond",serif;margin:1.1% 0 1.5%}
     .section-label{color:#8c6b3d;font:700 clamp(10px,2.4vw,13px)/1.15 "Cormorant Garamond",serif;letter-spacing:.25em;margin:.7% 0 .15%}
-    .person-name{color:var(--burgundy);font-family:"Allura",cursive;font-size:clamp(39px,9vw,49px);line-height:1;margin:0}
+    .person-name{color:var(--burgundy);font-family:"Allura",cursive;font-weight:400;font-size:clamp(39px,9vw,49px);line-height:1;margin:0}
     .parent-line{color:#6c514b;font:600 clamp(13.5px,3vw,16px)/1.18 "Cormorant Garamond",serif;margin:.35% 0 1.1%}
     .weds{color:#a77b3b;font:italic 600 clamp(18px,4.2vw,23px)/1.1 "Great Vibes",cursive;margin:.35% 0 .5%}
 
-    /* BEAUTIFUL MEDIUM BOXES */
     .actions{
       display:flex;
-      flex-direction:column;
+      flex-direction:row;
+      justify-content:center;
       align-items:center;
       width:100%;
-      gap:12px;
+      gap:10px;
       margin-top:auto;
-      padding-top:18px;
+      padding-top:14px;
+      flex:0 0 auto;
     }
     .action-btn{
       position:relative;
-      width: min(72%, 260px);
+      flex:1 1 0;
+      max-width: 150px;
       border: 1.5px solid #c9a86a;
-      border-radius: 12px;
-      padding: 12px 34px;
+      border-radius: 10px;
+      padding: 9px 14px;
       color: #fff8e6;
       background: linear-gradient(180deg, #8d2a40 0%, #6a1a2e 50%, #581321 100%);
       font-family: "Cormorant Garamond", serif;
       font-weight: 700;
-      font-size: clamp(14px, 3.6vw, 16px);
-      letter-spacing: .12em;
+      font-size: clamp(11px, 2.9vw, 13px);
+      letter-spacing: .08em;
       text-transform: uppercase;
       text-align: center;
       cursor: pointer;
-      box-shadow: 
-        0 4px 12px rgba(88,19,33,.25),
+      box-shadow:
+        0 3px 10px rgba(88,19,33,.25),
         inset 0 1px 0 rgba(255,255,255,.25),
         inset 0 -1px 0 rgba(0,0,0,.2);
       transition: all .25s ease;
@@ -95,26 +96,26 @@
       position:absolute;
       inset:2px;
       border:1px solid rgba(255,242,217,.35);
-      border-radius:10px;
+      border-radius:8px;
       pointer-events:none;
     }
     .action-btn::after{
       content:"✦";
       position:absolute;
-      left:12px;
+      left:6px;
       top:50%;
       transform:translateY(-50%);
-      font-size:10px;
+      font-size:8px;
       color:#f3d89b;
       opacity:.9;
     }
     .action-btn span.after-star::after{
       content:"✦";
       position:absolute;
-      right:12px;
+      right:6px;
       top:50%;
       transform:translateY(-50%);
-      font-size:10px;
+      font-size:8px;
       color:#f3d89b;
     }
     .action-btn:hover{
@@ -163,15 +164,15 @@
 
       <div class="actions reveal" style="--delay:3.8s">
         <button class="action-btn" id="viewInvitation" type="button"><span class="after-star">View Invitation</span></button>
-        <button class="action-btn secondary" id="revealDate" type="button"><span class="after-star">Reveal the Date ♥</span></button>
+        <button class="action-btn secondary" id="revealDate" type="button"><span class="after-star">Reveal Date ♥</span></button>
       </div>
     </section>
   </main>
   <div class="modal" id="dateModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal-card">
-      <h3 id="modalTitle" style="color:var(--burgundy);font-family:Allura;font-size:42px;margin:0 0 8px">Save the Date</h3>
+      <h3 id="modalTitle" style="color:var(--burgundy);font-family:Allura;font-size:42px;margin:0 0 8px;font-weight:400">Save the Date</h3>
       <p style="letter-spacing:.22em;font-weight:800;font-size:20px;color:var(--burgundy)">12TH DEC 2025</p>
-      <button class="action-btn" id="closeModal" style="width:100%;margin-top:14px"><span class="after-star">Close</span></button>
+      <button class="action-btn" id="closeModal" style="width:100%;margin-top:14px;max-width:none"><span class="after-star">Close</span></button>
     </div>
   </div>
   <script>
@@ -187,11 +188,8 @@
       if (started) return;
       started = true;
 
-      /* Fade the open button out over 0.5s starting NOW */
       openButton.classList.add("fading");
       openButton.disabled = true;
-
-      /* Remove the opening layer from interaction (button handles its own fade) */
       openingScreen.classList.add("dismissed");
 
       if (video.readyState >= 1) {
