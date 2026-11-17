@@ -296,11 +296,11 @@
       z-index: 3;
     }
     
-    /* FIX: Changed aspect ratio to match the wide PNG image and increased width */
+    /* FIX: Forced Square aspect ratio to make the image stretch and fill perfectly */
     .heart-stage {
       position: relative;
-      width: clamp(240px, 65vw, 290px); /* Increased width */
-      aspect-ratio: 1.5 / 1; /* Changed from 1/0.94 to a wider ratio */
+      width: clamp(220px, 55vw, 260px); 
+      aspect-ratio: 1 / 1; /* Perfect Square */
       display: flex;
       align-items: center;
       justify-content: center;
@@ -350,7 +350,7 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding-bottom: 5%; /* Adjusted for the wider shape */
+      padding-bottom: 0; 
       user-select: none;
       z-index: 1;
     }
@@ -899,8 +899,8 @@
           if (imgData[i] < 110) transparentCount++;
         }
 
-        // CHANGED TO 0.75 SO THEY HAVE TO SCRATCH ALMOST THE WHOLE HEART
-        if (transparentCount / totalSampled >= 0.75) {
+        // Set to 0.70 so they have to scratch 70% to reveal
+        if (transparentCount / totalSampled >= 0.70) {
           completeHeartScratch();
         }
       }
