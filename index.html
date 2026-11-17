@@ -329,38 +329,23 @@
       100% { filter: blur(16px); transform: scale(1.13); opacity: 1; }
     }
 
-    .heart-cork-frame {
+    /* NEW: Wrapper for the image and canvas */
+    .heart-image-wrapper {
       position: relative;
       width: 100%;
       height: 100%;
-      z-index: 1;
-      filter: drop-shadow(0 8px 16px rgba(72, 14, 26, 0.28));
-    }
-    .heart-cork-rim {
-      position: absolute;
-      inset: 0;
-      clip-path: url(#heartClip);
-      background:
-        radial-gradient(circle at 30% 25%, rgba(255, 245, 214, 0.55), transparent 50%),
-        repeating-radial-gradient(circle at 50% 50%, rgba(114, 27, 44, 0.08) 0px, rgba(189, 145, 75, 0.18) 2px, rgba(245, 222, 173, 0.12) 4px),
-        linear-gradient(135deg, #f3d89b 0%, #c49347 32%, #9a6b26 52%, #e6c483 78%, #b07e34 100%);
-    }
-
-    .heart-inner {
-      position: absolute;
-      inset: 4.5%;
-      clip-path: url(#heartClip);
-      background:
-        radial-gradient(circle at 50% 38%, #fffdf7 0%, #f8e9cf 68%, #ebd2a7 100%);
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
-      box-shadow: inset 0 0 18px rgba(114, 27, 44, 0.22);
+      filter: drop-shadow(0 8px 16px rgba(72, 14, 26, 0.28));
+      /* Background color to fill the inside of the heart before scratching */
+      background: radial-gradient(circle at 50% 38%, #fffdf7 0%, #f8e9cf 68%, #ebd2a7 100%);
+      /* Using clip-path ensures the background doesn't show outside the heart shape if the image has transparency */
+      clip-path: url(#heartClip); 
     }
 
     .heart-date-layer {
+      position: absolute;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -408,15 +393,6 @@
     }
     .scratch-canvas.cleared {
       opacity: 0;
-      pointer-events: none;
-    }
-
-    .heart-border-svg {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 3;
       pointer-events: none;
     }
 
@@ -676,36 +652,16 @@
           <!-- Backside Glow -->
           <div class="heart-back-glow"></div>
 
-          <div class="heart-cork-frame">
-            <!-- Textured Golden Cork Rim -->
-            <div class="heart-cork-rim"></div>
-
-            <!-- Inner Heart Content -->
-            <div class="heart-inner" id="heartInner">
-              <!-- Hidden 3-Line Date (Revealed Permanently) -->
-              <div class="heart-date-layer">
-                <span class="heart-date-day">12</span>
-                <span class="heart-date-month">DECEMBER</span>
-                <span class="heart-date-year">2026</span>
-              </div>
-
-              <!-- Upper Rose-Petal Scratch Layer -->
-              <canvas class="scratch-canvas" id="heartScratchCanvas" aria-label="Scratch heart to reveal wedding date"></canvas>
+          <div class="heart-image-wrapper">
+            <!-- Hidden Date (Revealed Permanently) -->
+            <div class="heart-date-layer">
+              <span class="heart-date-day">12</span>
+              <span class="heart-date-month">DECEMBER</span>
+              <span class="heart-date-year">2026</span>
             </div>
 
-            <!-- Sculpted Gold Heart Border Overlay -->
-            <svg class="heart-border-svg" viewBox="0 0 100 94" preserveAspectRatio="none">
-              <defs>
-                <linearGradient id="goldHeartStroke" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#f7e2ad"/>
-                  <stop offset="35%" stop-color="#bd914b"/>
-                  <stop offset="65%" stop-color="#8b6220"/>
-                  <stop offset="100%" stop-color="#f3d89b"/>
-                </linearGradient>
-              </defs>
-              <path d="M50,87.5 C50,87.5 4,59.2 4,29.1 C4,11.3 20,2.8 35,4.7 C43,5.6 48,11.3 50,16.9 C52,11.3 57,5.6 65,4.7 C80,2.8 96,11.3 96,29.1 C96,59.2 50,87.5 50,87.5 Z"
-                    fill="none" stroke="url(#goldHeartStroke)" stroke-width="3.2" />
-            </svg>
+            <!-- Upper Scratch Layer (Your Gem Heart) -->
+            <canvas class="scratch-canvas" id="heartScratchCanvas" aria-label="Scratch heart to reveal wedding date"></canvas>
           </div>
         </div>
         <p class="scratch-caption" id="scratchCaption">Scratch to Reveal</p>
@@ -869,7 +825,6 @@
     // =========================================================
     (function initHeartScratch() {
       const canvas = document.getElementById("heartScratchCanvas");
-      const heartInner = document.getElementById("heartInner");
       const heartStage = document.getElementById("heartStage");
       const caption = document.getElementById("scratchCaption");
       const ctx = canvas.getContext("2d", { willReadFrequently: true });
@@ -878,79 +833,28 @@
       let isCompleted = false;
       let strokeCounter = 0;
 
-      function paintRosePetalCover(width, height) {
-        ctx.globalCompositeOperation = "source-over";
-
-        const baseGrad = ctx.createRadialGradient(
-          width * 0.5, height * 0.42, width * 0.05,
-          width * 0.5, height * 0.5, width * 0.7
-        );
-        baseGrad.addColorStop(0, "#8f2237");
-        baseGrad.addColorStop(0.55, "#681526");
-        baseGrad.addColorStop(1, "#3f0a15");
-        ctx.fillStyle = baseGrad;
-        ctx.fillRect(0, 0, width, height);
-
-        const petalShades = [
-          ["#a82840", "#691223"],
-          ["#8c1d32", "#4f0b18"],
-          ["#b8324b", "#721b2c"],
-          ["#781629", "#3d0812"],
-          ["#c99b52", "#8f6524"]
-        ];
-
-        for (let i = 0; i < 68; i++) {
-          const px = (Math.sin(i * 73.1) * 0.5 + 0.5) * width;
-          const py = (Math.cos(i * 41.7) * 0.5 + 0.5) * height;
-          const rx = width * (0.08 + (i % 5) * 0.022);
-          const ry = rx * 1.32;
-          const angle = (i * 1.17) % (Math.PI * 2);
-          const shade = petalShades[i % petalShades.length];
-
-          ctx.save();
-          ctx.translate(px, py);
-          ctx.rotate(angle);
-
-          ctx.shadowColor = "rgba(20, 3, 7, 0.45)";
-          ctx.shadowBlur = 6;
-          ctx.shadowOffsetY = 2;
-
-          const pGrad = ctx.createRadialGradient(-rx * 0.2, -ry * 0.2, rx * 0.1, 0, 0, ry);
-          pGrad.addColorStop(0, shade[0]);
-          pGrad.addColorStop(1, shade[1]);
-
-          ctx.beginPath();
-          ctx.moveTo(0, -ry);
-          ctx.bezierCurveTo(rx * 1.1, -ry * 0.8, rx * 1.2, ry * 0.6, 0, ry);
-          ctx.bezierCurveTo(-rx * 1.2, ry * 0.6, -rx * 1.1, -ry * 0.8, 0, -ry);
-          ctx.closePath();
-          ctx.fillStyle = pGrad;
-          ctx.fill();
-
-          ctx.strokeStyle = "rgba(243, 216, 155, 0.22)";
-          ctx.lineWidth = 0.8;
-          ctx.stroke();
-          ctx.restore();
-        }
-
-        for (let j = 0; j < 45; j++) {
-          const gx = (Math.sin(j * 19.3) * 0.5 + 0.5) * width;
-          const gy = (Math.cos(j * 53.9) * 0.5 + 0.5) * height;
-          ctx.fillStyle = j % 2 === 0 ? "rgba(247, 226, 173, 0.55)" : "rgba(255, 248, 230, 0.35)";
-          ctx.beginPath();
-          ctx.arc(gx, gy, (j % 3) + 0.8, 0, Math.PI * 2);
-          ctx.fill();
-        }
-      }
-
       function setupScratchCanvas() {
         if (isCompleted) return;
-        const rect = heartInner.getBoundingClientRect();
-        const w = Math.max(180, Math.round(rect.width));
-        const h = Math.max(170, Math.round(rect.height));
+        
+        const heartWrapper = document.querySelector('.heart-image-wrapper');
+        const rect = heartWrapper.getBoundingClientRect();
+        const w = Math.round(rect.width);
+        const h = Math.round(rect.height);
+        
         canvas.width = w;
         canvas.height = h;
-        paintRosePetalCover(w, h);
+
+        // Load your gem heart image
+        const img = new Image();
+        img.src = 'assets/gem-heart.png';
+        
+        img.onload = function() {
+          ctx.globalCompositeOperation = "source-over";
+          ctx.clearRect(0, 0, w, h);
+          
+          // Draw the image to perfectly fit the heart area
+          ctx.drawImage(img, 0, 0, w, h);
+        };
       }
 
       function getPoint(e) {
