@@ -277,7 +277,8 @@
     .p1-quote-sub {
       font-family: "Cormorant Garamond", serif !important;
       font-size: clamp(13.5px, 3.4vw, 16.5px) !important;
-      font-weight: 600 !important;
+      font-weight: 700 !important; /* Bold */
+      font-style: italic; /* Italic */
       color: var(--ink) !important;
       line-height: 1.38 !important;
       max-width: 88%;
@@ -303,7 +304,6 @@
       justify-content: center;
       transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
     }
-    /* Soft Backside Glow When Scratch Completes */
     .heart-back-glow {
       position: absolute;
       inset: -18px;
@@ -329,7 +329,6 @@
       100% { filter: blur(16px); transform: scale(1.13); opacity: 1; }
     }
 
-    /* Decorative Golden-Cork Heart Outer Rim */
     .heart-cork-frame {
       position: relative;
       width: 100%;
@@ -347,7 +346,6 @@
         linear-gradient(135deg, #f3d89b 0%, #c49347 32%, #9a6b26 52%, #e6c483 78%, #b07e34 100%);
     }
 
-    /* Inner Heart Container (Holds Date & Scratch Canvas) */
     .heart-inner {
       position: absolute;
       inset: 4.5%;
@@ -362,7 +360,6 @@
       box-shadow: inset 0 0 18px rgba(114, 27, 44, 0.22);
     }
 
-    /* 3-Line Date Revealed Permanently Inside Heart */
     .heart-date-layer {
       display: flex;
       flex-direction: column;
@@ -384,22 +381,21 @@
     }
     .heart-date-month {
       font-family: "Cormorant Garamond", serif;
-      font-size: clamp(13px, 3.3vw, 15.5px);
+      font-size: clamp(16px, 4.2vw, 20px); /* Enlarged */
       font-weight: 700;
       letter-spacing: 0.24em;
       text-transform: uppercase;
       color: #9a6b26;
-      margin: 2px 0;
+      margin: 4px 0;
     }
     .heart-date-year {
       font-family: "Cormorant Garamond", serif;
-      font-size: clamp(15px, 3.8vw, 18px);
+      font-size: clamp(19px, 4.8vw, 23px); /* Enlarged */
       font-weight: 700;
       letter-spacing: 0.2em;
       color: var(--burgundy);
     }
 
-    /* Upper Scratch Canvas Layer */
     .scratch-canvas {
       position: absolute;
       inset: 0;
@@ -415,7 +411,6 @@
       pointer-events: none;
     }
 
-    /* Decorative SVG Gold Stitching Overlay on Heart Edge */
     .heart-border-svg {
       position: absolute;
       inset: 0;
@@ -426,13 +421,13 @@
     }
 
     .scratch-caption {
-      font-family: "Cormorant Garamond", serif !important;
-      font-style: italic;
-      font-size: clamp(12.5px, 3.1vw, 14.5px) !important;
-      color: #8c6b3d !important;
-      margin-top: 4px !important;
-      letter-spacing: 0.06em;
-      transition: opacity 0.4s ease;
+      font-family: "Great Vibes", cursive !important; /* Changed to fancy script */
+      font-style: normal;
+      font-size: clamp(22px, 5.5vw, 28px) !important; /* Larger, prominent font */
+      color: var(--burgundy) !important;
+      margin-top: 8px !important;
+      letter-spacing: 0.02em;
+      transition: opacity 0.4s ease, color 0.4s ease;
     }
 
     /* 3. Bottom Textured Maroon Countdown Section */
@@ -447,10 +442,9 @@
     .countdown-maroon-box {
       position: relative;
       width: 100%;
-      padding: clamp(14px, 3.4vw, 20px) clamp(12px, 3vw, 18px);
+      padding: clamp(22px, 5vw, 32px) clamp(12px, 3vw, 18px) clamp(16px, 4vw, 24px); /* Increased padding */
       border-radius: 14px;
       border: 1.5px solid #d4b171;
-      /* Maroon Velvet + Subtle Golden Grain Texture */
       background:
         radial-gradient(circle at 50% 0%, rgba(229, 195, 132, 0.22) 0%, transparent 62%),
         repeating-linear-gradient(45deg, rgba(255, 248, 235, 0.025) 0px, rgba(255, 248, 235, 0.025) 2px, transparent 2px, transparent 6px),
@@ -540,9 +534,9 @@
       font-weight: 700 !important;
       font-size: clamp(19px, 4.8vw, 24px) !important;
       letter-spacing: 0.08em;
-      color: var(--burgundy) !important;
-      margin-top: 10px !important;
-      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+      color: var(--gold-light) !important; /* Changed to Gold */
+      margin-top: 18px !important; /* Added space */
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
     }
 
     /* Falling Rose Petals Overlay */
@@ -708,14 +702,13 @@
                   <stop offset="100%" stop-color="#f3d89b"/>
                 </linearGradient>
               </defs>
+              <!-- Inner dashed path removed, only solid gold path remains -->
               <path d="M50,87.5 C50,87.5 4,59.2 4,29.1 C4,11.3 20,2.8 35,4.7 C43,5.6 48,11.3 50,16.9 C52,11.3 57,5.6 65,4.7 C80,2.8 96,11.3 96,29.1 C96,59.2 50,87.5 50,87.5 Z"
                     fill="none" stroke="url(#goldHeartStroke)" stroke-width="3.2" />
-              <path d="M50,83.5 C50,83.5 8.5,57 8.5,29.5 C8.5,14 22,6.5 35,8.2 C42.5,9.1 47.5,14.2 50,19.5 C52.5,14.2 57.5,9.1 65,8.2 C78,6.5 91.5,14 91.5,29.5 C91.5,57 50,83.5 50,83.5 Z"
-                    fill="none" stroke="rgba(255,248,230,0.65)" stroke-width="0.9" stroke-dasharray="2.2 1.8" />
             </svg>
           </div>
         </div>
-        <p class="scratch-caption" id="scratchCaption">✦ Scratch the rose petals to reveal our date ✦</p>
+        <p class="scratch-caption" id="scratchCaption">Scratch to Reveal</p>
       </div>
 
       <!-- 3. Bottom Textured Maroon Countdown Section -->
@@ -745,9 +738,10 @@
               <span class="cd-label">SECONDS</span>
             </div>
           </div>
+          
+          <!-- Moved "Save the Date" INSIDE the box -->
+          <p class="cd-save-date">Save the Date</p>
         </div>
-
-        <p class="cd-save-date">Save the Date</p>
       </div>
 
     </div>
@@ -903,7 +897,7 @@
           ["#8c1d32", "#4f0b18"],
           ["#b8324b", "#721b2c"],
           ["#781629", "#3d0812"],
-          ["#c99b52", "#8f6524"] // subtle golden leaf accents
+          ["#c99b52", "#8f6524"]
         ];
 
         for (let i = 0; i < 68; i++) {
@@ -918,7 +912,6 @@
           ctx.translate(px, py);
           ctx.rotate(angle);
 
-          // Petal shadow
           ctx.shadowColor = "rgba(20, 3, 7, 0.45)";
           ctx.shadowBlur = 6;
           ctx.shadowOffsetY = 2;
@@ -935,7 +928,6 @@
           ctx.fillStyle = pGrad;
           ctx.fill();
 
-          // Subtle gold rim highlight on each petal
           ctx.strokeStyle = "rgba(243, 216, 155, 0.22)";
           ctx.lineWidth = 0.8;
           ctx.stroke();
@@ -951,27 +943,6 @@
           ctx.arc(gx, gy, (j % 3) + 0.8, 0, Math.PI * 2);
           ctx.fill();
         }
-
-        // 4. Center Cream & Gold "Scratch Here" Badge
-        ctx.save();
-        ctx.fillStyle = "rgba(56, 9, 19, 0.58)";
-        ctx.strokeStyle = "rgba(243, 216, 155, 0.7)";
-        ctx.lineWidth = 1.2;
-        const pillW = width * 0.64;
-        const pillH = height * 0.22;
-        const pillX = (width - pillW) / 2;
-        const pillY = (height - pillH) / 2 - height * 0.04;
-        ctx.beginPath();
-        ctx.roundRect(pillX, pillY, pillW, pillH, 20);
-        ctx.fill();
-        ctx.stroke();
-
-        ctx.fillStyle = "#fff8eb";
-        ctx.font = `italic 600 ${Math.round(width * 0.082)}px "Cormorant Garamond", serif`;
-        ctx.textAlign = "center";
-        ctx.textBaseline = "middle";
-        ctx.fillText("Scratch to Reveal", width / 2, pillY + pillH / 2);
-        ctx.restore();
       }
 
       function setupScratchCanvas() {
@@ -1014,7 +985,6 @@
         let totalSampled = 0;
         let transparentCount = 0;
 
-        // Sample pixels across the middle area of the heart
         for (let i = 3; i < imgData.length; i += 64) {
           totalSampled++;
           if (imgData[i] < 110) transparentCount++;
@@ -1030,7 +1000,7 @@
         isCompleted = true;
         canvas.classList.add("cleared");
         heartStage.classList.add("revealed");
-        caption.textContent = "✦ Forever begins on this day ✦";
+        caption.textContent = "Forever begins on this day";
         triggerRosePetalShower();
       }
 
@@ -1069,7 +1039,6 @@
       }, { passive: false });
       window.addEventListener("pointerup", () => { isDrawing = false; });
 
-      // Touch fallback for mobile browsers
       canvas.addEventListener("touchstart", (e) => {
         isDrawing = true;
         scratchAt(e);
@@ -1088,7 +1057,6 @@
     // LIVE COUNTDOWN TIMER LOGIC ("Until we say forever")
     // =========================================================
     (function initWeddingCountdown() {
-      // Set Wedding Target Date & Time (IST)
       const weddingTarget = new Date("2026-12-12T19:00:00+05:30").getTime();
 
       const elDays = document.getElementById("cdDays");
