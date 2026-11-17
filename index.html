@@ -175,6 +175,19 @@
       -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
     }
 
+    /* Thin dark-gold heart line, slightly smaller than the cream heart (same silhouette) */
+    .heart-line-outer, .heart-line-inner {
+      position: absolute; inset: 0; z-index: 1;
+      -webkit-mask-image: url('assets/gem-heart.png');
+      mask-image: url('assets/gem-heart.png');
+      -webkit-mask-size: contain; mask-size: contain;
+      -webkit-mask-position: center; mask-position: center;
+      -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+      transform-origin: 50% 48%;
+    }
+    .heart-line-outer { background: #a87a1f; transform: scale(0.86); }
+    .heart-line-inner { background: #fbefd6; transform: scale(0.845); }
+
     .heart-date-layer {
       position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
       padding-bottom: 10%; user-select: none; z-index: 2;
@@ -282,6 +295,8 @@
           <div class="heart-back-glow"></div>
           <div class="heart-image-wrapper">
             <div class="heart-cream"></div>
+            <div class="heart-line-outer"></div>
+            <div class="heart-line-inner"></div>
             <div class="heart-date-layer">
               <span class="heart-date-day">12</span>
               <span class="heart-date-month">DECEMBER</span>
