@@ -277,8 +277,8 @@
     .p1-quote-sub {
       font-family: "Cormorant Garamond", serif !important;
       font-size: clamp(13.5px, 3.4vw, 16.5px) !important;
-      font-weight: 700 !important; /* Bold */
-      font-style: italic; /* Italic */
+      font-weight: 700 !important; 
+      font-style: italic; 
       color: var(--ink) !important;
       line-height: 1.38 !important;
       max-width: 88%;
@@ -381,7 +381,7 @@
     }
     .heart-date-month {
       font-family: "Cormorant Garamond", serif;
-      font-size: clamp(16px, 4.2vw, 20px); /* Enlarged */
+      font-size: clamp(16px, 4.2vw, 20px); 
       font-weight: 700;
       letter-spacing: 0.24em;
       text-transform: uppercase;
@@ -390,7 +390,7 @@
     }
     .heart-date-year {
       font-family: "Cormorant Garamond", serif;
-      font-size: clamp(19px, 4.8vw, 23px); /* Enlarged */
+      font-size: clamp(19px, 4.8vw, 23px); 
       font-weight: 700;
       letter-spacing: 0.2em;
       color: var(--burgundy);
@@ -421,9 +421,9 @@
     }
 
     .scratch-caption {
-      font-family: "Great Vibes", cursive !important; /* Changed to fancy script */
+      font-family: "Great Vibes", cursive !important; 
       font-style: normal;
-      font-size: clamp(22px, 5.5vw, 28px) !important; /* Larger, prominent font */
+      font-size: clamp(22px, 5.5vw, 28px) !important; 
       color: var(--burgundy) !important;
       margin-top: 8px !important;
       letter-spacing: 0.02em;
@@ -442,7 +442,7 @@
     .countdown-maroon-box {
       position: relative;
       width: 100%;
-      padding: clamp(22px, 5vw, 32px) clamp(12px, 3vw, 18px) clamp(16px, 4vw, 24px); /* Increased padding */
+      padding: clamp(22px, 5vw, 32px) clamp(12px, 3vw, 18px) clamp(16px, 4vw, 24px); 
       border-radius: 14px;
       border: 1.5px solid #d4b171;
       background:
@@ -534,8 +534,8 @@
       font-weight: 700 !important;
       font-size: clamp(19px, 4.8vw, 24px) !important;
       letter-spacing: 0.08em;
-      color: var(--gold-light) !important; /* Changed to Gold */
-      margin-top: 18px !important; /* Added space */
+      color: var(--gold-light) !important; 
+      margin-top: 18px !important; 
       text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
     }
 
@@ -664,13 +664,13 @@
 
       <!-- 1. Top Romantic Quote Section -->
       <div class="p1-quote-section">
-        <span class="p1-eyebrow">THE COUPLE</span>
+        <span class="p1-eyebrow">A BEAUTIFUL BEGINNING</span>
         <h2 class="p1-quote-title">Two hearts, <em>one thread</em></h2>
         <p class="p1-quote-sub">Seven vows, seven steps, and a lifetime of ordinary mornings made beautiful.</p>
       </div>
 
       <!-- 2. Middle Heart Scratch-to-Reveal Card -->
-      <div class="p1-scratch-section">
+      <div class="p1-scratch-section" id="scratchSection">
         <div class="heart-stage" id="heartStage">
           <!-- Backside Glow -->
           <div class="heart-back-glow"></div>
@@ -702,7 +702,6 @@
                   <stop offset="100%" stop-color="#f3d89b"/>
                 </linearGradient>
               </defs>
-              <!-- Inner dashed path removed, only solid gold path remains -->
               <path d="M50,87.5 C50,87.5 4,59.2 4,29.1 C4,11.3 20,2.8 35,4.7 C43,5.6 48,11.3 50,16.9 C52,11.3 57,5.6 65,4.7 C80,2.8 96,11.3 96,29.1 C96,59.2 50,87.5 50,87.5 Z"
                     fill="none" stroke="url(#goldHeartStroke)" stroke-width="3.2" />
             </svg>
@@ -739,7 +738,6 @@
             </div>
           </div>
           
-          <!-- Moved "Save the Date" INSIDE the box -->
           <p class="cd-save-date">Save the Date</p>
         </div>
       </div>
@@ -836,11 +834,12 @@
       document.getElementById("pageOne").scrollIntoView({ behavior: "smooth" });
     });
 
-    const modal = document.getElementById("dateModal");
+    // Smoothly scroll to the heart scratch section when "Reveal Date" is tapped
     document.getElementById("revealDate").addEventListener("click", () => {
-      modal.classList.add("open");
-      document.getElementById("closeModal").focus();
+      document.getElementById("scratchSection").scrollIntoView({ behavior: "smooth", block: "center" });
     });
+
+    const modal = document.getElementById("dateModal");
     document.getElementById("closeModal").addEventListener("click", () =>
       modal.classList.remove("open")
     );
@@ -880,7 +879,6 @@
       function paintRosePetalCover(width, height) {
         ctx.globalCompositeOperation = "source-over";
 
-        // 1. Rich Maroon & Gold Cork Base Coat
         const baseGrad = ctx.createRadialGradient(
           width * 0.5, height * 0.42, width * 0.05,
           width * 0.5, height * 0.5, width * 0.7
@@ -891,7 +889,6 @@
         ctx.fillStyle = baseGrad;
         ctx.fillRect(0, 0, width, height);
 
-        // 2. Layered Velvet Rose Petals Across the Heart Surface
         const petalShades = [
           ["#a82840", "#691223"],
           ["#8c1d32", "#4f0b18"],
@@ -934,7 +931,6 @@
           ctx.restore();
         }
 
-        // 3. Golden Shimmer Dust Specks
         for (let j = 0; j < 45; j++) {
           const gx = (Math.sin(j * 19.3) * 0.5 + 0.5) * width;
           const gy = (Math.cos(j * 53.9) * 0.5 + 0.5) * height;
