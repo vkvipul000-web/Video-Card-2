@@ -717,3 +717,281 @@
     <div class="gallery-page gallery-page-side">
       <h2>Our Families</h2>
       <p>Add a message about your families<br>joining together.</p>
+    </div>
+
+    <!-- Page 5: Side borders -->
+    <div class="gallery-page gallery-page-side">
+      <h2>Save the Date</h2>
+      <p>12th December 2026<br>We can't wait to see you!</p>
+    </div>
+
+    <!-- Page 6: Side borders -->
+    <div class="gallery-page gallery-page-side">
+      <h2>RSVP</h2>
+      <p>Please let us know if you can make it.<br>Contact details here.</p>
+    </div>
+  </section>
+
+  <div class="modal" id="dateModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card">
+      <h3 id="modalTitle" style="color:var(--burgundy);font-family:Allura;font-size:42px;margin:0 0 8px;font-weight:400">Save the Date</h3>
+      <p style="letter-spacing:.22em;font-weight:800;font-size:20px;color:var(--burgundy)">12TH DEC 2026</p>
+      <button class="action-btn" id="closeModal" style="width:100%;margin-top:14px;max-width:none"><span class="after-star">Close</span></button>
+    </div>
+  </div>
+
+  <script>
+    const openingScreen = document.getElementById("openingScreen");
+    const openButton    = document.getElementById("openButton");
+    const video         = document.getElementById("openingVideo");
+    const invitation    = document.getElementById("invitation");
+    let started = false, timer = null;
+
+    if (video.pause) video.pause();
+
+    async function startWeddingVideo() {
+      if (started) return;
+      started = true;
+
+      // Unlock scrolling when the button is tapped
+      document.body.classList.remove("locked");
+
+      openButton.classList.add("fading");
+      openButton.disabled = true;
+      openingScreen.classList.add("dismissed");
+
+      if (video.readyState >= 1) {
+        video.currentTime = 0;
+      }
+
+      try {
+        await video.play();
+        timer = setTimeout(() => invitation.classList.add("visible"), 3500);
+      } catch (e) {
+        invitation.classList.add("visible");
+      }
+    }
+
+    function finishWeddingVideo() {
+      video.pause();
+      if (timer) clearTimeout(timer);
+      invitation.classList.add("visible");
+    }
+
+    openButton.addEventListener("click", startWeddingVideo);
+    video.addEventListener("ended", finishWeddingVideo);
+
+    video.addEventListener("error", () => {
+      if (timer) clearTimeout(timer);
+      invitation.classList.add("visible");
+    });
+
+    // Smoothly scroll down to Page 1 when "View Invitation" is tapped
+    document.getElementById("viewInvitation").addEventListener("click", () => {
+      document.getElementById("pageOne").scrollIntoView({ behavior: "smooth" });
+    });
+
+    // Smoothly scroll to the heart scratch section when "Reveal Date" is tapped
+    document.getElementById("revealDate").addEventListener("click", () => {
+      document.getElementById("scratchSection").scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+
+    const modal = document.getElementById("dateModal");
+    document.getElementById("closeModal").addEventListener("click", () =>
+      modal.classList.remove("open")
+    );
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) modal.classList.remove("open");
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && modal.classList.contains("open")) {
+        modal.classList.remove("open");
+      }
+    });
+
+    // --- THIN GOLD SCROLL PROGRESS BAR LOGIC ---
+    window.addEventListener("scroll", () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const cardHeight = document.querySelector('.card').offsetHeight;
+      const galleryHeight = document.documentElement.scrollHeight - cardHeight - document.documentElement.clientHeight;
+      let scrollPercent = ((scrollTop - cardHeight) / galleryHeight) * 100;
+      scrollPercent = Math.max(0, Math.min(100, scrollPercent));
+      document.getElementById("progressBar").style.width = scrollPercent + "%";
+    });
+
+    // =========================================================
+    // INTERACTIVE HEART SCRATCH CARD + ROSE PETAL SHOWER LOGIC
+    // =========================================================
+    (function initHeartScratch() {
+      const canvas = document.getElementById("heartScratchCanvas");
+      const heartStage = document.getElementById("heartStage");
+      const caption = document.getElementById("scratchCaption");
+      const ctx = canvas.getContext("2d", { willReadFrequently: true });
+
+      let isDrawing = false;
+      let isCompleted = false;
+      let strokeCounter = 0;
+
+      function setupScratchCanvas() {
+        if (isCompleted) return;
+        
+        const heartWrapper = document.querySelector('.heart-image-wrapper');
+        const rect = heartWrapper.getBoundingClientRect();
+        
+        // Use devicePixelRatio for crystal clear high-res rendering
+        const dpr = window.devicePixelRatio || 1;
+        const w = Math.round(rect.width);
+        const h = Math.round(rect.height);
+        
+        canvas.width = w * dpr;
+        canvas.height = h * dpr;
+        canvas.style.width = w + "px";
+        canvas.style.height = h + "px";
+
+        ctx.scale(dpr, dpr);
+
+        // Load your gem heart image
+        const img = new Image();
+        img.src = 'assets/gem-heart.png';
+        
+        img.onload = function() {
+          ctx.globalCompositeOperation = "source-over";
+          ctx.clearRect(0, 0, w, h);
+          
+          // Draw the image to perfectly stretch and fill the wrapper
+          ctx.drawImage(img, 0, 0, w, h);
+        };
+      }
+
+      function getPoint(e) {
+        const rect = canvas.getBoundingClientRect();
+        const touch = e.touches ? e.touches[0] : e;
+        return {
+          x: (touch.clientX - rect.left) * (canvas.width / dpr / rect.width),
+          y: (touch.clientY - rect.top) * (canvas.height / dpr / rect.height)
+        };
+      }
+
+      function scratchAt(e) {
+        if (!isDrawing || isCompleted) return;
+        if (e.cancelable) e.preventDefault();
+        const pt = getPoint(e);
+
+        ctx.globalCompositeOperation = "destination-out";
+        ctx.beginPath();
+        // Adjusted scratch radius slightly
+        ctx.arc(pt.x, pt.y, canvas.width * 0.13 / (window.devicePixelRatio || 1), 0, Math.PI * 2);
+        ctx.fill();
+
+        strokeCounter++;
+        if (strokeCounter % 5 === 0) {
+          checkScratchProgress();
+        }
+      }
+
+      function checkScratchProgress() {
+        const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+        let totalSampled = 0;
+        let transparentCount = 0;
+
+        for (let i = 3; i < imgData.length; i += 64) {
+          totalSampled++;
+          if (imgData[i] < 110) transparentCount++;
+        }
+
+        // CHANGED TO 0.75 SO THEY HAVE TO SCRATCH ALMOST THE WHOLE HEART
+        if (transparentCount / totalSampled >= 0.75) {
+          completeHeartScratch();
+        }
+      }
+
+      function completeHeartScratch() {
+        if (isCompleted) return;
+        isCompleted = true;
+        canvas.classList.add("cleared");
+        heartStage.classList.add("revealed");
+        caption.textContent = "Forever begins on this day";
+        triggerRosePetalShower();
+      }
+
+      function triggerRosePetalShower() {
+        const container = document.getElementById("petalRainContainer");
+        const petalCount = 38;
+
+        for (let i = 0; i < petalCount; i++) {
+          const petal = document.createElement("div");
+          petal.className = "falling-petal" + (i % 6 === 0 ? " gold-accent" : "");
+          const size = 13 + Math.random() * 12;
+          const left = Math.random() * 100;
+          const fallDur = 3.2 + Math.random() * 2.6;
+          const swayDur = 1.4 + Math.random() * 1.4;
+          const delay = Math.random() * 1.8;
+          const drift = 20 + Math.random() * 35;
+
+          petal.style.left = left + "vw";
+          petal.style.setProperty("--size", size + "px");
+          petal.style.setProperty("--fall-dur", fallDur + "s");
+          petal.style.setProperty("--sway-dur", swayDur + "s");
+          petal.style.setProperty("--drift", drift + "px");
+          petal.style.animationDelay = delay + "s";
+
+          container.appendChild(petal);
+          setTimeout(() => petal.remove(), (fallDur + delay + 0.5) * 1000);
+        }
+      }
+
+      canvas.addEventListener("pointerdown", (e) => {
+        isDrawing = true;
+        scratchAt(e);
+      });
+      window.addEventListener("pointermove", (e) => {
+        if (isDrawing) scratchAt(e);
+      }, { passive: false });
+      window.addEventListener("pointerup", () => { isDrawing = false; });
+
+      canvas.addEventListener("touchstart", (e) => {
+        isDrawing = true;
+        scratchAt(e);
+      }, { passive: false });
+      canvas.addEventListener("touchmove", (e) => {
+        if (isDrawing) scratchAt(e);
+      }, { passive: false });
+      canvas.addEventListener("touchend", () => { isDrawing = false; });
+
+      window.addEventListener("load", setupScratchCanvas);
+      window.addEventListener("resize", setupScratchCanvas);
+      setTimeout(setupScratchCanvas, 150);
+    })();
+
+    // =========================================================
+    // LIVE COUNTDOWN TIMER LOGIC ("Until we say forever")
+    // =========================================================
+    (function initWeddingCountdown() {
+      const weddingTarget = new Date("2026-12-12T19:00:00+05:30").getTime();
+
+      const elDays = document.getElementById("cdDays");
+      const elHours = document.getElementById("cdHours");
+      const elMinutes = document.getElementById("cdMinutes");
+      const elSeconds = document.getElementById("cdSeconds");
+
+      function updateCountdown() {
+        const now = Date.now();
+        const diff = Math.max(0, weddingTarget - now);
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+
+        elDays.textContent = String(days);
+        elHours.textContent = String(hours).padStart(2, "0");
+        elMinutes.textContent = String(minutes).padStart(2, "0");
+        elSeconds.textContent = String(seconds).padStart(2, "0");
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+    })();
+  </script>
+</body>
+</html>
