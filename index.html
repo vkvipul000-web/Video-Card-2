@@ -329,7 +329,7 @@
       100% { filter: blur(16px); transform: scale(1.13); opacity: 1; }
     }
 
-    /* NEW: Wrapper for the image and canvas */
+    /* Wrapper for the image and canvas */
     .heart-image-wrapper {
       position: relative;
       width: 100%;
@@ -338,9 +338,9 @@
       align-items: center;
       justify-content: center;
       filter: drop-shadow(0 8px 16px rgba(72, 14, 26, 0.28));
-      /* Background color to fill the inside of the heart before scratching */
-      background: radial-gradient(circle at 50% 38%, #fffdf7 0%, #f8e9cf 68%, #ebd2a7 100%);
-      /* Using clip-path ensures the background doesn't show outside the heart shape if the image has transparency */
+      /* Background color for the inside of the heart */
+      background: radial-gradient(circle at 50% 50%, #fffdf7 0%, #f8e9cf 68%, #ebd2a7 100%);
+      /* Keep the heart shape for the background */
       clip-path: url(#heartClip); 
     }
 
@@ -351,7 +351,7 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding-bottom: 8%;
+      padding-bottom: 0; /* Adjusted to center perfectly */
       user-select: none;
       z-index: 1;
     }
@@ -838,11 +838,18 @@
         
         const heartWrapper = document.querySelector('.heart-image-wrapper');
         const rect = heartWrapper.getBoundingClientRect();
+        
+        // Use devicePixelRatio for crystal clear high-res rendering
+        const dpr = window.devicePixelRatio || 1;
         const w = Math.round(rect.width);
         const h = Math.round(rect.height);
         
-        canvas.width = w;
-        canvas.height = h;
+        canvas.width = w * dpr;
+        canvas.height = h * dpr;
+        canvas.style.width = w + "px";
+        canvas.style.height = h + "px";
+
+        ctx.scale(dpr, dpr);
 
         // Load your gem heart image
         const img = new Image();
@@ -852,7 +859,7 @@
           ctx.globalCompositeOperation = "source-over";
           ctx.clearRect(0, 0, w, h);
           
-          // Draw the image to perfectly fit the heart area
+          // Draw the image to perfectly stretch and fill the wrapper
           ctx.drawImage(img, 0, 0, w, h);
         };
       }
@@ -861,8 +868,8 @@
         const rect = canvas.getBoundingClientRect();
         const touch = e.touches ? e.touches[0] : e;
         return {
-          x: (touch.clientX - rect.left) * (canvas.width / rect.width),
-          y: (touch.clientY - rect.top) * (canvas.height / rect.height)
+          x: (touch.clientX - rect.left) * (canvas.width / dpr / rect.width),
+          y: (touch.clientY - rect.top) * (canvas.height / dpr / rect.height)
         };
       }
 
@@ -873,7 +880,8 @@
 
         ctx.globalCompositeOperation = "destination-out";
         ctx.beginPath();
-        ctx.arc(pt.x, pt.y, canvas.width * 0.13, 0, Math.PI * 2);
+        // Adjusted scratch radius slightly
+        ctx.arc(pt.x, pt.y, canvas.width * 0.13 / (window.devicePixelRatio || 1), 0, Math.PI * 2);
         ctx.fill();
 
         strokeCounter++;
@@ -883,6 +891,7 @@
       }
 
       function checkScratchProgress() {
+        // For performance, we check a downscaled version of the canvas
         const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
         let totalSampled = 0;
         let transparentCount = 0;
