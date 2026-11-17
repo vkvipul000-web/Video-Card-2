@@ -353,7 +353,7 @@
       background:
         radial-gradient(circle at 50% 38%, #fffdf7 0%, #f8e9cf 68%, #ebd2a7 100%);
       display: flex;
-       flex-direction: column;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       overflow: hidden;
@@ -466,7 +466,7 @@
     }
     .cd-eyebrow {
       font-family: "Cormorant Garamond", serif !important;
-      font-size: clamp(9.5px, 2.3vw, 11.5px) !important;
+      font-size: clamp(12px, 2.8vw, 14.5px) !important; /* Increased size */
       font-weight: 700 !important;
       letter-spacing: 0.28em;
       text-transform: uppercase;
@@ -665,7 +665,8 @@
       <!-- 1. Top Romantic Quote Section -->
       <div class="p1-quote-section">
         <span class="p1-eyebrow">A BEAUTIFUL BEGINNING</span>
-        <p style="font-family: 'Great Vibes', cursive; font-size: clamp(24px, 6vw, 32px); color: var(--burgundy); margin: -4px 0 10px 0; font-weight: 400;">A beautiful beginning</p>
+        <p style="font-family: 'Great Vibes', cursive; font-size: clamp(24px, 6vw, 32px); color: var(--burgundy); margin: -4px 0 0 0; font-weight: 400;">A beautiful beginning</p>
+        <div class="family-ornament" style="margin: 4px 0 12px 0;"></div>
         <h2 class="p1-quote-title">Two hearts, <em>one thread</em></h2>
         <p class="p1-quote-sub">Seven vows, seven steps, and a lifetime of ordinary mornings made beautiful.</p>
       </div>
@@ -715,7 +716,7 @@
       <div class="p1-countdown-section">
         <div class="countdown-maroon-box">
           <p class="cd-eyebrow">COUNTING DOWN</p>
-          <p style="font-family: 'Great Vibes', cursive; font-size: clamp(22px, 5.5vw, 28px); color: var(--gold-light); margin: -2px 0 10px 0; font-weight: 400; opacity: 0.85;">A beautiful beginning</p>
+          <div class="family-ornament" style="margin: 6px 0 12px 0; background: linear-gradient(90deg, transparent, var(--gold-light), transparent);"></div>
           <h3 class="cd-heading">Until we say <span>forever</span></h3>
 
           <div class="cd-timer-grid" id="countdownGrid">
