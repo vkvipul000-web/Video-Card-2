@@ -19,6 +19,7 @@
     * { box-sizing: border-box; }
     html, body { margin: 0; min-height: 100%; background: #17080c; }
     html { height: 100%; }
+
     body {
       min-height: 100svh;
       display: flex;
@@ -128,99 +129,6 @@
     .gallery-page h2 { font-family: "Great Vibes", cursive; color: var(--burgundy); font-size: clamp(32px, 8vw, 42px); margin-bottom: 10px; font-weight: 400; }
     .gallery-page p { font-family: "Cormorant Garamond", serif; color: var(--ink); font-size: clamp(16px, 4vw, 20px); line-height: 1.5; font-weight: 600; margin: 0; }
 
-    /* PAGE 2: GROOM & BRIDE CARDS */
-    .page-couple { height: auto; min-height: 100svh; padding: 12% 12% 10%; gap: 16px; justify-content: center; }
-    .couple-head { display: flex; flex-direction: column; align-items: center; width: 100%; }
-    .couple-quote { font-family: "Cormorant Garamond", serif !important; font-style: italic; font-weight: 700 !important; font-size: clamp(14px, 3.6vw, 17px) !important; line-height: 1.35 !important; color: var(--ink) !important; max-width: 90%; margin: 0 auto !important; }
-    .couple-and { font-family: "Great Vibes", cursive; font-size: clamp(34px, 8.5vw, 44px); line-height: 1; color: #a77b3b; }
-    .profile-card {
-      position: relative; width: 100%; padding: 18px 20px 20px; border-radius: 26px; text-align: center;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      /* transparent glass */
-      background: linear-gradient(145deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.10) 45%, rgba(255,255,255,0.05) 60%, rgba(255,255,255,0.32) 100%);
-      border: 1px solid rgba(255, 255, 255, 0.85);
-      box-shadow: 0 10px 30px rgba(72, 14, 26, 0.22),
-                  0 1px 0 rgba(189, 145, 75, 0.35),
-                  inset 0 1px 1px rgba(255, 255, 255, 0.95),
-                  inset 0 -1px 1px rgba(189, 145, 75, 0.25),
-                  inset 0 0 22px rgba(255, 255, 255, 0.18);
-      backdrop-filter: blur(16px) saturate(1.4); -webkit-backdrop-filter: blur(16px) saturate(1.4);
-      overflow: hidden;
-    }
-    .profile-card::before {
-      content: ""; position: absolute; left: -10%; top: -45%; width: 120%; height: 70%;
-      background: linear-gradient(180deg, rgba(255,255,255,0.35), transparent);
-      border-radius: 50%; transform: rotate(-8deg); pointer-events: none;
-    }
-    .profile-card > * { position: relative; }
-    .profile-line { width: 62%; height: 2px; margin: 8px auto 4px; background: linear-gradient(90deg, transparent, #bd914b 25%, #e5c384 50%, #bd914b 75%, transparent); }
-    .profile-photo {
-      width: 96px; height: 96px; margin: 0 auto 8px; border-radius: 50%; overflow: hidden;
-      border: 2px solid #bd914b;
-      background: linear-gradient(180deg, #f5e6c8, #e5c384);
-    }
-    .profile-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .profile-role { font-size: clamp(10px, 2.4vw, 12px) !important; letter-spacing: .25em; color: #8c6b3d !important; font-weight: 700 !important; margin: 0 !important; }
-    .profile-name { font-family: "Cormorant Garamond", serif; font-weight: 600; font-size: clamp(28px, 7vw, 34px); color: var(--burgundy); margin: 2px 0 0; line-height: 1.1; }
-    .profile-parents { font-size: clamp(12px, 3vw, 14px) !important; font-style: italic; color: #6c514b !important; margin: 2px 0 0 !important; line-height: 1.25 !important; }
-    .profile-info { font-size: clamp(13.5px, 3.4vw, 15.5px) !important; line-height: 1.3 !important; margin-top: 2px !important; }
-
-    /* PAGE 3: THE PROGRAMME */
-    .page-program {
-      height: auto; min-height: 100svh; justify-content: flex-start; padding: 15% 6% 15%;
-      background-size: 100% auto; background-repeat: repeat-y; background-position: top center;
-    }
-    .page-program h2 { margin: 0 0 2px; }
-    .prog-line { width: 70%; height: 2px; margin: 4px auto 14px; background: linear-gradient(90deg, transparent, #bd914b 25%, #e5c384 50%, #bd914b 75%, transparent); }
-
-    .tl { position: relative; width: 100%; }
-    .tl-track {
-      position: absolute; left: 50%; top: 0; width: 8px; height: 100%; margin-left: -4px;
-      border-radius: 4px; border: 1px solid rgba(189, 145, 75, 0.75); background: rgba(189, 145, 75, 0.16); overflow: hidden;
-    }
-    .tl-fill { position: absolute; left: 0; right: 0; top: 0; height: 0; will-change: transform; background: linear-gradient(180deg, #5e1423 0%, #7c1e31 55%, #a3243a 100%); }
-
-    .tl-row { position: relative; display: grid; grid-template-columns: 1fr 28px 1fr; align-items: center; column-gap: 4px; padding: 22px 0; }
-    .tl-node {
-      grid-column: 2; grid-row: 1; justify-self: center; position: relative;
-      width: 22px; height: 22px; border-radius: 50%; background: #fbefd6; border: 2px solid #bd914b;
-      transition: background .5s ease, box-shadow .5s ease, border-color .5s ease;
-    }
-    .tl-node.lit {
-      background: radial-gradient(circle, #a3243a 0%, #5e1423 100%); border-color: #e5c384;
-      box-shadow: 0 0 9px 3px rgba(229, 195, 132, 0.5), 0 0 20px 6px rgba(189, 145, 75, 0.22);
-    }
-
-    .tl-info { grid-row: 1; text-align: center; min-width: 0; }
-    .tl-photo { grid-row: 1; min-width: 0; }
-    .row-a .tl-info { grid-column: 1; }
-    .row-a .tl-photo { grid-column: 3; }
-    .row-b .tl-photo { grid-column: 1; }
-    .row-b .tl-info { grid-column: 3; }
-
-    .tl-title { font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 600; font-size: clamp(25px, 6.6vw, 31px); line-height: 1.05; color: var(--burgundy); margin: 0; }
-    .tl-rule { height: 1.5px; margin: 5px 0; background: linear-gradient(90deg, transparent, #bd914b, transparent); }
-    .tl-date { display: flex; justify-content: center; align-items: center; font-family: "Cormorant Garamond", serif; font-weight: 700; font-size: clamp(9px, 2.3vw, 11px); line-height: 1; letter-spacing: .05em; color: var(--ink); font-variant-numeric: lining-nums; font-feature-settings: "lnum" 1; }
-    .tl-date span { position: relative; padding: 0 5px; white-space: nowrap; }
-    .tl-date span + span::before { content: ""; position: absolute; left: 0; top: 50%; width: 1.5px; height: 24px; transform: translateY(-50%); background: #8c6b3d; }
-    .tl-date span:nth-child(2) { font-size: clamp(24px, 6.4vw, 30px); font-weight: 700; line-height: 1; letter-spacing: 0; color: var(--burgundy); }
-    .tl-date span:nth-child(3) { letter-spacing: .09em; color: var(--burgundy); }
-    .page-program .tl-time { font-family: "Cormorant Garamond", serif; font-weight: 600; font-size: clamp(11.5px, 3vw, 13.5px); line-height: 1.3; color: #6c514b; margin: 3px 0 0; }
-
-    .photo-frame {
-      position: relative; width: 100%; max-width: 150px; margin: 0 auto; aspect-ratio: 4 / 5;
-      border-radius: 80px 80px 16px 16px; border: 2px solid #bd914b; background: rgba(255, 255, 255, 0.22); overflow: hidden;
-      box-shadow: 0 6px 16px rgba(72, 14, 26, 0.18), inset 0 0 0 4px rgba(251, 239, 214, 0.9), inset 0 0 0 5px rgba(189, 145, 75, 0.55);
-    }
-    .photo-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
-
-    .tl-flower { position: absolute; left: 50%; top: 0; width: 38px; height: 38px; margin: -19px 0 0 -19px; pointer-events: none; will-change: transform; }
-    .tl-flower-glow {
-      position: absolute; inset: -20px; border-radius: 50%; opacity: var(--g, 0); filter: blur(4px);
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.55) 40%, transparent 72%);
-    }
-    .tl-flower img { position: relative; width: 100%; height: 100%; object-fit: contain; display: block; opacity: 1; clip-path: circle(50%); }
-
     /* PAGE 1 CUSTOM STYLES */
     .p1-quote-section { display: flex; flex-direction: column; align-items: center; width: 100%; margin-top: 2%; z-index: 2; }
     .p1-eyebrow { font-family: "Cormorant Garamond", serif; font-size: clamp(10px, 2.5vw, 12px); font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: #9c7132; margin: 0 0 6px; }
@@ -230,70 +138,31 @@
 
     /* HEART SCRATCH STYLES */
     .p1-scratch-section { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 6px 0; z-index: 3; }
-
     .heart-stage {
-      position: relative;
-      width: clamp(240px, 65vw, 290px);
-      aspect-ratio: 1 / 1;
+      position: relative; width: clamp(240px, 65vw, 290px); aspect-ratio: 1 / 1;
       display: flex; align-items: center; justify-content: center;
       transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
     }
-
     .heart-back-glow {
-      position: absolute; inset: -6px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(229, 195, 132, 0.6) 0%, rgba(189, 145, 75, 0.4) 38%, rgba(114, 27, 44, 0.2) 65%, transparent 78%);
-      filter: blur(12px); opacity: 0; transform: scale(0.82); transition: opacity 0.9s ease, transform 0.9s ease; pointer-events: none; z-index: -1;
+      position: absolute; inset: -18px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(229, 195, 132, 0.95) 0%, rgba(189, 145, 75, 0.65) 38%, rgba(114, 27, 44, 0.35) 65%, transparent 78%);
+      filter: blur(12px); opacity: 0; transform: scale(0.82); transition: opacity 0.9s ease, transform 0.9s ease; pointer-events: none; z-index: 0;
     }
-    .heart-stage.revealed .heart-back-glow { opacity: 1; transform: scale(1.02); animation: heartHaloPulse 2.8s ease-in-out infinite alternate; }
+    .heart-stage.revealed .heart-back-glow { opacity: 1; transform: scale(1.08); animation: heartHaloPulse 2.8s ease-in-out infinite alternate; }
     .heart-stage.revealed { transform: scale(1.03); }
-    @keyframes heartHaloPulse {
-      0% { filter: blur(11px); transform: scale(0.98); opacity: 0.7; }
-      100% { filter: blur(14px); transform: scale(1.04); opacity: 0.9; }
-    }
-
-    .heart-image-wrapper {
-      position: relative; width: 100%; height: 100%;
-      display: flex; align-items: center; justify-content: center;
-      filter: drop-shadow(0 8px 16px rgba(72, 14, 26, 0.28));
-    }
-
-    /* Cream heart: same silhouette as the PNG (used as a mask), no border */
-    .heart-cream {
-      position: absolute; inset: 0; z-index: 1;
-      background: #fbefd6;
-      -webkit-mask-image: url('assets/gem-heart.png');
-      mask-image: url('assets/gem-heart.png');
-      -webkit-mask-size: contain; mask-size: contain;
-      -webkit-mask-position: center; mask-position: center;
-      -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
-    }
-
-    /* Thin dark-gold heart line, slightly smaller than the cream heart (same silhouette) */
-    .heart-line-outer, .heart-line-inner {
-      position: absolute; inset: 0; z-index: 1;
-      -webkit-mask-image: url('assets/gem-heart.png');
-      mask-image: url('assets/gem-heart.png');
-      -webkit-mask-size: contain; mask-size: contain;
-      -webkit-mask-position: center; mask-position: center;
-      -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
-      transform-origin: 50% 48%;
-    }
-    .heart-line-outer { background: #a87a1f; transform: scale(0.86); }
-    .heart-line-inner { background: #fbefd6; transform: scale(0.845); }
-
-    .heart-date-layer {
-      position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
-      padding-bottom: 10%; user-select: none; z-index: 2;
-    }
-    .heart-date-day { font-family: "Cormorant Garamond", serif; font-size: clamp(44px, 11vw, 56px); font-weight: 700; line-height: 0.9; color: var(--burgundy); margin-bottom: 3px; }
-    .heart-date-month { font-family: "Cormorant Garamond", serif; font-size: clamp(16px, 4.2vw, 20px); font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: var(--burgundy); margin: 4px 0; padding-left: 0.24em; }
-    .heart-date-year { font-family: "Cormorant Garamond", serif; font-size: clamp(19px, 4.8vw, 23px); font-weight: 700; letter-spacing: 0.2em; color: var(--burgundy); padding-left: 0.2em; }
-
-    .scratch-canvas { position: absolute; inset: 0; width: 100%; height: 100%; cursor: grab; touch-action: none; z-index: 3; transition: opacity 0.65s ease; }
+    @keyframes heartHaloPulse { 0% { filter: blur(11px); transform: scale(1.03); opacity: 0.85; } 100% { filter: blur(16px); transform: scale(1.13); opacity: 1; } }
+    
+    .heart-image-wrapper { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; filter: drop-shadow(0 8px 16px rgba(72, 14, 26, 0.28)); }
+    .heart-date-layer { position: absolute; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding-bottom: 0; user-select: none; z-index: 1; }
+    .heart-date-day { font-family: "Cormorant Garamond", serif; font-size: clamp(44px, 11vw, 56px); font-weight: 700; line-height: 0.9; color: var(--burgundy); text-shadow: 0 2px 6px rgba(189, 145, 75, 0.35); margin-bottom: 3px; }
+    .heart-date-month { font-family: "Cormorant Garamond", serif; font-size: clamp(16px, 4.2vw, 20px); font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: #9a6b26; margin: 4px 0; }
+    .heart-date-year { font-family: "Cormorant Garamond", serif; font-size: clamp(19px, 4.8vw, 23px); font-weight: 700; letter-spacing: 0.2em; color: var(--burgundy); }
+    
+    .scratch-canvas { position: absolute; inset: 0; width: 100%; height: 100%; cursor: grab; touch-action: none; z-index: 2; transition: opacity 0.65s ease; }
     .scratch-canvas.cleared { opacity: 0; pointer-events: none; }
     .scratch-caption { font-family: "Great Vibes", cursive !important; font-style: normal; font-size: clamp(22px, 5.5vw, 28px) !important; color: var(--burgundy) !important; margin-top: 8px !important; letter-spacing: 0.02em; transition: opacity 0.4s ease, color 0.4s ease; }
 
-    /* Bottom Textured Maroon Countdown Section */
+    /* 3. Bottom Textured Maroon Countdown Section */
     .p1-countdown-section { width: 100%; display: flex; flex-direction: column; align-items: center; z-index: 2; margin-bottom: 1%; }
     .countdown-maroon-box {
       position: relative; width: 100%; padding: clamp(22px, 5vw, 32px) clamp(12px, 3vw, 18px) clamp(16px, 4vw, 24px); border-radius: 14px; border: 1.5px solid #d4b171;
@@ -302,11 +171,11 @@
       color: var(--cream-light);
     }
     .countdown-maroon-box::before { content: ""; position: absolute; inset: 4px; border: 1px solid rgba(229, 195, 132, 0.38); border-radius: 10px; pointer-events: none; }
-
+    
     .cd-eyebrow { font-family: "Cormorant Garamond", serif !important; font-size: clamp(12px, 2.8vw, 14.5px) !important; font-weight: 700 !important; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold-light) !important; margin: 0 0 4px !important; }
     .cd-heading { font-family: "Cormorant Garamond", serif !important; font-size: clamp(22px, 5.6vw, 29px) !important; font-weight: 500 !important; font-style: italic; color: var(--cream-light) !important; margin: 0 0 12px !important; line-height: 1.15 !important; }
     .cd-heading span { font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 700; color: var(--gold-light); text-shadow: 0 1px 6px rgba(229, 195, 132, 0.3); }
-
+    
     .cd-timer-grid { display: flex; align-items: center; justify-content: center; gap: clamp(6px, 2vw, 12px); width: 100%; }
     .cd-unit { flex: 1 1 0; display: flex; flex-direction: column; align-items: center; }
     .cd-number { font-family: "Cormorant Garamond", serif; font-size: clamp(26px, 6.8vw, 35px); font-weight: 700; line-height: 1; color: var(--cream-light); text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35); font-variant-numeric: tabular-nums; }
@@ -327,14 +196,12 @@
     @keyframes petalFall { 0% { top: -6%; opacity: 0; } 10% { opacity: 0.95; } 85% { opacity: 0.9; } 100% { top: 106%; opacity: 0; } }
     @keyframes petalSway { 0% { transform: translateX(calc(var(--drift, 30px) * -1)) rotate(0deg) rotateX(15deg); } 100% { transform: translateX(var(--drift, 30px)) rotate(220deg) rotateY(45deg); } }
 
-    /* --- TRANSITION FLOWER STYLES --- */
     .transition-flower { position: absolute; bottom: 0; left: 50%; transform: translate(-50%, 50%); width: 85%; max-width: 420px; z-index: 10; pointer-events: none; }
-
-    /* --- THIN GOLD SCROLL PROGRESS BAR --- */
     .scroll-progress-bar { position: fixed; top: 0; left: 0; height: 3px; width: 0%; background-color: var(--gold); z-index: 999; pointer-events: none; }
   </style>
 </head>
 <body class="locked">
+
   <div class="petal-rain-container" id="petalRainContainer"></div>
   <div class="scroll-progress-bar" id="progressBar"></div>
 
@@ -357,14 +224,24 @@
         <p class="invite-line reveal" style="--delay:.8s">Joyfully invite you to celebrate</p>
         <h1 class="headline reveal" style="--delay:1.05s">The Wedding<br>Celebration</h1>
         <p class="blessing-line reveal" style="--delay:1.3s">With the Blessings of Our Elders</p>
+        
         <p class="section-label reveal" style="--delay:1.6s">THE GROOM</p>
         <h2 class="person-name reveal" style="--delay:1.85s">Shravan</h2>
         <p class="parent-line reveal" style="--delay:2.1s">Son of<br>Mrs. Savitri Yadav &amp; Mr. Suresh Yadav</p>
+        <p class="reveal" style="--delay:2.2s; font-size: clamp(11px, 2.8vw, 13px); color: #6c514b; font-style: italic; max-width: 85%; margin: 4px auto 0; line-height: 1.3;">
+          A traveler who collects stories, always reading a new chapter and exploring a new horizon.
+        </p>
+
         <p class="weds reveal" style="--delay:2.4s">weds</p>
+        
         <p class="section-label reveal" style="--delay:2.65s">THE BRIDE</p>
         <h2 class="person-name reveal" style="--delay:2.9s">Nikki</h2>
         <p class="parent-line reveal" style="--delay:3.15s">Daughter of<br>Mrs. Radha Devi &amp; Mr. Jitendra Yadav</p>
+        <p class="reveal" style="--delay:3.3s; font-size: clamp(11px, 2.8vw, 13px); color: #6c514b; font-style: italic; max-width: 85%; margin: 4px auto 0; line-height: 1.3;">
+          She moves like poetry, grows love like flowers, cooks with soul, and reads the world like her favorite book.
+        </p>
       </div>
+
       <div class="actions reveal" style="--delay:3.8s">
         <button class="action-btn" id="viewInvitation" type="button"><span class="after-star">View Invitation</span></button>
         <button class="action-btn secondary" id="revealDate" type="button"><span class="after-star">Reveal Date ♥</span></button>
@@ -380,16 +257,13 @@
         <span class="p1-eyebrow">A BEAUTIFUL BEGINNING</span>
         <div class="family-ornament" style="margin: 6px auto 12px auto;"></div>
         <h2 class="p1-quote-title">Two hearts, <em>one thread</em></h2>
-        <p class="p1-quote-sub">Seven vows, seven steps, and a lifetime of ordinary mornings made beautiful.</p>
+        <p class="p1-quote-sub">Like two rivers meeting at the sea,<br>Our lives are joined for eternity.</p>
       </div>
 
       <div class="p1-scratch-section" id="scratchSection">
         <div class="heart-stage" id="heartStage">
           <div class="heart-back-glow"></div>
           <div class="heart-image-wrapper">
-            <div class="heart-cream"></div>
-            <div class="heart-line-outer"></div>
-            <div class="heart-line-inner"></div>
             <div class="heart-date-layer">
               <span class="heart-date-day">12</span>
               <span class="heart-date-month">DECEMBER</span>
@@ -416,138 +290,37 @@
             <span class="cd-sep">:</span>
             <div class="cd-unit"><span class="cd-number" id="cdSeconds">00</span><span class="cd-label">SECONDS</span></div>
           </div>
-
+          
           <p class="cd-save-date">Save the Date</p>
         </div>
       </div>
     </div>
 
-    <div class="gallery-page gallery-page-side page-couple">
-      <div class="couple-head">
-        <span class="p1-eyebrow">THE COUPLE</span>
-        <div class="family-ornament" style="margin: 6px auto 10px auto;"></div>
-        <p class="couple-quote">Like two rivers meeting at the sea, Our lives are joined for eternity,</p>
-      </div>
-
-      <!-- CLASS 1: GROOM -->
-      <div class="profile-card groom-card">
-        <div class="profile-photo">
-          <img src="assets/groom.jpg" alt="Shravan" onerror="this.style.display='none'">
-        </div>
-        <p class="profile-role">THE GROOM</p>
-        <h3 class="profile-name">Shravan</h3>
-        <p class="profile-parents">Son of Mrs. Savitri Yadav &amp; Mr. Suresh Yadav</p>
-        <div class="profile-line"></div>
-        <p class="profile-info">A traveler who collects stories, always reading a new chapter and exploring a new horizon.</p>
-      </div>
-
-      <div class="couple-and">&amp;</div>
-
-      <!-- CLASS 2: BRIDE -->
-      <div class="profile-card bride-card">
-        <div class="profile-photo">
-          <img src="assets/bride.jpg" alt="Nikki" onerror="this.style.display='none'">
-        </div>
-        <p class="profile-role">THE BRIDE</p>
-        <h3 class="profile-name">Nikki</h3>
-        <p class="profile-parents">Daughter of Mrs. Radha Devi &amp; Mr. Jitendra Yadav</p>
-        <div class="profile-line"></div>
-        <p class="profile-info">She moves like poetry, grows love like flowers, cooks with soul, and reads the world like her favorite book</p>
-      </div>
+    <!-- PAGE 2 -->
+    <div class="gallery-page gallery-page-side">
+      <span class="p1-eyebrow" style="font-size: clamp(13px, 3vw, 15.5px);">THE COUPLE</span>
+      <p>Add another sweet message here.<br>You can also put an image inside this text block later.</p>
     </div>
 
-    <!-- PAGE 3: THE PROGRAMME -->
-    <div class="gallery-page gallery-page-side page-program" id="pageProgram">
-      <h2>The Programme</h2>
-      <div class="prog-line"></div>
-
-      <div class="tl" id="timeline">
-        <div class="tl-track" id="tlTrack"><div class="tl-fill" id="tlFill"></div></div>
-
-        <!-- 1. HALDI -->
-        <div class="tl-row row-a">
-          <div class="tl-info">
-            <h3 class="tl-title">Haldi</h3>
-            <div class="tl-rule"></div>
-            <div class="tl-date"><span>THURSDAY</span><span>10</span><span>DEC 2026</span></div>
-            <div class="tl-rule"></div>
-            <p class="tl-time">Time : 4:00 PM onwards</p>
-          </div>
-          <span class="tl-node"></span>
-          <div class="tl-photo"><div class="photo-frame"></div></div>
-        </div>
-
-        <!-- 2. MEHANDI -->
-        <div class="tl-row row-b">
-          <div class="tl-info">
-            <h3 class="tl-title">Mehandi</h3>
-            <div class="tl-rule"></div>
-            <div class="tl-date"><span>FRIDAY</span><span>11</span><span>DEC 2026</span></div>
-            <div class="tl-rule"></div>
-            <p class="tl-time">Time : 11:00 AM onwards</p>
-          </div>
-          <span class="tl-node"></span>
-          <div class="tl-photo"><div class="photo-frame"></div></div>
-        </div>
-
-        <!-- 3. SANGEET -->
-        <div class="tl-row row-a">
-          <div class="tl-info">
-            <h3 class="tl-title">Sangeet</h3>
-            <div class="tl-rule"></div>
-            <div class="tl-date"><span>FRIDAY</span><span>11</span><span>DEC 2026</span></div>
-            <div class="tl-rule"></div>
-            <p class="tl-time">Time : 7:30 PM onwards</p>
-          </div>
-          <span class="tl-node"></span>
-          <div class="tl-photo"><div class="photo-frame"></div></div>
-        </div>
-
-        <!-- 4. VIVAH -->
-        <div class="tl-row row-b">
-          <div class="tl-info">
-            <h3 class="tl-title">Vivah</h3>
-            <div class="tl-rule"></div>
-            <div class="tl-date"><span>SATURDAY</span><span>12</span><span>DEC 2026</span></div>
-            <div class="tl-rule"></div>
-            <p class="tl-time">Baraat : 8:00 PM<br>Pheras : 11:30 PM</p>
-          </div>
-          <span class="tl-node"></span>
-          <div class="tl-photo"><div class="photo-frame"></div></div>
-        </div>
-
-        <!-- 5. VIDAI -->
-        <div class="tl-row row-a">
-          <div class="tl-info">
-            <h3 class="tl-title">Vidai</h3>
-            <div class="tl-rule"></div>
-            <div class="tl-date"><span>SUNDAY</span><span>13</span><span>DEC 2026</span></div>
-            <div class="tl-rule"></div>
-            <p class="tl-time">Time : 6:30 AM</p>
-          </div>
-          <span class="tl-node"></span>
-          <div class="tl-photo"><div class="photo-frame"></div></div>
-        </div>
-
-        <!-- MOVING FLOWER (keep last so it sits on top) -->
-        <div class="tl-flower" id="tlFlower">
-          <div class="tl-flower-glow"></div>
-          <img src="assets/flower-move.png" alt="">
-        </div>
-      </div>
-
+    <!-- PAGE 3 -->
+    <div class="gallery-page gallery-page-side">
+      <h2 class="p1-eyebrow" style="font-size: clamp(13px, 3vw, 15.5px); margin: 0; text-transform: uppercase;">The Proposal</h2>
+      <p>Place your venue details here.<br>Date &amp; Time.</p>
     </div>
 
+    <!-- PAGE 4 -->
     <div class="gallery-page gallery-page-side">
       <h2>Our Families</h2>
       <p>Add a message about your families<br>joining together.</p>
     </div>
 
+    <!-- PAGE 5 -->
     <div class="gallery-page gallery-page-side">
       <h2>Save the Date</h2>
       <p>12th December 2026<br>We can't wait to see you!</p>
     </div>
 
+    <!-- PAGE 6 -->
     <div class="gallery-page gallery-page-side">
       <h2>RSVP</h2>
       <p>Please let us know if you can make it.<br>Contact details here.</p>
@@ -632,142 +405,136 @@
       const caption = document.getElementById("scratchCaption");
       const ctx = canvas.getContext("2d", { willReadFrequently: true });
 
-      const RADIUS = 34;      // brush size
-      const GRID = 20;        // coverage grid
-      const THRESHOLD = 0.6;  // share of the heart to scratch (lower = faster reveal)
+      let isDrawing = false;
+      let isCompleted = false;
+      let strokeCounter = 0;
+      let dpr = window.devicePixelRatio || 1;
 
-      const img = new Image();
-      let box = { x: 0, y: 0, w: 0, h: 0 };
-      let done = false, drawing = false, lastW = 0;
-      let hit = new Set();
-      let valid = new Set();
-
-      function setup() {
-        if (done) return;
-        const r = canvas.parentElement.getBoundingClientRect();
-        const w = Math.round(r.width), h = Math.round(r.height);
-        if (!w || !h) return;
-        const dpr = window.devicePixelRatio || 1;
-
+      function setupScratchCanvas() {
+        if (isCompleted) return;
+        
+        const heartWrapper = document.querySelector('.heart-image-wrapper');
+        const rect = heartWrapper.getBoundingClientRect();
+        
+        dpr = window.devicePixelRatio || 1;
+        const w = Math.round(rect.width);
+        const h = Math.round(rect.height);
+        
         canvas.width = w * dpr;
         canvas.height = h * dpr;
         canvas.style.width = w + "px";
         canvas.style.height = h + "px";
+
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-        ctx.globalCompositeOperation = "source-over";
-        ctx.clearRect(0, 0, w, h);
-        hit = new Set();
-        lastW = w;
 
-        if (img.complete && img.naturalWidth) {
-          // keep the PNG's real proportions, centered
-          const s = Math.min(w / img.naturalWidth, h / img.naturalHeight);
-          const dw = img.naturalWidth * s, dh = img.naturalHeight * s;
-          box = { x: (w - dw) / 2, y: (h - dh) / 2, w: dw, h: dh };
-          ctx.drawImage(img, box.x, box.y, dw, dh);
-        } else {
-          // fallback if the PNG fails to load
-          box = { x: 0, y: 0, w, h };
-          ctx.fillStyle = "#bd914b";
-          ctx.fillRect(0, 0, w, h);
-        }
-        mapHeartCells();
+        const img = new Image();
+        img.src = 'assets/gem-heart.png';
+        
+        img.onload = function() {
+          ctx.globalCompositeOperation = "source-over";
+          ctx.clearRect(0, 0, w, h);
+          ctx.drawImage(img, 0, 0, w, h);
+        };
       }
 
-      // find which grid cells actually contain heart pixels (ignores transparent space)
-      function mapHeartCells() {
-        valid = new Set();
-        const dpr = canvas.width / parseFloat(canvas.style.width);
-        const cw = box.w / GRID, ch = box.h / GRID;
-        try {
-          const W = canvas.width;
-          const data = ctx.getImageData(0, 0, W, canvas.height).data;
-          for (let i = 0; i < GRID; i++) {
-            for (let j = 0; j < GRID; j++) {
-              const px = Math.round((box.x + (i + 0.5) * cw) * dpr);
-              const py = Math.round((box.y + (j + 0.5) * ch) * dpr);
-              if (data[(py * W + px) * 4 + 3] > 40) valid.add(i * GRID + j);
-            }
-          }
-        } catch (e) {
-          valid = null; // pixel reading blocked, use fallback below
-        }
-        if (!valid || valid.size < 10) {
-          valid = new Set();
-          for (let k = 0; k < GRID * GRID; k++) valid.add(k);
-        }
+      function getPoint(e) {
+        const rect = canvas.getBoundingClientRect();
+        const touch = e.touches ? e.touches[0] : e;
+        return {
+          x: touch.clientX - rect.left,
+          y: touch.clientY - rect.top
+        };
       }
 
-      function scratch(e) {
-        if (!drawing || done) return;
+      function scratchAt(e) {
+        if (!isDrawing || isCompleted) return;
         if (e.cancelable) e.preventDefault();
-        const r = canvas.getBoundingClientRect();
-        const px = e.clientX - r.left, py = e.clientY - r.top;
+        const pt = getPoint(e);
 
         ctx.globalCompositeOperation = "destination-out";
         ctx.beginPath();
-        ctx.arc(px, py, RADIUS, 0, Math.PI * 2);
+        ctx.arc(pt.x, pt.y, 30, 0, Math.PI * 2);
         ctx.fill();
 
-        const cw = box.w / GRID, ch = box.h / GRID;
-        for (let i = 0; i < GRID; i++) {
-          for (let j = 0; j < GRID; j++) {
-            const k = i * GRID + j;
-            if (!valid.has(k)) continue;
-            const cx = box.x + (i + 0.5) * cw, cy = box.y + (j + 0.5) * ch;
-            if (Math.hypot(cx - px, cy - py) <= RADIUS) hit.add(k);
-          }
+        strokeCounter++;
+        if (strokeCounter % 5 === 0) {
+          checkScratchProgress();
         }
-        if (hit.size / valid.size >= THRESHOLD) complete();
       }
 
-      function complete() {
-        if (done) return;
-        done = true;
+      function checkScratchProgress() {
+        const w = canvas.width;
+        const h = canvas.height;
+        const imgData = ctx.getImageData(0, 0, w, h).data;
+        let totalSampled = 0;
+        let transparentCount = 0;
+
+        for (let i = 3; i < imgData.length; i += 64) {
+          totalSampled++;
+          if (imgData[i] < 110) transparentCount++;
+        }
+
+        if (transparentCount / totalSampled >= 0.70) {
+          completeHeartScratch();
+        }
+      }
+
+      function completeHeartScratch() {
+        if (isCompleted) return;
+        isCompleted = true;
         canvas.classList.add("cleared");
         heartStage.classList.add("revealed");
         caption.textContent = "Forever begins on this day";
-        petalShower();
+        triggerRosePetalShower();
       }
 
-      function petalShower() {
+      function triggerRosePetalShower() {
         const container = document.getElementById("petalRainContainer");
-        for (let i = 0; i < 38; i++) {
+        const petalCount = 38;
+
+        for (let i = 0; i < petalCount; i++) {
           const petal = document.createElement("div");
           petal.className = "falling-petal" + (i % 6 === 0 ? " gold-accent" : "");
           const size = 13 + Math.random() * 12;
+          const left = Math.random() * 100;
           const fallDur = 3.2 + Math.random() * 2.6;
           const swayDur = 1.4 + Math.random() * 1.4;
           const delay = Math.random() * 1.8;
-          petal.style.left = Math.random() * 100 + "vw";
+          const drift = 20 + Math.random() * 35;
+
+          petal.style.left = left + "vw";
           petal.style.setProperty("--size", size + "px");
           petal.style.setProperty("--fall-dur", fallDur + "s");
           petal.style.setProperty("--sway-dur", swayDur + "s");
-          petal.style.setProperty("--drift", 20 + Math.random() * 35 + "px");
+          petal.style.setProperty("--drift", drift + "px");
           petal.style.animationDelay = delay + "s";
+
           container.appendChild(petal);
           setTimeout(() => petal.remove(), (fallDur + delay + 0.5) * 1000);
         }
       }
 
       canvas.addEventListener("pointerdown", (e) => {
-        drawing = true;
-        canvas.setPointerCapture(e.pointerId);
-        scratch(e);
+        isDrawing = true;
+        scratchAt(e);
       });
-      canvas.addEventListener("pointermove", scratch, { passive: false });
-      canvas.addEventListener("pointerup", () => (drawing = false));
-      canvas.addEventListener("pointercancel", () => (drawing = false));
+      window.addEventListener("pointermove", (e) => {
+        if (isDrawing) scratchAt(e);
+      }, { passive: false });
+      window.addEventListener("pointerup", () => { isDrawing = false; });
 
-      // only reset if the width really changed (ignores mobile address-bar resizes)
-      window.addEventListener("resize", () => {
-        const w = Math.round(canvas.parentElement.getBoundingClientRect().width);
-        if (w !== lastW) setup();
-      });
+      canvas.addEventListener("touchstart", (e) => {
+        isDrawing = true;
+        scratchAt(e);
+      }, { passive: false });
+      canvas.addEventListener("touchmove", (e) => {
+        if (isDrawing) scratchAt(e);
+      }, { passive: false });
+      canvas.addEventListener("touchend", () => { isDrawing = false; });
 
-      img.onload = setup;
-      img.onerror = setup;
-      img.src = "assets/gem-heart.png";
+      window.addEventListener("load", setupScratchCanvas);
+      window.addEventListener("resize", setupScratchCanvas);
+      setTimeout(setupScratchCanvas, 150);
     })();
 
     (function initWeddingCountdown() {
@@ -792,59 +559,6 @@
       }
       updateCountdown();
       setInterval(updateCountdown, 1000);
-    })();
-
-    (function initProgrammeTimeline() {
-      const tl = document.getElementById("timeline");
-      if (!tl) return;
-      const track = document.getElementById("tlTrack");
-      const fill = document.getElementById("tlFill");
-      const flower = document.getElementById("tlFlower");
-      const nodes = Array.from(tl.querySelectorAll(".tl-node"));
-      let centers = [], lastC = 0, target = 0, current = 0, running = false;
-
-      function measure() {
-        const r = tl.getBoundingClientRect();
-        centers = nodes.map(n => {
-          const nr = n.getBoundingClientRect();
-          return nr.top + nr.height / 2 - r.top;
-        });
-        lastC = centers[centers.length - 1] || 0;
-        track.style.height = lastC + "px";   // the line ends at the last junction
-        fill.style.height = lastC + "px";
-        const anchor = window.innerHeight * 0.55;
-        target = Math.max(0, Math.min(lastC, anchor - r.top));
-      }
-
-      // eased movement so the flower glides instead of jumping
-      function render() {
-        const diff = target - current;
-        current = Math.abs(diff) < 0.3 ? target : current + diff * 0.2;
-
-        fill.style.transform = "translate3d(0," + (current - lastC) + "px,0)";
-        flower.style.transform = "translate3d(0," + current + "px,0)";
-
-        let near = Infinity;
-        nodes.forEach((n, i) => {
-          n.classList.toggle("lit", current >= centers[i] - 1);
-          near = Math.min(near, Math.abs(current - centers[i]));
-        });
-        // soft white light behind the flower when it reaches a junction
-        flower.style.setProperty("--g", Math.max(0, 1 - near / 60).toFixed(2));
-
-        if (current !== target) requestAnimationFrame(render);
-        else running = false;
-      }
-
-      function onScroll() {
-        measure();
-        if (!running) { running = true; requestAnimationFrame(render); }
-      }
-
-      window.addEventListener("scroll", onScroll, { passive: true });
-      window.addEventListener("resize", onScroll);
-      window.addEventListener("load", () => { measure(); current = target; render(); });
-      measure(); current = target; render();
     })();
   </script>
 </body>
