@@ -161,10 +161,11 @@
 
     /* PAGE 3: THE PROGRAMME */
     .page-program {
-  height: auto; min-height: 100svh; justify-content: flex-start; padding: 11% 6% 15%; /* Changed from 15% to 11% */
-  background-size: 100% auto; background-repeat: repeat-y; background-position: top center;
+      height: auto; min-height: 100svh; justify-content: flex-start; 
+      padding: 11% 6% 15%; /* MOVED UPWARD */
+      background-size: 100% auto; background-repeat: repeat-y; background-position: top center;
     }
-    .prog-line { width: 70%; height: 2px; margin: 4px auto 14px; background: linear-gradient(90deg, transparent, #bd914b 25%, #e5c384 50%, #bd914b 75%, transparent); }
+    .prog-line { width: 70%; height: 2px; margin: 2px auto 10px; /* TIGHTENED */ background: linear-gradient(90deg, transparent, #bd914b 25%, #e5c384 50%, #bd914b 75%, transparent); }
 
     .tl { position: relative; width: 100%; }
     .tl-track {
@@ -250,7 +251,6 @@
       filter: drop-shadow(0 8px 16px rgba(72, 14, 26, 0.28));
     }
 
-    /* Cream heart: same silhouette as the PNG (used as a mask), no border */
     .heart-cream {
       position: absolute; inset: 0; z-index: 1;
       background: #fbefd6;
@@ -261,7 +261,6 @@
       -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
     }
 
-    /* Thin dark-gold heart line, slightly smaller than the cream heart (same silhouette) */
     .heart-line-outer, .heart-line-inner {
       position: absolute; inset: 0; z-index: 1;
       -webkit-mask-image: url('assets/gem-heart.png');
