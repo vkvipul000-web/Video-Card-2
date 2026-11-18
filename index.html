@@ -51,9 +51,9 @@
     .open-hotspot {
       position: absolute;
       left: 50%;
-      top: 55.5%;
+      top: 53.5%;
       transform: translate(-50%, -50%);
-      width: min(46%, 220px);
+      width: min(42.5%, 202px);
       aspect-ratio: 1 / 1;
       padding: 0;
       border: 0;
@@ -597,8 +597,8 @@
     });
 
     document.getElementById("viewInvitation").addEventListener("click", () => {
-  document.getElementById("pageProgram").scrollIntoView({ behavior: "smooth", block: "start" });
-});
+      document.getElementById("pageOne").scrollIntoView({ behavior: "smooth" });
+    });
 
     document.getElementById("revealDate").addEventListener("click", () => {
       document.getElementById("scratchSection").scrollIntoView({ behavior: "smooth", block: "center" });
