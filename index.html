@@ -327,6 +327,18 @@
     /* --- THIN GOLD SCROLL PROGRESS BAR --- */
     .scroll-progress-bar { position: fixed; top: 0; left: 0; height: 3px; width: 0%; background-color: var(--gold); z-index: 999; pointer-events: none; }
   </style>
+  <script>
+    /* tries the next possible location of a photo if the first one fails */
+    function photoFallback(img) {
+      var list = (img.getAttribute("data-fallbacks") || "").split(",").filter(Boolean);
+      if (list.length) {
+        img.setAttribute("data-fallbacks", list.slice(1).join(","));
+        img.src = list[0];
+      } else {
+        img.style.display = "none";
+      }
+    }
+  </script>
 </head>
 <body class="locked">
   <div class="petal-rain-container" id="petalRainContainer"></div>
@@ -426,7 +438,7 @@
       <!-- CLASS 1: GROOM -->
       <div class="profile-card groom-card">
         <div class="profile-photo">
-          <img src="assets/groom.png" alt="Shravan" onerror="this.style.display='none'">
+          <img src="couple/groom.png" alt="Shravan" data-fallbacks="assets/groom.png,groom.png,couple/groom.jpg,assets/groom.jpg" onerror="photoFallback(this)">
         </div>
         <p class="profile-role">THE GROOM</p>
         <h3 class="profile-name">Shravan</h3>
@@ -440,7 +452,7 @@
       <!-- CLASS 2: BRIDE -->
       <div class="profile-card bride-card">
         <div class="profile-photo">
-          <img src="assets/bride.png" alt="Nikki" onerror="this.style.display='none'">
+          <img src="couple/bride.png" alt="Nikki" data-fallbacks="assets/bride.png,bride.png,couple/bride.jpg,assets/bride.jpg" onerror="photoFallback(this)">
         </div>
         <p class="profile-role">THE BRIDE</p>
         <h3 class="profile-name">Nikki</h3>
