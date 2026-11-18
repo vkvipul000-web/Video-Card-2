@@ -154,6 +154,7 @@
       border: 2px solid #bd914b; background: linear-gradient(180deg, #f5e6c8, #e5c384);
     }
     .profile-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .profile-photo::after { content: ""; position: absolute; inset: 0; border-radius: 50%; border: 3px solid #fff; pointer-events: none; }
     .profile-role { font-size: clamp(10px, 2.4vw, 12px) !important; letter-spacing: .25em; color: #8c6b3d !important; font-weight: 700 !important; margin: 0 !important; }
     .profile-name { font-family: "Cormorant Garamond", serif; font-weight: 600; font-size: clamp(28px, 7vw, 34px); color: var(--burgundy); margin: 2px 0 0; line-height: 1.1; }
     .profile-parents { font-size: clamp(12px, 3vw, 14px) !important; font-style: italic; color: #6c514b !important; margin: 2px 0 0 !important; line-height: 1.25 !important; }
@@ -284,7 +285,7 @@
 
     .scratch-canvas { position: absolute; inset: 0; width: 100%; height: 100%; cursor: grab; touch-action: none; z-index: 3; transition: opacity 0.65s ease; }
     .scratch-canvas.cleared { opacity: 0; pointer-events: none; }
-    .scratch-caption { font-family: "Great Vibes", cursive !important; font-style: normal; font-size: clamp(22px, 5.5vw, 28px) !important; color: var(--burgundy) !important; margin-top: 8px !important; letter-spacing: 0.02em; transition: opacity 0.4s ease, color 0.4s ease; }
+    .scratch-caption { font-family: "Great Vibes", cursive !important; font-style: normal; font-weight: 400 !important; font-size: clamp(25px, 6.3vw, 32px) !important; color: var(--burgundy) !important; margin-top: 8px !important; letter-spacing: 0.02em; transition: opacity 0.4s ease, color 0.4s ease; }
 
     /* Bottom Textured Maroon Countdown Section */
     .p1-countdown-section { width: 100%; display: flex; flex-direction: column; align-items: center; z-index: 2; margin-bottom: 1%; }
@@ -425,7 +426,7 @@
       <!-- CLASS 1: GROOM -->
       <div class="profile-card groom-card">
         <div class="profile-photo">
-          <img src="assets/groom.jpg" alt="Shravan" onerror="this.style.display='none'">
+          <img src="assets/groom.png" alt="Shravan" onerror="this.style.display='none'">
         </div>
         <p class="profile-role">THE GROOM</p>
         <h3 class="profile-name">Shravan</h3>
@@ -439,7 +440,7 @@
       <!-- CLASS 2: BRIDE -->
       <div class="profile-card bride-card">
         <div class="profile-photo">
-          <img src="assets/bride.jpg" alt="Nikki" onerror="this.style.display='none'">
+          <img src="assets/bride.png" alt="Nikki" onerror="this.style.display='none'">
         </div>
         <p class="profile-role">THE BRIDE</p>
         <h3 class="profile-name">Nikki</h3>
