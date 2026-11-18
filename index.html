@@ -167,7 +167,7 @@
 
     /* PAGE 3: THE PROGRAMME */
     .page-program {
-      height: auto; min-height: 100svh; justify-content: flex-start; padding: 15% 8% 15%;
+      height: auto; min-height: 100svh; justify-content: flex-start; padding: 15% 6% 15%;
       background-size: 100% auto; background-repeat: repeat-y; background-position: top center;
     }
     .page-program h2 { margin: 0 0 2px; }
@@ -178,9 +178,9 @@
       position: absolute; left: 50%; top: 0; width: 8px; height: 100%; margin-left: -4px;
       border-radius: 4px; border: 1px solid rgba(189, 145, 75, 0.75); background: rgba(189, 145, 75, 0.16); overflow: hidden;
     }
-    .tl-fill { position: absolute; left: 0; right: 0; top: 0; height: 0; background: linear-gradient(180deg, #5e1423 0%, #7c1e31 55%, #a3243a 100%); }
+    .tl-fill { position: absolute; left: 0; right: 0; top: 0; height: 0; will-change: transform; background: linear-gradient(180deg, #5e1423 0%, #7c1e31 55%, #a3243a 100%); }
 
-    .tl-row { position: relative; display: grid; grid-template-columns: 1fr 34px 1fr; align-items: center; column-gap: 4px; padding: 22px 0; }
+    .tl-row { position: relative; display: grid; grid-template-columns: 1fr 28px 1fr; align-items: center; column-gap: 4px; padding: 22px 0; }
     .tl-node {
       grid-column: 2; grid-row: 1; justify-self: center; position: relative;
       width: 22px; height: 22px; border-radius: 50%; background: #fbefd6; border: 2px solid #bd914b;
@@ -200,9 +200,11 @@
 
     .tl-title { font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 600; font-size: clamp(25px, 6.6vw, 31px); line-height: 1.05; color: var(--burgundy); margin: 0; }
     .tl-rule { height: 1.5px; margin: 5px 0; background: linear-gradient(90deg, transparent, #bd914b, transparent); }
-    .tl-date { display: flex; justify-content: center; align-items: center; font-family: "Cormorant Garamond", serif; font-weight: 700; font-size: clamp(9.5px, 2.5vw, 11.5px); line-height: 1; letter-spacing: .05em; color: var(--ink); }
-    .tl-date span { padding: 0 5px; white-space: nowrap; }
+    .tl-date { display: flex; justify-content: center; align-items: center; font-family: "Cormorant Garamond", serif; font-weight: 700; font-size: clamp(9px, 2.3vw, 11px); line-height: 1; letter-spacing: .05em; color: var(--ink); }
+    .tl-date span { padding: 0 4px; white-space: nowrap; }
     .tl-date span + span { border-left: 1.5px solid #8c6b3d; }
+    .tl-date span:nth-child(2) { font-size: clamp(24px, 6.4vw, 30px); font-weight: 700; line-height: .9; letter-spacing: 0; color: var(--burgundy); -webkit-text-stroke: .5px var(--burgundy); }
+    .tl-date span:nth-child(3) { letter-spacing: .09em; color: var(--burgundy); }
     .page-program .tl-time { font-family: "Cormorant Garamond", serif; font-weight: 600; font-size: clamp(11.5px, 3vw, 13.5px); line-height: 1.3; color: #6c514b; margin: 3px 0 0; }
 
     .photo-frame {
@@ -212,17 +214,12 @@
     }
     .photo-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-    .tl-flower { position: absolute; left: 50%; top: 0; width: 46px; height: 46px; margin: -23px 0 0 -23px; pointer-events: none; }
+    .tl-flower { position: absolute; left: 50%; top: 0; width: 38px; height: 38px; margin: -19px 0 0 -19px; pointer-events: none; will-change: transform; }
     .tl-flower-glow {
-      position: absolute; inset: -22px; border-radius: 50%; opacity: var(--g, 0); filter: blur(5px);
-      background: radial-gradient(circle, rgba(229, 195, 132, 0.75) 0%, rgba(189, 145, 75, 0.35) 42%, transparent 70%);
+      position: absolute; inset: -20px; border-radius: 50%; opacity: var(--g, 0); filter: blur(4px);
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.55) 40%, transparent 72%);
     }
-    .tl-flower img { position: relative; width: 100%; height: 100%; object-fit: contain; display: block; mix-blend-mode: multiply; }
-
-    .page-program .ai-note {
-      margin-top: 16px; padding: 10px 14px; border: 1px solid rgba(189, 145, 75, 0.75); border-radius: 12px;
-      background: rgba(255, 255, 255, 0.25); font-style: italic; font-size: clamp(12.5px, 3.2vw, 14.5px); line-height: 1.3; text-align: center; color: var(--ink);
-    }
+    .tl-flower img { position: relative; width: 100%; height: 100%; object-fit: contain; display: block; opacity: 1; clip-path: circle(50%); }
 
     /* PAGE 1 CUSTOM STYLES */
     .p1-quote-section { display: flex; flex-direction: column; align-items: center; width: 100%; margin-top: 2%; z-index: 2; }
@@ -474,7 +471,7 @@
             <div class="tl-rule"></div>
             <div class="tl-date"><span>THURSDAY</span><span>10</span><span>DEC 2026</span></div>
             <div class="tl-rule"></div>
-            <p class="tl-time">time : 4:00 PM onwards</p>
+            <p class="tl-time">Time : 4:00 PM onwards</p>
           </div>
           <span class="tl-node"></span>
           <div class="tl-photo"><div class="photo-frame"></div></div>
@@ -487,7 +484,7 @@
             <div class="tl-rule"></div>
             <div class="tl-date"><span>FRIDAY</span><span>11</span><span>DEC 2026</span></div>
             <div class="tl-rule"></div>
-            <p class="tl-time">time : 11:00 AM onwards</p>
+            <p class="tl-time">Time : 11:00 AM onwards</p>
           </div>
           <span class="tl-node"></span>
           <div class="tl-photo"><div class="photo-frame"></div></div>
@@ -500,7 +497,7 @@
             <div class="tl-rule"></div>
             <div class="tl-date"><span>FRIDAY</span><span>11</span><span>DEC 2026</span></div>
             <div class="tl-rule"></div>
-            <p class="tl-time">time : 7:30 PM onwards</p>
+            <p class="tl-time">Time : 7:30 PM onwards</p>
           </div>
           <span class="tl-node"></span>
           <div class="tl-photo"><div class="photo-frame"></div></div>
@@ -526,7 +523,7 @@
             <div class="tl-rule"></div>
             <div class="tl-date"><span>SUNDAY</span><span>13</span><span>DEC 2026</span></div>
             <div class="tl-rule"></div>
-            <p class="tl-time">time : 6:30 AM</p>
+            <p class="tl-time">Time : 6:30 AM</p>
           </div>
           <span class="tl-node"></span>
           <div class="tl-photo"><div class="photo-frame"></div></div>
@@ -535,11 +532,10 @@
         <!-- MOVING FLOWER (keep last so it sits on top) -->
         <div class="tl-flower" id="tlFlower">
           <div class="tl-flower-glow"></div>
-          <img src="assets/flower-move.png" alt="" id="tlFlowerImg">
+          <img src="assets/flower-move.png" alt="">
         </div>
       </div>
 
-      <p class="ai-note">Note : All the images is AI Generated (Animated)</p>
     </div>
 
     <div class="gallery-page gallery-page-side">
@@ -804,47 +800,51 @@
       const track = document.getElementById("tlTrack");
       const fill = document.getElementById("tlFill");
       const flower = document.getElementById("tlFlower");
-      const flowerImg = document.getElementById("tlFlowerImg");
       const nodes = Array.from(tl.querySelectorAll(".tl-node"));
-      let ticking = false;
+      let centers = [], lastC = 0, target = 0, current = 0, running = false;
 
-      function update() {
-        ticking = false;
+      function measure() {
         const r = tl.getBoundingClientRect();
-        const centers = nodes.map(n => {
+        centers = nodes.map(n => {
           const nr = n.getBoundingClientRect();
           return nr.top + nr.height / 2 - r.top;
         });
-        const lastC = centers[centers.length - 1];
-
-        // the line ends at the last junction
-        track.style.height = lastC + "px";
-
-        // flower follows the scroll (anchor at 55% of the screen height)
+        lastC = centers[centers.length - 1] || 0;
+        track.style.height = lastC + "px";   // the line ends at the last junction
+        fill.style.height = lastC + "px";
         const anchor = window.innerHeight * 0.55;
-        const p = Math.max(0, Math.min(lastC, anchor - r.top));
+        target = Math.max(0, Math.min(lastC, anchor - r.top));
+      }
 
-        fill.style.height = p + "px";
-        flower.style.top = p + "px";
-        flowerImg.style.transform = "rotate(" + (p * 0.35) + "deg)";
+      // eased movement so the flower glides instead of jumping
+      function render() {
+        const diff = target - current;
+        current = Math.abs(diff) < 0.3 ? target : current + diff * 0.2;
+
+        fill.style.transform = "translate3d(0," + (current - lastC) + "px,0)";
+        flower.style.transform = "translate3d(0," + current + "px,0)";
 
         let near = Infinity;
         nodes.forEach((n, i) => {
-          n.classList.toggle("lit", p >= centers[i] - 1);
-          near = Math.min(near, Math.abs(p - centers[i]));
+          n.classList.toggle("lit", current >= centers[i] - 1);
+          near = Math.min(near, Math.abs(current - centers[i]));
         });
-        // golden glow behind the flower grows as it reaches a junction
+        // soft white light behind the flower when it reaches a junction
         flower.style.setProperty("--g", Math.max(0, 1 - near / 60).toFixed(2));
+
+        if (current !== target) requestAnimationFrame(render);
+        else running = false;
       }
 
-      function requestUpdate() {
-        if (!ticking) { ticking = true; requestAnimationFrame(update); }
+      function onScroll() {
+        measure();
+        if (!running) { running = true; requestAnimationFrame(render); }
       }
 
-      window.addEventListener("scroll", requestUpdate, { passive: true });
-      window.addEventListener("resize", requestUpdate);
-      window.addEventListener("load", requestUpdate);
-      update();
+      window.addEventListener("scroll", onScroll, { passive: true });
+      window.addEventListener("resize", onScroll);
+      window.addEventListener("load", () => { measure(); current = target; render(); });
+      measure(); current = target; render();
     })();
   </script>
 </body>
