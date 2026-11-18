@@ -162,9 +162,10 @@
     /* PAGE 3: THE PROGRAMME */
     .page-program {
       height: auto; min-height: 100svh; justify-content: flex-start; 
-      padding: 11% 6% 15%; /* MOVED UPWARD */
+      padding: 9% 6% 15%;
       background-size: 100% auto; background-repeat: repeat-y; background-position: top center;
     }
+    .page-program .prog-invited { font-family: "Cormorant Garamond", serif; font-weight: 700; font-size: clamp(26px, 7vw, 32px); line-height: 1.1; letter-spacing: .12em; color: #6b3a2a; margin: 0 0 14px; text-align: center; }
     .prog-line { width: 70%; height: 2px; margin: 2px auto 10px; /* TIGHTENED */ background: linear-gradient(90deg, transparent, #bd914b 25%, #e5c384 50%, #bd914b 75%, transparent); }
 
     .tl { position: relative; width: 100%; }
@@ -450,6 +451,7 @@
 
     <!-- PAGE 3: THE PROGRAMME -->
     <div class="gallery-page gallery-page-side page-program" id="pageProgram">
+      <h2 class="prog-invited">You are invited</h2>
       <span class="p1-eyebrow" style="font-size: clamp(13px, 3vw, 15.5px);">The Programme</span>
       <div class="prog-line"></div>
 
@@ -595,8 +597,8 @@
     });
 
     document.getElementById("viewInvitation").addEventListener("click", () => {
-  document.getElementById("pageProgram").scrollIntoView({ behavior: "smooth", block: "start" });
-});
+      document.getElementById("pageOne").scrollIntoView({ behavior: "smooth" });
+    });
 
     document.getElementById("revealDate").addEventListener("click", () => {
       document.getElementById("scratchSection").scrollIntoView({ behavior: "smooth", block: "center" });
