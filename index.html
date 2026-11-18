@@ -129,10 +129,12 @@
     .gallery-page p { font-family: "Cormorant Garamond", serif; color: var(--ink); font-size: clamp(16px, 4vw, 20px); line-height: 1.5; font-weight: 600; margin: 0; }
 
     /* PAGE 2: GROOM & BRIDE CARDS */
-    .page-couple { padding: 10% 6% 8%; gap: 6px; justify-content: center; }
+    .page-couple { height: auto; min-height: 100svh; padding: 12% 6% 10%; gap: 16px; justify-content: center; }
+    .couple-head { display: flex; flex-direction: column; align-items: center; width: 100%; }
+    .couple-quote { font-family: "Cormorant Garamond", serif !important; font-style: italic; font-weight: 700 !important; font-size: clamp(14px, 3.6vw, 17px) !important; line-height: 1.35 !important; color: var(--ink) !important; max-width: 90%; margin: 0 auto !important; }
     .couple-and { font-family: "Great Vibes", cursive; font-size: clamp(34px, 8.5vw, 44px); line-height: 1; color: #a77b3b; }
     .profile-card {
-      position: relative; width: 100%; padding: 22px 22px 24px; border-radius: 26px; text-align: center;
+      position: relative; width: 100%; padding: 18px 20px 20px; border-radius: 26px; text-align: center;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
       /* transparent glass */
       background: linear-gradient(145deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.10) 45%, rgba(255,255,255,0.05) 60%, rgba(255,255,255,0.32) 100%);
@@ -153,7 +155,7 @@
     .profile-card > * { position: relative; }
     .profile-line { width: 62%; height: 2px; margin: 8px auto 4px; background: linear-gradient(90deg, transparent, #bd914b 25%, #e5c384 50%, #bd914b 75%, transparent); }
     .profile-photo {
-      width: 108px; height: 108px; margin: 0 auto 8px; border-radius: 50%; overflow: hidden;
+      width: 96px; height: 96px; margin: 0 auto 8px; border-radius: 50%; overflow: hidden;
       border: 2px solid #bd914b;
       background: linear-gradient(180deg, #f5e6c8, #e5c384);
     }
@@ -161,7 +163,7 @@
     .profile-role { font-size: clamp(10px, 2.4vw, 12px) !important; letter-spacing: .25em; color: #8c6b3d !important; font-weight: 700 !important; margin: 0 !important; }
     .profile-name { font-family: "Cormorant Garamond", serif; font-weight: 600; font-size: clamp(28px, 7vw, 34px); color: var(--burgundy); margin: 2px 0 0; line-height: 1.1; }
     .profile-parents { font-size: clamp(12px, 3vw, 14px) !important; font-style: italic; color: #6c514b !important; margin: 2px 0 0 !important; line-height: 1.25 !important; }
-    .profile-info { font-size: clamp(14px, 3.5vw, 16.5px) !important; line-height: 1.35 !important; margin-top: 4px !important; }
+    .profile-info { font-size: clamp(13.5px, 3.4vw, 15.5px) !important; line-height: 1.3 !important; margin-top: 2px !important; }
 
     /* PAGE 1 CUSTOM STYLES */
     .p1-quote-section { display: flex; flex-direction: column; align-items: center; width: 100%; margin-top: 2%; z-index: 2; }
@@ -365,6 +367,12 @@
     </div>
 
     <div class="gallery-page gallery-page-side page-couple">
+      <div class="couple-head">
+        <span class="p1-eyebrow">THE COUPLE</span>
+        <div class="family-ornament" style="margin: 6px auto 10px auto;"></div>
+        <p class="couple-quote">Like two rivers meeting at the sea, Our lives are joined for eternity,</p>
+      </div>
+
       <!-- CLASS 1: GROOM -->
       <div class="profile-card groom-card">
         <div class="profile-photo">
@@ -374,7 +382,7 @@
         <h3 class="profile-name">Shravan</h3>
         <p class="profile-parents">Son of Mrs. Savitri Yadav &amp; Mr. Suresh Yadav</p>
         <div class="profile-line"></div>
-        <p class="profile-info">Add one or two lines about the groom here.</p>
+        <p class="profile-info">A traveler who collects stories, always reading a new chapter and exploring a new horizon.</p>
       </div>
 
       <div class="couple-and">&amp;</div>
@@ -388,7 +396,7 @@
         <h3 class="profile-name">Nikki</h3>
         <p class="profile-parents">Daughter of Mrs. Radha Devi &amp; Mr. Jitendra Yadav</p>
         <div class="profile-line"></div>
-        <p class="profile-info">Add one or two lines about the bride here.</p>
+        <p class="profile-info">She moves like poetry, grows love like flowers, cooks with soul, and reads the world like her favorite book</p>
       </div>
     </div>
 
