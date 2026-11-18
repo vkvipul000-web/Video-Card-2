@@ -129,15 +129,29 @@
     .gallery-page p { font-family: "Cormorant Garamond", serif; color: var(--ink); font-size: clamp(16px, 4vw, 20px); line-height: 1.5; font-weight: 600; margin: 0; }
 
     /* PAGE 2: GROOM & BRIDE CARDS */
-    .page-couple { padding: 11% 9% 9%; gap: 4px; justify-content: center; }
+    .page-couple { padding: 10% 6% 8%; gap: 6px; justify-content: center; }
     .couple-and { font-family: "Great Vibes", cursive; font-size: clamp(34px, 8.5vw, 44px); line-height: 1; color: #a77b3b; }
     .profile-card {
-      width: 100%; padding: 14px 18px 16px; border-radius: 22px; text-align: center;
-      background: rgba(255, 255, 255, 0.28);
-      border: 1px solid rgba(189, 145, 75, 0.55);
-      box-shadow: 0 8px 24px rgba(72, 14, 26, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.6);
-      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      position: relative; width: 100%; padding: 22px 22px 24px; border-radius: 26px; text-align: center;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      /* transparent glass */
+      background: linear-gradient(145deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.10) 45%, rgba(255,255,255,0.05) 60%, rgba(255,255,255,0.32) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      box-shadow: 0 10px 30px rgba(72, 14, 26, 0.22),
+                  0 1px 0 rgba(189, 145, 75, 0.35),
+                  inset 0 1px 1px rgba(255, 255, 255, 0.95),
+                  inset 0 -1px 1px rgba(189, 145, 75, 0.25),
+                  inset 0 0 22px rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(16px) saturate(1.4); -webkit-backdrop-filter: blur(16px) saturate(1.4);
+      overflow: hidden;
     }
+    .profile-card::before {
+      content: ""; position: absolute; left: -10%; top: -45%; width: 120%; height: 70%;
+      background: linear-gradient(180deg, rgba(255,255,255,0.35), transparent);
+      border-radius: 50%; transform: rotate(-8deg); pointer-events: none;
+    }
+    .profile-card > * { position: relative; }
+    .profile-line { width: 62%; height: 2px; margin: 8px auto 4px; background: linear-gradient(90deg, transparent, #bd914b 25%, #e5c384 50%, #bd914b 75%, transparent); }
     .profile-photo {
       width: 108px; height: 108px; margin: 0 auto 8px; border-radius: 50%; overflow: hidden;
       border: 2px solid #bd914b;
@@ -359,6 +373,7 @@
         <p class="profile-role">THE GROOM</p>
         <h3 class="profile-name">Shravan</h3>
         <p class="profile-parents">Son of Mrs. Savitri Yadav &amp; Mr. Suresh Yadav</p>
+        <div class="profile-line"></div>
         <p class="profile-info">Add one or two lines about the groom here.</p>
       </div>
 
@@ -372,6 +387,7 @@
         <p class="profile-role">THE BRIDE</p>
         <h3 class="profile-name">Nikki</h3>
         <p class="profile-parents">Daughter of Mrs. Radha Devi &amp; Mr. Jitendra Yadav</p>
+        <div class="profile-line"></div>
         <p class="profile-info">Add one or two lines about the bride here.</p>
       </div>
     </div>
