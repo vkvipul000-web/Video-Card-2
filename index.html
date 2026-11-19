@@ -217,6 +217,42 @@
     }
     .tl-flower img { position: relative; width: 100%; height: 100%; object-fit: contain; display: block; opacity: 1; clip-path: circle(50%); }
 
+    /* PAGE 4: MEMORIES + THE CELEBRATION */
+    .page-memories { height: auto; min-height: 100svh; justify-content: flex-start; padding: 11% 8% 15%; background-size: 100% auto; background-repeat: repeat-y; background-position: top center; }
+    .page-memories .mem-title { font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 700; font-size: clamp(32px, 8.6vw, 40px); line-height: 1.05; letter-spacing: .02em; color: var(--burgundy); margin: 0 0 14px; text-align: center; }
+
+    .mem-slider { width: 100%; }
+    .mem-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; }
+    .mem-track::-webkit-scrollbar { display: none; }
+    .mem-slide { flex: 0 0 100%; scroll-snap-align: center; padding: 6px 6px 12px; }
+    .mem-frame { position: relative; width: 100%; aspect-ratio: 4 / 5; border-radius: 22px; border: 2px solid #bd914b; overflow: hidden; background: linear-gradient(180deg, #f5e6c8, #e5c384); box-shadow: 0 8px 18px rgba(72, 14, 26, 0.22); }
+    .mem-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .mem-frame::after { content: ""; position: absolute; inset: 0; border-radius: 20px; border: 3px solid #fff; pointer-events: none; }
+    .mem-dots { display: flex; justify-content: center; gap: 7px; margin-top: 2px; }
+    .mem-dot { width: 8px; height: 8px; padding: 0; border: 0; border-radius: 50%; background: rgba(189, 145, 75, 0.55); cursor: pointer; transition: width .3s ease, background .3s ease; }
+    .mem-dot.active { width: 22px; border-radius: 4px; background: var(--burgundy); }
+
+    .cel-wrap { width: 100%; margin-top: 30px; display: flex; flex-direction: column; align-items: center; }
+    .page-memories .cel-title { font-family: "Cormorant Garamond", serif; font-weight: 600; font-size: clamp(28px, 7.4vw, 34px); line-height: 1.1; color: var(--burgundy); margin: 2px 0 14px; text-align: center; }
+    .cel-card { width: 100%; border-radius: 22px; overflow: hidden; border: 1px solid rgba(189, 145, 75, 0.7); background: rgba(255, 255, 255, 0.5); box-shadow: 0 10px 26px rgba(72, 14, 26, 0.2); }
+    .cel-head { text-align: center; padding: 20px 16px 18px; color: var(--cream-light); background: radial-gradient(circle at 50% 0%, rgba(229, 195, 132, 0.22) 0%, transparent 62%), linear-gradient(180deg, #7c1e31 0%, #5e1423 52%, #430c18 100%); }
+    .cel-save { display: block; font-size: clamp(10px, 2.5vw, 12px); font-weight: 700; letter-spacing: .3em; padding-left: .3em; text-transform: uppercase; color: var(--gold-light); }
+    .cel-day { display: block; margin: 6px 0 4px; font-weight: 700; font-size: clamp(44px, 12vw, 58px); line-height: 1; font-variant-numeric: lining-nums; font-feature-settings: "lnum" 1; }
+    .cel-month { display: block; font-weight: 700; font-size: clamp(12px, 3.2vw, 15px); letter-spacing: .28em; padding-left: .28em; color: var(--cream-light); font-variant-numeric: lining-nums; font-feature-settings: "lnum" 1; }
+    .cel-row { display: flex; align-items: center; gap: 14px; padding: 14px 18px; border-top: 1px solid rgba(189, 145, 75, 0.35); text-align: left; }
+    .cel-ico { flex: 0 0 42px; width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; color: var(--burgundy); border: 1.5px solid #bd914b; background: linear-gradient(180deg, #fff9ec, #f1dcae); }
+    .cel-ico svg { width: 20px; height: 20px; }
+    .cel-label { display: block; font-size: clamp(9.5px, 2.4vw, 11px); font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: #8c6b3d; }
+    .cel-value { display: block; font-weight: 700; font-size: clamp(15px, 4vw, 18px); line-height: 1.25; color: var(--ink); font-variant-numeric: lining-nums; font-feature-settings: "lnum" 1; }
+    .cel-btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: calc(100% - 36px); margin: 4px 18px 18px; padding: 13px 14px; border: 1.5px solid #d4b171; border-radius: 14px; cursor: pointer; color: #fff8e6; font-family: "Cormorant Garamond", serif; font-weight: 700; font-size: clamp(12px, 3.1vw, 14px); letter-spacing: .16em; text-transform: uppercase; background: linear-gradient(180deg, #8d2a40 0%, #6a1a2e 50%, #581321 100%); box-shadow: 0 4px 12px rgba(88, 19, 33, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.25); }
+    .cel-btn svg { width: 18px; height: 18px; }
+    .cel-btn:active { transform: translateY(1px); }
+    .cel-map { position: relative; display: block; width: 100%; height: 150px; margin-top: 16px; border-radius: 20px; overflow: hidden; border: 2px solid #bd914b; text-decoration: none; box-shadow: 0 8px 18px rgba(72, 14, 26, 0.2);
+      background: repeating-linear-gradient(35deg, transparent 0 22px, rgba(189, 145, 75, 0.3) 22px 24px), repeating-linear-gradient(-55deg, transparent 0 30px, rgba(189, 145, 75, 0.22) 30px 32px), radial-gradient(circle at 70% 30%, rgba(255, 244, 214, 0.9), transparent 55%), linear-gradient(180deg, #f6e8c9, #ecd6a4); }
+    .cel-map::after { content: ""; position: absolute; inset: 0; border-radius: 18px; border: 3px solid #fff; pointer-events: none; }
+    .cel-pin { position: absolute; left: 50%; top: 46%; width: 38px; height: 38px; transform: translate(-50%, -100%); filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.3)); }
+    .cel-map-label { position: absolute; left: 50%; bottom: 12px; transform: translateX(-50%); white-space: nowrap; padding: 6px 14px; border-radius: 999px; font-family: "Cormorant Garamond", serif; font-weight: 700; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: #fff8e6; background: linear-gradient(180deg, #8d2a40, #581321); border: 1px solid #d4b171; }
+
     /* PAGE 1 CUSTOM STYLES */
     .p1-quote-section { display: flex; flex-direction: column; align-items: center; width: 100%; margin-top: 2%; z-index: 2; }
     .p1-eyebrow { font-family: "Cormorant Garamond", serif; font-size: clamp(10px, 2.5vw, 12px); font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: #9c7132; margin: 0 0 6px; }
@@ -452,7 +488,7 @@
       <!-- CLASS 2: BRIDE -->
       <div class="profile-card bride-card">
         <div class="profile-photo">
-          <img src="couple/bride.png" alt="Nikki" style="object-position: 50% 0%;" data-fallbacks="assets/bride.png,bride.png,couple/bride.jpg,assets/bride.jpg" onerror="photoFallback(this)">
+          <img src="couple/bride.png" alt="Nikki" style="object-position: 50% 20%;" data-fallbacks="assets/bride.png,bride.png,couple/bride.jpg,assets/bride.jpg" onerror="photoFallback(this)">
         </div>
         <p class="profile-role">THE BRIDE</p>
         <h3 class="profile-name">Nikki</h3>
@@ -545,9 +581,53 @@
 
     </div>
 
-    <div class="gallery-page gallery-page-side">
-      <h2>Our Families</h2>
-      <p>Add a message about your families<br>joining together.</p>
+    <!-- PAGE 4: MEMORIES + THE CELEBRATION -->
+    <div class="gallery-page gallery-page-side page-memories" id="pageMemories">
+      <h2 class="mem-title">Memories</h2>
+
+      <div class="mem-slider" id="memSlider">
+        <div class="mem-track" id="memTrack">
+          <div class="mem-slide"><div class="mem-frame"><img src="memories/1.png" alt="Memory 1" data-fallbacks="memories/1.jpg" onerror="photoFallback(this)"></div></div>
+          <div class="mem-slide"><div class="mem-frame"><img src="memories/2.png" alt="Memory 2" loading="lazy" data-fallbacks="memories/2.jpg" onerror="photoFallback(this)"></div></div>
+          <div class="mem-slide"><div class="mem-frame"><img src="memories/3.png" alt="Memory 3" loading="lazy" data-fallbacks="memories/3.jpg" onerror="photoFallback(this)"></div></div>
+          <div class="mem-slide"><div class="mem-frame"><img src="memories/4.png" alt="Memory 4" loading="lazy" data-fallbacks="memories/4.jpg" onerror="photoFallback(this)"></div></div>
+          <div class="mem-slide"><div class="mem-frame"><img src="memories/5.png" alt="Memory 5" loading="lazy" data-fallbacks="memories/5.jpg" onerror="photoFallback(this)"></div></div>
+        </div>
+        <div class="mem-dots" id="memDots"></div>
+      </div>
+
+      <div class="cel-wrap">
+        <span class="p1-eyebrow">WHEN &amp; WHERE</span>
+        <h2 class="cel-title">The celebration</h2>
+
+        <div class="cel-card">
+          <div class="cel-head">
+            <span class="cel-save">Save the Date</span>
+            <span class="cel-day">12</span>
+            <span class="cel-month">DECEMBER 2026</span>
+          </div>
+
+          <div class="cel-row">
+            <span class="cel-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 3v4M17 5h4"/></svg></span>
+            <div><span class="cel-label">The Ceremony</span><span class="cel-value">Baraat 8:00 PM &middot; Pheras 11:30 PM</span></div>
+          </div>
+          <div class="cel-row">
+            <span class="cel-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+            <div><span class="cel-label">Time</span><span class="cel-value">8:00 PM onwards</span></div>
+          </div>
+          <div class="cel-row">
+            <span class="cel-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 1 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+            <div><span class="cel-label">Venue</span><span class="cel-value">Add venue name here, City</span></div>
+          </div>
+
+          <button class="cel-btn" id="addToCalendar" type="button" data-venue="Add venue name here, City"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><span>Add to Calendar</span></button>
+        </div>
+
+        <a class="cel-map" id="mapLink" href="https://www.google.com/maps/search/?api=1&amp;query=Add+venue+name+here" target="_blank" rel="noopener" aria-label="Open the venue in Google Maps">
+          <svg class="cel-pin" viewBox="0 0 24 24"><path fill="#c1272d" d="M12 22s-7.5-6.6-7.5-12a7.5 7.5 0 1 1 15 0c0 5.4-7.5 12-7.5 12z"/><circle cx="12" cy="10" r="3" fill="#fff"/></svg>
+          <span class="cel-map-label">Open in Google Maps</span>
+        </a>
+      </div>
     </div>
 
     <div class="gallery-page gallery-page-side">
@@ -846,6 +926,84 @@
       window.addEventListener("resize", onScroll);
       window.addEventListener("load", () => { measure(); current = target; render(); });
       measure(); current = target; render();
+    })();
+    (function initMemories() {
+      const track = document.getElementById("memTrack");
+      if (!track) return;
+      const slides = Array.from(track.children);
+      const dotsBox = document.getElementById("memDots");
+      let idx = 0, lastTouch = 0, lastProg = 0, visible = false;
+
+      function mark(i) { dots.forEach((d, k) => d.classList.toggle("active", k === i)); }
+      function goTo(i) {
+        idx = i;
+        lastProg = Date.now();
+        track.scrollTo({ left: i * track.clientWidth, behavior: "smooth" });
+        mark(i);
+      }
+
+      const dots = slides.map((_, i) => {
+        const d = document.createElement("button");
+        d.type = "button";
+        d.className = "mem-dot";
+        d.setAttribute("aria-label", "Photo " + (i + 1));
+        d.addEventListener("click", () => { lastTouch = Date.now(); goTo(i); });
+        dotsBox.appendChild(d);
+        return d;
+      });
+
+      // manual swipe: keep the dots in step
+      track.addEventListener("scroll", () => {
+        if (Date.now() - lastProg < 800) return;
+        const i = Math.round(track.scrollLeft / track.clientWidth);
+        if (i !== idx) { idx = i; mark(i); }
+      }, { passive: true });
+
+      // touching pauses the automatic sliding for a few seconds
+      ["pointerdown", "touchstart", "wheel"].forEach(ev =>
+        track.addEventListener(ev, () => { lastTouch = Date.now(); }, { passive: true }));
+
+      // only slide while the slider is on screen
+      if ("IntersectionObserver" in window) {
+        new IntersectionObserver(e => { visible = e[0].isIntersecting; }, { threshold: 0.3 }).observe(track);
+      } else { visible = true; }
+
+      // every 3 seconds, go to the next photo (loops back to the first)
+      setInterval(() => {
+        if (!visible || Date.now() - lastTouch < 3000) return;
+        goTo((idx + 1) % slides.length);
+      }, 3000);
+
+      window.addEventListener("resize", () => track.scrollTo({ left: idx * track.clientWidth, behavior: "auto" }));
+      mark(0);
+    })();
+
+    (function initCalendarButton() {
+      const btn = document.getElementById("addToCalendar");
+      if (!btn) return;
+      btn.addEventListener("click", () => {
+        const venue = (btn.getAttribute("data-venue") || "").replace(/,/g, "\\,");
+        const ics = [
+          "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Shravan and Nikki//Wedding//EN",
+          "BEGIN:VEVENT",
+          "UID:shravan-nikki-wedding-20261212@invitation",
+          "DTSTAMP:20261119T000000Z",
+          "DTSTART:20261212T143000Z",   // 12 Dec 2026, 8:00 PM IST
+          "DTEND:20261212T193000Z",     // 13 Dec 2026, 1:00 AM IST
+          "SUMMARY:Shravan & Nikki - Wedding Celebration",
+          "DESCRIPTION:Baraat 8:00 PM\\, Pheras 11:30 PM",
+          "LOCATION:" + venue,
+          "END:VEVENT", "END:VCALENDAR"
+        ].join("\r\n");
+        const url = URL.createObjectURL(new Blob([ics], { type: "text/calendar;charset=utf-8" }));
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "Shravan-Nikki-Wedding.ics";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 2000);
+      });
     })();
   </script>
 </body>
