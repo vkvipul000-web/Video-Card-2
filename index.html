@@ -226,7 +226,7 @@
     .mem-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; }
     .mem-track::-webkit-scrollbar { display: none; }
     .mem-slide { flex: 0 0 100%; scroll-snap-align: center; padding: 6px 6px 12px; }
-    .mem-frame { position: relative; width: 100%; aspect-ratio: 4 / 5; border-radius: 22px; border: 2px solid #721b2c; overflow: hidden; background: linear-gradient(180deg, #f5e6c8, #e5c384); box-shadow: 0 8px 18px rgba(72, 14, 26, 0.22); }
+    .mem-frame { position: relative; width: 100%; aspect-ratio: 4 / 5; border-radius: 22px; border: 2px solid #bd914b; overflow: hidden; background: linear-gradient(180deg, #f5e6c8, #e5c384); box-shadow: 0 8px 18px rgba(72, 14, 26, 0.22); }
     .mem-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .mem-frame::after { content: ""; position: absolute; inset: 0; border-radius: 20px; border: 3px solid #fff; pointer-events: none; }
     .mem-dots { display: flex; justify-content: center; gap: 7px; margin-top: 2px; }
@@ -248,7 +248,7 @@
     .cel-btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: calc(100% - 36px); margin: 4px 18px 18px; padding: 13px 14px; border: 1.5px solid #d4b171; border-radius: 14px; cursor: pointer; color: #fff8e6; font-family: "Cormorant Garamond", serif; font-weight: 700; font-size: clamp(12px, 3.1vw, 14px); letter-spacing: .16em; text-transform: uppercase; background: linear-gradient(180deg, #8d2a40 0%, #6a1a2e 50%, #581321 100%); box-shadow: 0 4px 12px rgba(88, 19, 33, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.25); }
     .cel-btn svg { width: 18px; height: 18px; }
     .cel-btn:active { transform: translateY(1px); }
-    .cel-map { position: relative; display: block; width: 100%; height: 190px; margin-top: 16px; border-radius: 20px; overflow: hidden; border: 2px solid #721b2c; text-decoration: none; box-shadow: 0 8px 18px rgba(72, 14, 26, 0.2);
+    .cel-map { position: relative; display: block; width: 100%; height: 190px; margin-top: 16px; border-radius: 20px; overflow: hidden; border: 2px solid #bd914b; text-decoration: none; box-shadow: 0 8px 18px rgba(72, 14, 26, 0.2);
       background: repeating-linear-gradient(35deg, transparent 0 22px, rgba(189, 145, 75, 0.3) 22px 24px), repeating-linear-gradient(-55deg, transparent 0 30px, rgba(189, 145, 75, 0.22) 30px 32px), radial-gradient(circle at 70% 30%, rgba(255, 244, 214, 0.9), transparent 55%), linear-gradient(180deg, #f6e8c9, #ecd6a4); }
     .cel-map::after { content: ""; position: absolute; inset: 0; border-radius: 18px; border: 3px solid #fff; pointer-events: none; }
     .cel-map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; pointer-events: none; }
@@ -588,16 +588,16 @@
 
     <!-- PAGE 4: MEMORIES + THE CELEBRATION -->
     <div class="gallery-page gallery-page-side page-memories" id="pageMemories">
-      <h2 class="mem-title">Our Memories</h2>
+      <h2 class="mem-title">Moments</h2>
       <div class="mem-line"></div>
 
       <div class="mem-slider" id="memSlider">
         <div class="mem-track" id="memTrack">
-          <div class="mem-slide"><div class="mem-frame"><img src="our%20memories/1.png" alt="Memory 1" data-fallbacks="our%20memories/1.jpg" onerror="photoFallback(this)"></div></div>
-          <div class="mem-slide"><div class="mem-frame"><img src="our%20memories/2.png" alt="Memory 2" loading="lazy" data-fallbacks="our%20memories/2.jpg" onerror="photoFallback(this)"></div></div>
-          <div class="mem-slide"><div class="mem-frame"><img src="our%20memories/3.png" alt="Memory 3" loading="lazy" data-fallbacks="our%20memories/3.jpg" onerror="photoFallback(this)"></div></div>
-          <div class="mem-slide"><div class="mem-frame"><img src="our%20memories/4.png" alt="Memory 4" loading="lazy" data-fallbacks="our%20memories/4.jpg" onerror="photoFallback(this)"></div></div>
-          <div class="mem-slide"><div class="mem-frame"><img src="our%20memories/5.png" alt="Memory 5" loading="lazy" data-fallbacks="our%20memories/5.jpg" onerror="photoFallback(this)"></div></div>
+          <div class="mem-slide"><div class="mem-frame"><img src="moments/1.png" alt="Memory 1" data-fallbacks="moments/1.jpg" onerror="photoFallback(this)"></div></div>
+          <div class="mem-slide"><div class="mem-frame"><img src="moments/2.png" alt="Memory 2" loading="lazy" data-fallbacks="moments/2.jpg" onerror="photoFallback(this)"></div></div>
+          <div class="mem-slide"><div class="mem-frame"><img src="moments/3.png" alt="Memory 3" loading="lazy" data-fallbacks="moments/3.jpg" onerror="photoFallback(this)"></div></div>
+          <div class="mem-slide"><div class="mem-frame"><img src="moments/4.png" alt="Memory 4" loading="lazy" data-fallbacks="moments/4.jpg" onerror="photoFallback(this)"></div></div>
+          <div class="mem-slide"><div class="mem-frame"><img src="moments/5.png" alt="Memory 5" loading="lazy" data-fallbacks="moments/5.jpg" onerror="photoFallback(this)"></div></div>
         </div>
         <div class="mem-dots" id="memDots"></div>
       </div>
