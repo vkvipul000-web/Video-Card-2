@@ -265,7 +265,7 @@
     .map-5a { width: 100%; padding: 9% 12% 8%; background-image: url('assets/border-side.png'); background-size: 100% 100%; background-position: center; background-repeat: no-repeat; position: relative; z-index: 2; }
     /* 5B: wallpaper starts right under the card; names, logo, elephants, maroon block */
     .map-5b { width: 100%; flex: 1 1 auto; display: flex; flex-direction: column; align-items: center; background-image: url('assets/border-bg.png'); background-size: 100% auto; background-repeat: repeat-y; background-position: top center; position: relative; z-index: 1; }
-    .map-top { width: 100%; padding: clamp(38px, 9.5vw, 58px) 7% 0; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 4; transform: translateY(clamp(20px, 4.8vw, 34px)); }
+    .map-top { width: 100%; padding: clamp(50px, 12vw, 72px) 7% 0; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 4; transform: translateY(clamp(38px, 9.5vw, 60px)); }
     .map-card { width: 100%; border-radius: 24px; overflow: hidden; border: 2px solid #bd914b; background: linear-gradient(180deg, #fffaf0 0%, #fbeed2 100%); box-shadow: 0 10px 22px rgba(72, 14, 26, 0.22); text-align: center; }
     .map-card-map { position: relative; height: 200px; background: linear-gradient(180deg, #f6e8c9, #ecd6a4); -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 52%, transparent 100%); mask-image: linear-gradient(to bottom, #000 0%, #000 52%, transparent 100%); }
     .map-card-map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; pointer-events: none; }
@@ -276,8 +276,8 @@
     .map-dir-btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 12px 14px; border: 1.5px solid #8d2a40; border-radius: 999px; text-decoration: none; color: #6a1a2e; background: transparent; font-family: "Cormorant Garamond", serif; font-weight: 700; font-size: clamp(12px, 3.2vw, 14px); letter-spacing: .2em; text-transform: uppercase; }
     .map-dir-btn svg { width: 17px; height: 17px; }
     .map-dir-btn:active { transform: translateY(1px); }
-    .page-map h2.map-names { width: 93%; text-align: center; font-family: "Great Vibes", cursive; font-weight: 400; font-size: clamp(41.6px, 10.4vw, 54.6px); line-height: .98; color: var(--burgundy); margin: 0 0 10px; padding-top: 3%; position: relative; z-index: 4; white-space: nowrap; opacity: 0; transform: translateY(28px); will-change: opacity, transform; transition: opacity .8s cubic-bezier(.22, 1, .36, 1) .7s, transform .8s cubic-bezier(.22, 1, .36, 1) .7s; }
-    .map-logo { display: block; position: relative; z-index: 4; width: min(67.5%, 270px); height: auto; margin: 2px auto 0; opacity: 0; will-change: opacity; transition: opacity .85s ease; }
+    .page-map h2.map-names { width: 93%; text-align: center; font-family: "Great Vibes", cursive; font-weight: 400; font-size: clamp(41.6px, 10.4vw, 54.6px); line-height: .98; color: var(--burgundy); margin: 0 0 10px; padding-top: 3%; position: relative; z-index: 4; white-space: nowrap; opacity: 0; transform: translateY(32px); will-change: opacity, transform; transition: opacity .85s cubic-bezier(.22, 1, .36, 1) .75s, transform .85s cubic-bezier(.22, 1, .36, 1) .75s; }
+    .map-logo { display: block; position: relative; z-index: 4; width: min(67.5%, 270px); height: auto; margin: 2px auto 0; opacity: 0; will-change: opacity; transition: opacity .9s ease; }
     .map-top.in-view .map-logo { opacity: 1; }
     .page-map .map-top.in-view h2.map-names { opacity: 1; transform: translateY(0); }
     .map-bottom { --elephant-overlap: clamp(105px, 23vw, 140px); width: 100%; margin-top: auto; padding-top: 10px; position: relative; z-index: 1; }
@@ -1042,16 +1042,30 @@
     (function initPage5Reveal() {
       const mapTop = document.querySelector(".map-top");
       if (!mapTop) return;
-      if ("IntersectionObserver" in window) {
-        const observer = new IntersectionObserver((entries, obs) => {
-          if (entries[0].isIntersecting) {
-            mapTop.classList.add("in-view");
-            obs.unobserve(mapTop);
-          }
-        }, { threshold: 0.25 });
-        observer.observe(mapTop);
-      } else {
+      let revealed = false, observer = null;
+
+      function triggerReveal() {
+        if (revealed) return;
+        revealed = true;
         mapTop.classList.add("in-view");
+        if (observer) observer.disconnect();
+        window.removeEventListener("scroll", checkBottom);
+      }
+
+      function checkBottom() {
+        if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 24) {
+          triggerReveal();
+        }
+      }
+
+      if ("IntersectionObserver" in window) {
+        observer = new IntersectionObserver((entries) => {
+          if (entries[0].isIntersecting) triggerReveal();
+        }, { rootMargin: "0px 0px -18% 0px", threshold: 0.45 });
+        observer.observe(mapTop);
+        window.addEventListener("scroll", checkBottom, { passive: true });
+      } else {
+        triggerReveal();
       }
     })();
 
