@@ -260,7 +260,11 @@
     .cel-map-btn:active { transform: translateY(1px); }
 
     /* PAGE 5: MAP CARD + NAMES + ELEPHANTS + MAROON BLOCK */
-    .page-map { height: auto; min-height: 100svh; justify-content: flex-start; padding: 9% 0 0; background-size: 100% auto; background-repeat: repeat-y; background-position: top center; }
+    .page-map { height: auto; min-height: 100svh; justify-content: flex-start; padding: 0; background: none; background-image: none; }
+    /* 5A: card on the border-side wallpaper */
+    .map-5a { width: 100%; padding: 9% 12% 8%; background-image: url('assets/border-side.png'); background-size: 100% 100%; background-position: center; background-repeat: no-repeat; position: relative; z-index: 2; }
+    /* 5B: wallpaper starts right under the card; names, logo, elephants, maroon block */
+    .map-5b { width: 100%; flex: 1 1 auto; display: flex; flex-direction: column; align-items: center; background-image: url('assets/border-bg.png'); background-size: 100% auto; background-repeat: repeat-y; background-position: top center; position: relative; z-index: 1; }
     .map-top { width: 100%; padding: 0 12%; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 1; }
     .map-card { width: 100%; border-radius: 24px; overflow: hidden; border: 2px solid #bd914b; background: linear-gradient(180deg, #fffaf0 0%, #fbeed2 100%); box-shadow: 0 10px 22px rgba(72, 14, 26, 0.22); text-align: center; }
     .map-card-map { position: relative; height: 200px; background: linear-gradient(180deg, #f6e8c9, #ecd6a4); -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 52%, transparent 100%); mask-image: linear-gradient(to bottom, #000 0%, #000 52%, transparent 100%); }
@@ -272,7 +276,7 @@
     .map-dir-btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 12px 14px; border: 1.5px solid #8d2a40; border-radius: 999px; text-decoration: none; color: #6a1a2e; background: transparent; font-family: "Cormorant Garamond", serif; font-weight: 700; font-size: clamp(12px, 3.2vw, 14px); letter-spacing: .2em; text-transform: uppercase; }
     .map-dir-btn svg { width: 17px; height: 17px; }
     .map-dir-btn:active { transform: translateY(1px); }
-    .map-names { font-family: "Allura", cursive; font-weight: 400; font-size: clamp(40px, 11vw, 52px); line-height: 1.1; color: #6a1a2e; margin: 18px 0 0; }
+    .map-names { font-family: "Allura", cursive; font-weight: 400; font-size: clamp(40px, 11vw, 52px); line-height: 1.1; color: #6a1a2e; margin: 0; padding-top: 8%; }
     .map-logo { display: block; width: min(34%, 130px); height: auto; margin: 8px auto 0; }
     .map-bottom { width: 100%; margin-top: auto; padding-top: 10px; position: relative; z-index: 1; }
     .map-elephants { display: block; width: 100%; height: auto; margin-bottom: -1px; }
@@ -655,7 +659,7 @@
 
     <!-- PAGE 5: MAP -->
     <div class="gallery-page page-map" id="pageMap">
-      <div class="map-top">
+      <div class="map-5a">
         <div class="map-card">
           <div class="map-card-map">
             <iframe src="https://www.google.com/maps?q=Dulhan+Palace,+Tarighat+Rd,+Dildar+Nagar,+Bhadaura,+Uttar+Pradesh+232333&amp;output=embed" title="Map of the venue" loading="lazy" referrerpolicy="no-referrer-when-downgrade" tabindex="-1"></iframe>
@@ -667,6 +671,9 @@
             <a class="map-dir-btn" href="https://maps.app.goo.gl/4FXkHQqBxVPQnMka9" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg><span>Get Directions</span></a>
           </div>
         </div>
+      </div>
+      <div class="map-5b">
+      <div class="map-top">
         <h2 class="map-names">Shravan &amp; Nikki</h2>
         <img class="map-logo" src="page5/logo.png" alt="S &amp; N" data-fallbacks="Page5/logo.png,page5/wedding-logo2.png,Page5/wedding-logo2.png,page5/Wedding-logo2.png,page5/wedding%20logo%202.png,page5/wedding-logo-2.png,assets/wedding-logo2.png" onerror="photoFallback(this)">
       </div>
@@ -675,6 +682,7 @@
         <div class="map-maroon">
           <img class="map-divider" src="page5/divider.png" alt="" data-fallbacks="Page5/divider.png,page5/border.png,Page5/border.png,page5/file_0000000063388211a96890e48d2fe22c.png,Page5/file_0000000063388211a96890e48d2fe22c.png" onerror="photoFallback(this)">
         </div>
+      </div>
       </div>
     </div>
 
