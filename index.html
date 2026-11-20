@@ -259,12 +259,25 @@
     .cel-map-btn svg { width: 18px; height: 18px; }
     .cel-map-btn:active { transform: translateY(1px); }
 
-    /* PAGE 5: MAP (plain cream background, no frame) */
-    .page-map { height: 100svh; min-height: 100svh; justify-content: flex-start; padding: 9% 8% 0; background-size: 100% auto; background-repeat: repeat-y; background-position: top center; }
-    .page-map::before { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 30%; background: #4a0f1d; z-index: 0; pointer-events: none; }
-    .page-map .map-wrap { position: relative; z-index: 1; }
-    .map-wrap { width: 100%; display: flex; flex-direction: column; align-items: center; }
-    .map-wrap .cel-map { margin-top: 0; }
+    /* PAGE 5: MAP CARD + NAMES + ELEPHANTS + MAROON BLOCK */
+    .page-map { height: auto; min-height: 100svh; justify-content: flex-start; padding: 9% 0 0; background-size: 100% auto; background-repeat: repeat-y; background-position: top center; }
+    .map-top { width: 100%; padding: 0 12%; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 1; }
+    .map-card { width: 100%; border-radius: 24px; overflow: hidden; border: 2px solid #bd914b; background: linear-gradient(180deg, #fffaf0 0%, #fbeed2 100%); box-shadow: 0 10px 22px rgba(72, 14, 26, 0.22); text-align: center; }
+    .map-card-map { position: relative; height: 200px; background: linear-gradient(180deg, #f6e8c9, #ecd6a4); -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 52%, transparent 100%); mask-image: linear-gradient(to bottom, #000 0%, #000 52%, transparent 100%); }
+    .map-card-map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; pointer-events: none; }
+    .map-card-map a { position: absolute; inset: 0; z-index: 2; }
+    .map-card-body { padding: 0 18px 20px; margin-top: -26px; position: relative; z-index: 1; }
+    .map-venue { font-family: "Cormorant Garamond", serif; font-weight: 700; font-size: clamp(22px, 6vw, 28px); line-height: 1.1; color: #581321; margin: 0 0 6px; }
+    .map-address { font-family: "Cormorant Garamond", serif; font-weight: 600; font-size: clamp(13px, 3.5vw, 15px); line-height: 1.35; color: #7a4a3a; margin: 0 0 16px; }
+    .map-dir-btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 12px 14px; border: 1.5px solid #8d2a40; border-radius: 999px; text-decoration: none; color: #6a1a2e; background: transparent; font-family: "Cormorant Garamond", serif; font-weight: 700; font-size: clamp(12px, 3.2vw, 14px); letter-spacing: .2em; text-transform: uppercase; }
+    .map-dir-btn svg { width: 17px; height: 17px; }
+    .map-dir-btn:active { transform: translateY(1px); }
+    .map-names { font-family: "Allura", cursive; font-weight: 400; font-size: clamp(40px, 11vw, 52px); line-height: 1.1; color: #6a1a2e; margin: 18px 0 0; }
+    .map-logo { display: block; width: min(34%, 130px); height: auto; margin: 8px auto 0; }
+    .map-bottom { width: 100%; margin-top: auto; padding-top: 10px; position: relative; z-index: 1; }
+    .map-elephants { display: block; width: 100%; height: auto; margin-bottom: -1px; }
+    .map-maroon { width: 100%; min-height: 30svh; background: #4a0f1d; display: flex; flex-direction: column; align-items: center; padding: 14px 8% 24px; }
+    .map-divider { display: block; width: min(78%, 330px); height: auto; }
 
     /* PAGE 1 CUSTOM STYLES */
     .p1-quote-section { display: flex; flex-direction: column; align-items: center; width: 100%; margin-top: 2%; z-index: 2; }
@@ -642,11 +655,26 @@
 
     <!-- PAGE 5: MAP -->
     <div class="gallery-page page-map" id="pageMap">
-      <div class="map-wrap">
-        <a class="cel-map" id="mapLink" href="https://maps.app.goo.gl/4FXkHQqBxVPQnMka9" target="_blank" rel="noopener" aria-label="Open the venue in Google Maps">
-          <iframe src="https://www.google.com/maps?q=Dulhan+Palace,+Tarighat+Rd,+Dildar+Nagar,+Bhadaura,+Uttar+Pradesh+232333&amp;output=embed" title="Map of the venue" loading="lazy" referrerpolicy="no-referrer-when-downgrade" tabindex="-1"></iframe>
-        </a>
-        <a class="cel-map-btn" href="https://maps.app.goo.gl/4FXkHQqBxVPQnMka9" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 1 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Open in Google Maps</span></a>
+      <div class="map-top">
+        <div class="map-card">
+          <div class="map-card-map">
+            <iframe src="https://www.google.com/maps?q=Dulhan+Palace,+Tarighat+Rd,+Dildar+Nagar,+Bhadaura,+Uttar+Pradesh+232333&amp;output=embed" title="Map of the venue" loading="lazy" referrerpolicy="no-referrer-when-downgrade" tabindex="-1"></iframe>
+            <a id="mapLink" href="https://maps.app.goo.gl/4FXkHQqBxVPQnMka9" target="_blank" rel="noopener" aria-label="Open the venue in Google Maps"></a>
+          </div>
+          <div class="map-card-body">
+            <h3 class="map-venue">Dulhan Palace</h3>
+            <p class="map-address">Tarighat Rd, Dildar Nagar, Bhadaura, Uttar Pradesh 232333</p>
+            <a class="map-dir-btn" href="https://maps.app.goo.gl/4FXkHQqBxVPQnMka9" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg><span>Get Directions</span></a>
+          </div>
+        </div>
+        <h2 class="map-names">Shravan &amp; Nikki</h2>
+        <img class="map-logo" src="page5/logo.png" alt="S &amp; N" data-fallbacks="Page5/logo.png,page5/wedding-logo2.png,Page5/wedding-logo2.png,page5/Wedding-logo2.png,page5/wedding%20logo%202.png,page5/wedding-logo-2.png,assets/wedding-logo2.png" onerror="photoFallback(this)">
+      </div>
+      <div class="map-bottom">
+        <img class="map-elephants" src="page5/elephants.png" alt="" data-fallbacks="Page5/elephants.png,page5/elephant.png,Page5/elephant.png,page5/file_00000000199c81f89e92eb05c56a846e.png,Page5/file_00000000199c81f89e92eb05c56a846e.png" onerror="photoFallback(this)">
+        <div class="map-maroon">
+          <img class="map-divider" src="page5/divider.png" alt="" data-fallbacks="Page5/divider.png,page5/border.png,Page5/border.png,page5/file_0000000063388211a96890e48d2fe22c.png,Page5/file_0000000063388211a96890e48d2fe22c.png" onerror="photoFallback(this)">
+        </div>
       </div>
     </div>
 
