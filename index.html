@@ -265,7 +265,7 @@
     .map-5a { width: 100%; padding: 9% 12% 8%; background-image: url('assets/border-side.png'); background-size: 100% 100%; background-position: center; background-repeat: no-repeat; position: relative; z-index: 2; }
     /* 5B: wallpaper starts right under the card; names, logo, elephants, maroon block */
     .map-5b { width: 100%; flex: 1 1 auto; display: flex; flex-direction: column; align-items: center; background-image: url('assets/border-bg.png'); background-size: 100% auto; background-repeat: repeat-y; background-position: top center; position: relative; z-index: 1; }
-    .map-top { width: 100%; padding: clamp(24px, 6vw, 38px) 7% 0; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 4; transform: translateY(clamp(12px, 3vw, 20px)); }
+    .map-top { width: 100%; padding: clamp(38px, 9.5vw, 58px) 7% 0; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 4; transform: translateY(clamp(20px, 4.8vw, 34px)); }
     .map-card { width: 100%; border-radius: 24px; overflow: hidden; border: 2px solid #bd914b; background: linear-gradient(180deg, #fffaf0 0%, #fbeed2 100%); box-shadow: 0 10px 22px rgba(72, 14, 26, 0.22); text-align: center; }
     .map-card-map { position: relative; height: 200px; background: linear-gradient(180deg, #f6e8c9, #ecd6a4); -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 52%, transparent 100%); mask-image: linear-gradient(to bottom, #000 0%, #000 52%, transparent 100%); }
     .map-card-map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; pointer-events: none; }
@@ -276,8 +276,10 @@
     .map-dir-btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 12px 14px; border: 1.5px solid #8d2a40; border-radius: 999px; text-decoration: none; color: #6a1a2e; background: transparent; font-family: "Cormorant Garamond", serif; font-weight: 700; font-size: clamp(12px, 3.2vw, 14px); letter-spacing: .2em; text-transform: uppercase; }
     .map-dir-btn svg { width: 17px; height: 17px; }
     .map-dir-btn:active { transform: translateY(1px); }
-    .page-map h2.map-names { width: 93%; text-align: center; font-family: "Great Vibes", cursive; font-weight: 400; font-size: clamp(41.6px, 10.4vw, 54.6px); line-height: .98; color: var(--burgundy); margin: 0 0 10px; padding-top: 3%; position: relative; z-index: 4; white-space: nowrap; }
-    .map-logo { display: block; position: relative; z-index: 4; width: min(67.5%, 270px); height: auto; margin: 2px auto 0; }
+    .page-map h2.map-names { width: 93%; text-align: center; font-family: "Great Vibes", cursive; font-weight: 400; font-size: clamp(41.6px, 10.4vw, 54.6px); line-height: .98; color: var(--burgundy); margin: 0 0 10px; padding-top: 3%; position: relative; z-index: 4; white-space: nowrap; opacity: 0; transform: translateY(28px); will-change: opacity, transform; transition: opacity .8s cubic-bezier(.22, 1, .36, 1) .7s, transform .8s cubic-bezier(.22, 1, .36, 1) .7s; }
+    .map-logo { display: block; position: relative; z-index: 4; width: min(67.5%, 270px); height: auto; margin: 2px auto 0; opacity: 0; will-change: opacity; transition: opacity .85s ease; }
+    .map-top.in-view .map-logo { opacity: 1; }
+    .page-map .map-top.in-view h2.map-names { opacity: 1; transform: translateY(0); }
     .map-bottom { --elephant-overlap: clamp(105px, 23vw, 140px); width: 100%; margin-top: auto; padding-top: 10px; position: relative; z-index: 1; }
     .map-elephants { display: block; position: relative; z-index: 1; width: 100%; height: auto; transform: translateY(calc(0px - var(--elephant-overlap))); margin-bottom: calc(0px - var(--elephant-overlap) - 1px); }
     .map-maroon { width: 100%; min-height: 44svh; background: #4a0f1d; display: flex; flex-direction: column; align-items: center; padding: 12px 8% clamp(58px, 9vh, 82px); }
@@ -286,7 +288,7 @@
     .map-love-row::before { background: linear-gradient(90deg, transparent, #bd914b 45%, #e5c384); }
     .map-love-row::after { background: linear-gradient(90deg, #e5c384, #bd914b 55%, transparent); }
     .map-divider { display: block; width: min(62%, 264px); height: auto; margin: 0 auto; position: relative; z-index: 1; }
-    .page-map p.map-quote { font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 500; font-size: clamp(24px, 6.8vw, 31px); line-height: 1.32; color: #f7e9cf; text-align: center; margin: -18px 0 0; position: relative; z-index: 2; }
+    .page-map p.map-quote { font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 500; font-size: clamp(27px, 7.6vw, 35px); line-height: 1.32; color: #f7e9cf; text-align: center; margin: -18px 0 0; position: relative; z-index: 2; text-shadow: 0 0 8px rgba(229, 195, 132, 0.75), 0 0 18px rgba(189, 145, 75, 0.55), 0 0 30px rgba(229, 195, 132, 0.35); }
     .page-map p.map-date { font-family: "Jost", "Cormorant Garamond", sans-serif; font-weight: 500; font-size: clamp(11px, 3vw, 13px); letter-spacing: .42em; margin-right: -.42em; line-height: 1.4; text-transform: uppercase; color: #d9b36a; text-align: center; margin-top: 17px; position: relative; z-index: 2; }
     .page-map p.map-made { font-family: "Jost", "Cormorant Garamond", sans-serif; font-weight: 500; font-size: clamp(9px, 2.5vw, 11px); letter-spacing: .2em; margin-right: -.2em; line-height: 1.4; white-space: nowrap; text-transform: uppercase; color: rgba(247, 233, 207, 0.78); text-align: center; margin-top: 13px; display: flex; align-items: center; justify-content: center; gap: .7em; position: relative; z-index: 2; }
     .map-made svg { width: 1.3em; height: 1.3em; fill: #d94a5a; flex: 0 0 auto; }
@@ -1035,6 +1037,22 @@
 
       window.addEventListener("resize", () => track.scrollTo({ left: idx * track.clientWidth, behavior: "auto" }));
       mark(0);
+    })();
+
+    (function initPage5Reveal() {
+      const mapTop = document.querySelector(".map-top");
+      if (!mapTop) return;
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver((entries, obs) => {
+          if (entries[0].isIntersecting) {
+            mapTop.classList.add("in-view");
+            obs.unobserve(mapTop);
+          }
+        }, { threshold: 0.25 });
+        observer.observe(mapTop);
+      } else {
+        mapTop.classList.add("in-view");
+      }
     })();
 
     (function initCalendarButton() {
