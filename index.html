@@ -218,34 +218,35 @@
     .tl-flower img { position: relative; width: 100%; height: 100%; object-fit: contain; display: block; opacity: 1; clip-path: circle(50%); }
 
     /* PAGE 4: MEMORIES + THE CELEBRATION */
-    .page-memories { height: auto; min-height: 100svh; justify-content: flex-start; padding: 11% 8% 15%; background-size: 100% auto; background-repeat: repeat-y; background-position: top center; }
-    .page-memories .mem-title { font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 700; font-size: clamp(32px, 8.6vw, 40px); line-height: 1.05; letter-spacing: .02em; color: var(--burgundy); margin: 0 0 6px; text-align: center; }
+    .page-memories { height: auto; min-height: 100svh; justify-content: flex-start; padding: 9% 8% 10%; background-size: 100% auto; background-repeat: repeat-y; background-position: top center; }
+    .page-memories .mem-title { font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 700; font-size: clamp(36px, 9.4vw, 44px); line-height: 1.05; letter-spacing: .02em; color: var(--burgundy); margin: 0 0 6px; text-align: center; }
     .mem-line { width: 62%; height: 2px; margin: 0 auto 16px; background: linear-gradient(90deg, transparent, #7c1e31 30%, #a3243a 50%, #7c1e31 70%, transparent); }
 
-    .mem-slider { width: 100%; }
-    .mem-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; }
+    .mem-slider { width: 100%; flex: 1 1 340px; min-height: 340px; display: flex; flex-direction: column; }
+    .mem-track { flex: 1 1 auto; min-height: 0; display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; }
     .mem-track::-webkit-scrollbar { display: none; }
     .mem-slide { flex: 0 0 100%; scroll-snap-align: center; padding: 6px 6px 12px; }
-    .mem-frame { position: relative; width: 100%; aspect-ratio: 4 / 5; border-radius: 22px; border: 2px solid #bd914b; overflow: hidden; background: linear-gradient(180deg, #f5e6c8, #e5c384); box-shadow: 0 8px 18px rgba(72, 14, 26, 0.22); }
+    .mem-frame { position: relative; width: 100%; height: 100%; min-height: 300px; border-radius: 22px; border: 2px solid #bd914b; overflow: hidden; background: linear-gradient(180deg, #f5e6c8, #e5c384); box-shadow: 0 8px 18px rgba(72, 14, 26, 0.22); }
     .mem-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .mem-frame::after { content: ""; position: absolute; inset: 0; border-radius: 20px; border: 3px solid #fff; pointer-events: none; }
     .mem-dots { display: flex; justify-content: center; gap: 7px; margin-top: 2px; }
     .mem-dot { width: 8px; height: 8px; padding: 0; border: 0; border-radius: 50%; background: rgba(189, 145, 75, 0.55); cursor: pointer; transition: width .3s ease, background .3s ease; }
     .mem-dot.active { width: 22px; border-radius: 4px; background: var(--burgundy); }
 
-    .cel-wrap { width: 100%; margin-top: 30px; display: flex; flex-direction: column; align-items: center; }
-    .page-memories .cel-title { font-family: "Cormorant Garamond", serif; font-weight: 600; font-size: clamp(28px, 7.4vw, 34px); line-height: 1.1; color: var(--burgundy); margin: 2px 0 14px; text-align: center; }
+    .cel-wrap { width: 100%; margin-top: 26px; display: flex; flex-direction: column; align-items: center; }
+    .cel-wrap .p1-eyebrow { font-size: clamp(12.5px, 3.3vw, 15px); }
+    .page-memories .cel-title { font-family: "Cormorant Garamond", serif; font-weight: 600; font-size: clamp(32px, 8.4vw, 40px); line-height: 1.1; color: var(--burgundy); margin: 2px 0 14px; text-align: center; }
     .cel-card { width: 100%; border-radius: 22px; overflow: hidden; border: 1px solid rgba(189, 145, 75, 0.7); background: rgba(255, 255, 255, 0.5); box-shadow: 0 10px 26px rgba(72, 14, 26, 0.2); }
-    .cel-head { text-align: center; padding: 20px 16px 18px; color: var(--cream-light); background: radial-gradient(circle at 50% 0%, rgba(229, 195, 132, 0.22) 0%, transparent 62%), linear-gradient(180deg, #7c1e31 0%, #5e1423 52%, #430c18 100%); }
-    .cel-save { display: block; font-size: clamp(10px, 2.5vw, 12px); font-weight: 700; letter-spacing: .3em; padding-left: .3em; text-transform: uppercase; color: var(--gold-light); }
-    .cel-day { display: block; margin: 6px 0 4px; font-weight: 700; font-size: clamp(44px, 12vw, 58px); line-height: 1; font-variant-numeric: lining-nums; font-feature-settings: "lnum" 1; }
-    .cel-month { display: block; font-weight: 700; font-size: clamp(12px, 3.2vw, 15px); letter-spacing: .28em; padding-left: .28em; color: var(--cream-light); font-variant-numeric: lining-nums; font-feature-settings: "lnum" 1; }
-    .cel-row { display: flex; align-items: center; gap: 14px; padding: 14px 18px; border-top: 1px solid rgba(189, 145, 75, 0.35); text-align: left; }
-    .cel-ico { flex: 0 0 42px; width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; color: var(--burgundy); border: 1.5px solid #bd914b; background: linear-gradient(180deg, #fff9ec, #f1dcae); }
-    .cel-ico svg { width: 20px; height: 20px; }
-    .cel-label { display: block; font-size: clamp(9.5px, 2.4vw, 11px); font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: #8c6b3d; }
-    .cel-value { display: block; font-weight: 700; font-size: clamp(15px, 4vw, 18px); line-height: 1.25; color: var(--ink); font-variant-numeric: lining-nums; font-feature-settings: "lnum" 1; }
-    .cel-btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: calc(100% - 36px); margin: 4px 18px 18px; padding: 13px 14px; border: 1.5px solid #d4b171; border-radius: 14px; cursor: pointer; color: #fff8e6; font-family: "Cormorant Garamond", serif; font-weight: 700; font-size: clamp(12px, 3.1vw, 14px); letter-spacing: .16em; text-transform: uppercase; background: linear-gradient(180deg, #8d2a40 0%, #6a1a2e 50%, #581321 100%); box-shadow: 0 4px 12px rgba(88, 19, 33, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.25); }
+    .cel-head { text-align: center; padding: 24px 16px 22px; color: var(--cream-light); background: radial-gradient(circle at 50% 0%, rgba(229, 195, 132, 0.22) 0%, transparent 62%), linear-gradient(180deg, #7c1e31 0%, #5e1423 52%, #430c18 100%); }
+    .cel-save { display: block; font-size: clamp(11.5px, 3vw, 13.5px); font-weight: 700; letter-spacing: .3em; padding-left: .3em; text-transform: uppercase; color: var(--gold-light); }
+    .cel-day { display: block; margin: 6px 0 4px; font-weight: 700; font-size: clamp(52px, 14vw, 68px); line-height: 1; font-variant-numeric: lining-nums; font-feature-settings: "lnum" 1; }
+    .cel-month { display: block; font-weight: 700; font-size: clamp(14px, 3.7vw, 17px); letter-spacing: .28em; padding-left: .28em; color: var(--cream-light); font-variant-numeric: lining-nums; font-feature-settings: "lnum" 1; }
+    .cel-row { display: flex; align-items: center; gap: 14px; padding: 17px 18px; border-top: 1px solid rgba(189, 145, 75, 0.35); text-align: left; }
+    .cel-ico { flex: 0 0 46px; width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; color: var(--burgundy); border: 1.5px solid #bd914b; background: linear-gradient(180deg, #fff9ec, #f1dcae); }
+    .cel-ico svg { width: 22px; height: 22px; }
+    .cel-label { display: block; font-size: clamp(11px, 2.9vw, 12.5px); font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: #8c6b3d; }
+    .cel-value { display: block; font-weight: 700; font-size: clamp(16.5px, 4.4vw, 20px); line-height: 1.25; color: var(--ink); font-variant-numeric: lining-nums; font-feature-settings: "lnum" 1; }
+    .cel-btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: calc(100% - 36px); margin: 4px 18px 20px; padding: 14px 14px; border: 1.5px solid #d4b171; border-radius: 14px; cursor: pointer; color: #fff8e6; font-family: "Cormorant Garamond", serif; font-weight: 700; font-size: clamp(13px, 3.4vw, 15px); letter-spacing: .16em; text-transform: uppercase; background: linear-gradient(180deg, #8d2a40 0%, #6a1a2e 50%, #581321 100%); box-shadow: 0 4px 12px rgba(88, 19, 33, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.25); }
     .cel-btn svg { width: 18px; height: 18px; }
     .cel-btn:active { transform: translateY(1px); }
     .cel-map { position: relative; display: block; width: 100%; height: 190px; margin-top: 16px; border-radius: 20px; overflow: hidden; border: 2px solid #bd914b; text-decoration: none; box-shadow: 0 8px 18px rgba(72, 14, 26, 0.2);
@@ -257,6 +258,11 @@
     .cel-map-btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; margin-top: 12px; padding: 13px 14px; border: 1.5px solid #d4b171; border-radius: 14px; text-decoration: none; color: #fff8e6; font-family: "Cormorant Garamond", serif; font-weight: 700; font-size: clamp(12px, 3.1vw, 14px); letter-spacing: .16em; text-transform: uppercase; background: linear-gradient(180deg, #8d2a40 0%, #6a1a2e 50%, #581321 100%); box-shadow: 0 4px 12px rgba(88, 19, 33, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.25); }
     .cel-map-btn svg { width: 18px; height: 18px; }
     .cel-map-btn:active { transform: translateY(1px); }
+
+    /* PAGE 5: MAP (plain cream background, no frame) */
+    .page-map { background: #faf0dc; background-image: none; height: auto; min-height: 100svh; justify-content: center; padding: 12% 8%; }
+    .map-wrap { width: 100%; display: flex; flex-direction: column; align-items: center; }
+    .map-wrap .cel-map { margin-top: 0; }
 
     /* PAGE 1 CUSTOM STYLES */
     .p1-quote-section { display: flex; flex-direction: column; align-items: center; width: 100%; margin-top: 2%; z-index: 2; }
@@ -629,6 +635,12 @@
           <button class="cel-btn" id="addToCalendar" type="button" data-venue="Dulhan Palace, Tarighat Rd, Dildar Nagar, Bhadaura, Uttar Pradesh 232333"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><span>Add to Calendar</span></button>
         </div>
 
+      </div>
+    </div>
+
+    <!-- PAGE 5: MAP -->
+    <div class="gallery-page page-map" id="pageMap">
+      <div class="map-wrap">
         <a class="cel-map" id="mapLink" href="https://maps.app.goo.gl/4FXkHQqBxVPQnMka9" target="_blank" rel="noopener" aria-label="Open the venue in Google Maps">
           <iframe src="https://www.google.com/maps?q=Dulhan+Palace,+Tarighat+Rd,+Dildar+Nagar,+Bhadaura,+Uttar+Pradesh+232333&amp;output=embed" title="Map of the venue" loading="lazy" referrerpolicy="no-referrer-when-downgrade" tabindex="-1"></iframe>
         </a>
@@ -636,15 +648,6 @@
       </div>
     </div>
 
-    <div class="gallery-page gallery-page-side">
-      <h2>Save the Date</h2>
-      <p>12th December 2026<br>We can't wait to see you!</p>
-    </div>
-
-    <div class="gallery-page gallery-page-side">
-      <h2>RSVP</h2>
-      <p>Please let us know if you can make it.<br>Contact details here.</p>
-    </div>
   </section>
 
   <div class="modal" id="dateModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
